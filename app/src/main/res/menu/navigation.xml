@@ -6,21 +6,25 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        android:visible="true" />
 
     <item
         android:id="@+id/navigation_search"
         android:icon="@drawable/ic_baseline_search_24dp"
-        android:title="@string/title_search" />
+        android:title="@string/title_search"
+        android:visible="true" />
 
     <item
         android:id="@+id/navigation_create_new"
         android:icon="@drawable/ic_baseline_add_circle_24dp"
-        android:title="@string/title_create_new" />
+        android:title="@string/title_create_new"
+        android:visible="true" />
 
     <item
         android:id="@+id/navigation_menu"
         android:icon="@drawable/ic_baseline_menu_24dp"
-        android:title="@string/title_menu" />
+        android:title="@string/title_menu"
+        android:visible="true" />
 
 </menu>
