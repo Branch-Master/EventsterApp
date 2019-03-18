@@ -1,5 +1,6 @@
 package com.example.eventsterapp.ui;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Type;
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class ViewEntity extends AppCompatActivity {
 
+    private ImageView entityImage;
     private TextView mTextMessage;
     private TextView entityName;
     private TextView entityInfo;
@@ -59,6 +62,11 @@ public class ViewEntity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         entityName = findViewById(R.id.entity_name);
         entityInfo = findViewById(R.id.entity_info);
+        entityImage = findViewById(R.id.entity_img);
+
+        //entityImage.setImageDrawable(R.drawable.ic_baseline_calander_today_24dp);
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

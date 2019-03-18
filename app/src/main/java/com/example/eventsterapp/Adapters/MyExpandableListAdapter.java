@@ -92,7 +92,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = layoutInflater.inflate(R.layout.child_row,null);
         }
         ImageView childIcon = (ImageView) convertView.findViewById(R.id.child_icon);
-        childIcon.setImageResource(R.mipmap.calendar_77371);
+        childIcon.setImageResource(childRow.getIcon());
 
         final TextView childText = (TextView) convertView.findViewById(R.id.child_text);
         childText.setText(childRow.getText().trim());

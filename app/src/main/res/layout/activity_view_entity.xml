@@ -8,10 +8,9 @@
     tools:context=".ui.ViewEntity">
 
     <ImageView
-        android:id="@+id/entiy_img"
+        android:id="@+id/entity_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/calendar_77371"
+        android:layout_height="200dp"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="35dp" />
 
