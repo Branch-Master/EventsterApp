@@ -45,11 +45,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_search:
+                    mTextMessage.setText(R.string.title_search);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_create_new:
+                    mTextMessage.setText(R.string.title_create_new);
                     return true;
             }
             return false;

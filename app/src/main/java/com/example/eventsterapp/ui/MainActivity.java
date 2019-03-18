@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_search:
+                    mTextMessage.setText(R.string.title_search);
                     Intent i = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(i);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_create_new:
+                    mTextMessage.setText(R.string.title_create_new);
                     return true;
             }
             return false;
