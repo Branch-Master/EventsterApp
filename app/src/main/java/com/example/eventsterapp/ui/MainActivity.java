@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
@@ -65,15 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         eventView = findViewById(R.id.rv);
 
-        Long langt = new Long(0);
-        Event ammli = new Event("Afmæli", "Næstkomandi föstudag kl 8, langar mig til að halda smá teiti og þér er boðið, ekki láta þig vanta í fjörið. P.S. BYOB",
-                langt, "Birthday", "24.12.2018",  "25.12.2018", "Markaflöt 25", 120,true);
-        Event tonleikar = new Event("Tónleikar", "Valdimar mun trylla líðin í  Eldborg næstkomandi föstudag, léttar veitingar verða á boðstólnum!",
-                langt, "Concert", "31.12.2018",  "01.01.2019", "Harpa Concert Hall", 250,true);
 
-        this.eventList.add(ammli);
-        this.eventList.add(tonleikar);
-
+        loadData();
 
         eventView.setHasFixedSize(true);
 
@@ -84,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
         eventView.setAdapter(adapter);
 
 
+    }
+
+    private void loadData(){
+        Long langt = new Long(0);
+        Event ammli = new Event("Afmæli", "Næstkomandi föstudag kl 8, langar mig til að halda smá teiti og þér er boðið, ekki láta þig vanta í fjörið. P.S. BYOB",
+                langt, "Birthday", "24.12.2018",  "25.12.2018", "Markaflöt 25", 120,true);
+        Event tonleikar = new Event("Tónleikar", "Valdimar mun trylla líðin í  Eldborg næstkomandi föstudag, léttar veitingar verða á boðstólnum!",
+                langt, "Concert", "31.12.2018",  "01.01.2019", "Harpa Concert Hall", 250,true);
+
+        this.eventList.add(ammli);
+        this.eventList.add(tonleikar);
     }
 
 }

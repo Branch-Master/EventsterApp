@@ -17,15 +17,6 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:layout_gravity="top"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="top"
-            android:visibility="visible" />
 
 
         <ExpandableListView
@@ -33,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="20sp"
             ></ExpandableListView>
     </LinearLayout>
 

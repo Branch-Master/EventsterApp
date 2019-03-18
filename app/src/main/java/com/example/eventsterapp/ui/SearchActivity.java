@@ -142,18 +142,26 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         parentRow parentRow;
 
 
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum 1"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum 2"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum 3"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ammæli"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"BBQ"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"árshátíð"));
 
-        parentRow = new parentRow("group 1",childRows);
+        parentRow = new parentRow("Events",childRows);
         parentList.add(parentRow);
 
         childRows = new ArrayList<ChildRow>();
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum alora"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum ypsum"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"lorem ipsum dipsum"));
-        parentRow = new parentRow("group 2",childRows);
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"sjomlar"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"fjölskyldan"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Nörd"));
+        parentRow = new parentRow("Groups",childRows);
+        parentList.add(parentRow);
+
+        childRows = new ArrayList<ChildRow>();
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Marinó"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Birgir"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Adam"));
+        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ísak"));
+        parentRow = new parentRow("Users",childRows);
         parentList.add(parentRow);
 
 
