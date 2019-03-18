@@ -26,11 +26,11 @@ public class ViewEntity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_search:
+                    mTextMessage.setText(R.string.title_search);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_create_new:
+                    mTextMessage.setText(R.string.title_create_new);
                     return true;
             }
             return false;
@@ -43,11 +43,12 @@ public class ViewEntity extends AppCompatActivity {
         setContentView(R.layout.activity_view_entity);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        entityName = findViewById(R.id.entiy_name);
+        entityName = findViewById(R.id.entity_name);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        entityName = getIntent().getStringExtra();
+        String nameFromIntent =getIntent().getStringExtra("ent_name");
+        entityName.setText(nameFromIntent);
     }
 
 }

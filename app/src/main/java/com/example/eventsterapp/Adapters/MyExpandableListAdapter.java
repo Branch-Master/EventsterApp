@@ -105,7 +105,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(finalConvertView.getContext(), ViewEntity.class);
-                i.putExtra(childText.getText(),getChildId(groupPosition,childPosition));
+                i.putExtra("ent_name",childText.getText());
                 context.startActivity(i);
             }
         });
