@@ -18,7 +18,7 @@ public class MockData {
     public MockData() {
         User birgir = new User(new Long(1),"birgir", "birgir","27.06","8665825","cancer","boo11@hi.is",false);
         User adam = new User(new Long(2),"adam", "adam","10.02","8673425","aquarious","ajj10@hi.is",false);
-        User marino = new User(new Long(3),",marino", "marino","22.05","8459701","twinsies","mak78@hi.is",false);
+        User marino = new User(new Long(3),"marino", "marino","22.05","8459701","twinsies","mak78@hi.is",false);
         Group vinir = new Group("Vinirnir","bara vinirnir",new Long(1),false);
         vinir.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam)));
         Group aular = new Group("Aularnir","fokking aular",new Long(2),true);
@@ -26,7 +26,7 @@ public class MockData {
         Group eldri = new Group("Eldriborgarar","Ellismellirnir adam og birgir",new Long(3),false);
         eldri.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam)));
         Comment skitaComment = new Comment(new Long(1),new Long(2),"ertu að grínast eða",new Long(3));
-        Comment helladComment = new Comment(new Long(2),new Long(1),"vá hvað ég er spenntur",new Long(1))
+        Comment helladComment = new Comment(new Long(2),new Long(1),"vá hvað ég er spenntur",new Long(1));
         Event afmaeli = new Event(new Long(1),"AAAAMLI","Afmælis partý hjá Marinó maður",new Long(1),"party","22.05","23.05","Grafarvoginum hjá marino",3,false);
         afmaeli.setGoing(new ArrayList<User>(Arrays.asList(birgir, adam, marino)));
         afmaeli.setComments(new ArrayList<Comment>(Arrays.asList(helladComment)));

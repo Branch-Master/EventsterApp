@@ -8,8 +8,12 @@ import androidx.annotation.NonNull;
 
 import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.ChildRow;
+import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.ParentRow;
+import com.example.eventsterapp.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -142,29 +146,29 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         ArrayList<ChildRow> childRows = new ArrayList<ChildRow>();
         ParentRow parentRow;
 
+        MockData mockData = new MockData();
 
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ammæli"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"BBQ"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"árshátíð"));
-
+        for(Event e : mockData.getEvents()){
+            childRows.add(new ChildRow(R.mipmap.calendar_77371,e.getEventName()));
+        }
         parentRow = new ParentRow("Events",childRows);
         parentList.add(parentRow);
 
+
         childRows = new ArrayList<ChildRow>();
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"sjomlar"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"fjölskyldan"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Nörd"));
+        for(Group g : mockData.getGroups() ){
+            childRows.add(new ChildRow(R.mipmap.calendar_77371,g.getGroupName()));
+        }
         parentRow = new ParentRow("Groups",childRows);
         parentList.add(parentRow);
 
-        childRows = new ArrayList<ChildRow>();
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Marinó"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Birgir"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Adam"));
-        childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ísak"));
-        parentRow = new ParentRow("Users",childRows);
-        parentList.add(parentRow);
 
+        childRows = new ArrayList<ChildRow>();
+        for(User u: mockData.getUsers() ){
+            childRows.add(new ChildRow(R.mipmap.calendar_77371,u.getUsername()));
+        }
+        parentRow = new ParentRow("Groups",childRows);
+        parentList.add(parentRow);
 
     }
 }

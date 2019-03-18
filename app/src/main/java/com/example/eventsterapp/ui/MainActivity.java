@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.Event;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -82,14 +83,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData(){
-        Long langt = new Long(0);
-        Event ammli = new Event("Afmæli", "Næstkomandi föstudag kl 8, langar mig til að halda smá teiti og þér er boðið, ekki láta þig vanta í fjörið. P.S. BYOB",
-                langt, "Birthday", "24.12.2018",  "25.12.2018", "Markaflöt 25", 120,true);
-        Event tonleikar = new Event("Tónleikar", "Valdimar mun trylla líðin í  Eldborg næstkomandi föstudag, léttar veitingar verða á boðstólnum!",
-                langt, "Concert", "31.12.2018",  "01.01.2019", "Harpa Concert Hall", 250,true);
 
-        this.eventList.add(ammli);
-        this.eventList.add(tonleikar);
+        MockData mockData = new MockData();
+
+        this.eventList.addAll(mockData.getEvents());
+
     }
 
 }
