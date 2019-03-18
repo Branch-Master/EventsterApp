@@ -1,32 +1,30 @@
 package com.example.eventsterapp.ui;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
+//import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.Event;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import com.example.eventsterapp.*;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView eventView;
 
     private TextView mTextMessage;
-    private ArrayList<Event> eventList;
+    private ArrayList<Event> eventList = new ArrayList<Event>();
 
     ArrayAdapter adapter;
 
@@ -55,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        eventView = findViewById(R.id.rv);
 
         Long langt = new Long(0);
         Event ammli = new Event("Afmæli", "Næstkomandi föstudag kl 8, langar mig til að halda smá teiti og þér er boðið, ekki láta þig vanta í fjörið. P.S. BYOB",
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         this.eventList.add(ammli);
         this.eventList.add(tonleikar);
 
-        eventView = (RecyclerView)findViewById(R.id.rv);
+
         eventView.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
