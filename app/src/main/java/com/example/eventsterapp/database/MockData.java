@@ -19,6 +19,7 @@ public class MockData {
         User birgir = new User(new Long(11),"birgir", "birgir","27.06","8665825","cancer","boo11@hi.is",false);
         User adam = new User(new Long(12),"adam", "adam","10.02","8673425","aquarious","ajj10@hi.is",false);
         User marino = new User(new Long(13),"marino", "marino","22.05","8459701","twinsies","mak78@hi.is",false);
+        User isak = new User(new Long(14),"isak", "isak","08.12","6954725","sagittarius","iss23@hi.is",false);
 
         Group vinir = new Group("Vinirnir","bara vinirnir",new Long(21),false);
         vinir.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam)));
