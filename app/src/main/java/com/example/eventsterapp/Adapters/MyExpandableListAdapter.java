@@ -85,7 +85,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        ChildRow childRow = (ChildRow) getChild(groupPosition,childPosition);
+        final ChildRow childRow = (ChildRow) getChild(groupPosition,childPosition);
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater)
                     context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -105,7 +105,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(finalConvertView.getContext(), ViewEntity.class);
-                i.putExtra("ent_name",childText.getText());
+                i.putExtra("ent_id",(long) childRow.getId() );
+                i.putExtra("ent_type", childRow.getType());
                 context.startActivity(i);
             }
         });

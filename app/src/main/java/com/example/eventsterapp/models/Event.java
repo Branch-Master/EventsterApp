@@ -54,7 +54,7 @@ public class Event {
         this.comments.remove(comment);
     }
 
-    public Long getEventID() {
+    public Long getId() {
         return this.id;
     }
 
