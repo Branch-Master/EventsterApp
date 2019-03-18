@@ -1,6 +1,7 @@
 package com.example.eventsterapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,20 @@ import android.widget.Toast;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.ChildRow;
-import com.example.eventsterapp.models.parentRow;
+import com.example.eventsterapp.models.ParentRow;
+import com.example.eventsterapp.ui.MainActivity;
+import com.example.eventsterapp.ui.SearchActivity;
+import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;
 
 public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private ArrayList<parentRow> parentRowList;
-    private ArrayList<parentRow> originalList;
+    private ArrayList<ParentRow> parentRowList;
+    private ArrayList<ParentRow> originalList;
 
-    public MyExpandableListAdapter(Context context,ArrayList<parentRow> originalList) {
+    public MyExpandableListAdapter(Context context,ArrayList<ParentRow> originalList) {
         this.context = context;
         this.parentRowList = new ArrayList<>();
         this.parentRowList.addAll(originalList);
@@ -66,7 +70,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        parentRow parentRow = (parentRow) getGroup(groupPosition);
+        ParentRow parentRow = (ParentRow) getGroup(groupPosition);
 
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater)
@@ -80,7 +84,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildRow childRow = (ChildRow) getChild(groupPosition,childPosition);
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater)
@@ -100,6 +104,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                 Toast.makeText(finalConvertView.getContext()
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(finalConvertView.getContext(), ViewEntity.class);
+                i.putExtra(childText.getText(),getChildId(groupPosition,childPosition));
+                context.startActivity(i);
             }
         });
 
@@ -120,7 +127,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             parentRowList.addAll(originalList);
         }
         else{
-            for(parentRow parentRow: originalList){
+            for(ParentRow parentRow: originalList){
                 ArrayList<ChildRow> childList = parentRow.getChildList();
                 ArrayList<ChildRow> newList = new ArrayList<ChildRow>();
 
@@ -130,7 +137,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                     }
                 }
                 if(newList.size() > 0){
-                    parentRow nParentRow = new parentRow(parentRow.getName(),newList);
+                    ParentRow nParentRow = new ParentRow(parentRow.getName(),newList);
                     parentRowList.add(nParentRow);
                 }
             }

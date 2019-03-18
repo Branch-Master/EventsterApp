@@ -9,16 +9,14 @@ import androidx.annotation.NonNull;
 import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.ChildRow;
-import com.example.eventsterapp.models.parentRow;
+import com.example.eventsterapp.models.ParentRow;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -33,8 +31,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private SearchView searchView;
     private MyExpandableListAdapter listAdapter;
     private ExpandableListView myList;
-    private ArrayList<parentRow> parentList;
-    private ArrayList<parentRow> showThisParentList;
+    private ArrayList<ParentRow> parentList;
+    private ArrayList<ParentRow> showThisParentList;
     private MenuItem searchItem;
 
 
@@ -69,8 +67,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
-        parentList = new ArrayList<parentRow>();
-        showThisParentList = new ArrayList<parentRow>();
+        parentList = new ArrayList<ParentRow>();
+        showThisParentList = new ArrayList<ParentRow>();
 
         displayList();
 
@@ -139,21 +137,21 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     private void loadData(){
         ArrayList<ChildRow> childRows = new ArrayList<ChildRow>();
-        parentRow parentRow;
+        ParentRow parentRow;
 
 
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ammæli"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"BBQ"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"árshátíð"));
 
-        parentRow = new parentRow("Events",childRows);
+        parentRow = new ParentRow("Events",childRows);
         parentList.add(parentRow);
 
         childRows = new ArrayList<ChildRow>();
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"sjomlar"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"fjölskyldan"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"Nörd"));
-        parentRow = new parentRow("Groups",childRows);
+        parentRow = new ParentRow("Groups",childRows);
         parentList.add(parentRow);
 
         childRows = new ArrayList<ChildRow>();
@@ -161,7 +159,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"Birgir"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"Adam"));
         childRows.add(new ChildRow(R.mipmap.calendar_77371,"Ísak"));
-        parentRow = new parentRow("Users",childRows);
+        parentRow = new ParentRow("Users",childRows);
         parentList.add(parentRow);
 
 

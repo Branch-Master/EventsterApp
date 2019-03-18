@@ -2,11 +2,11 @@ package com.example.eventsterapp.models;
 
 import java.util.ArrayList;
 
-public class parentRow {
+public class ParentRow {
     private String name;
     private ArrayList<ChildRow> childList;
 
-    public parentRow(String name, ArrayList<ChildRow> childList) {
+    public ParentRow(String name, ArrayList<ChildRow> childList) {
         this.name = name;
         this.childList = childList;
     }
