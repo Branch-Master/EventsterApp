@@ -19,7 +19,7 @@ public class Event {
     private String tags;
     private String startDate;
     private String endDate;
-    private ArrayList<String> going;
+    private ArrayList<User> going;
     private String location;
     private int eventSeats;
     private Boolean visable;
@@ -27,19 +27,24 @@ public class Event {
     public Event() {
     }
 
-    public Event(String eventName, String eventInfo, Long groupID, String tag, String startDate, String endDate, String location, int eventSeats,Boolean vis) {
-
+    public Event(Long id, String eventName, String eventInfo, Long groupID, String tag, String startDate, String endDate, String location, int eventSeats,Boolean vis) {
+        this.id = id;
         this.eventName = eventName;
         this.eventInfo = eventInfo;
         this.groupID = groupID;
         this.tags = tag;
         this.startDate = startDate;
         this.endDate = endDate;
-        going = new ArrayList<String>();
+        going = new ArrayList<>();
+        comments = new ArrayList<>();
         this.location = location;
         this.eventSeats = eventSeats;
         this.visable = vis;
     }
+
+    public void setComments(ArrayList<Comment> comments){this.comments = comments;}
+
+    public void setGoing(ArrayList<User> going){this.going = going;}
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
@@ -101,12 +106,12 @@ public class Event {
         return this.endDate;
     }
 
-    public ArrayList<String> getGoing(){
+    public ArrayList<User> getGoing(){
         return this.going;
     }
 
-    public void addToGoing(String email) {
-        this.going.add(email);
+    public void addToGoing(User user) {
+        this.going.add(user);
     }
 
     public void setLocation(String location) {

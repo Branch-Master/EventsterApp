@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mTextMessage.setText("Event List");
 
-
-
         eventView = findViewById(R.id.rv);
 
         Long langt = new Long(0);

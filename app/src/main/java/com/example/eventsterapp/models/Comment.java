@@ -8,11 +8,12 @@ public class Comment {
 
     private Long id;
 
-    private int eventID;
+    private Long eventID;
     private String text;
-    private String userID;
+    private Long userID;
 
-    public Comment(int eventID, String text, String userID) {
+    public Comment(Long id, Long eventID, String text, Long userID) {
+        this.id = id;
         this.eventID = eventID;
         this.text = text;
         this.userID = userID;
@@ -22,7 +23,7 @@ public class Comment {
         return this.id;
     }
 
-    public int getEventID() {
+    public Long getEventID() {
         return this.eventID;
     }
 
@@ -34,7 +35,7 @@ public class Comment {
         return this.text;
     }
 
-    public String getUserID() {
+    public Long getUserID() {
         return this.userID;
     }
 }
