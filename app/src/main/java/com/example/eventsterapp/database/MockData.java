@@ -19,14 +19,15 @@ public class MockData {
         User birgir = new User(new Long(11),"birgir", "birgir","27.06","8665825","cancer","boo11@hi.is",false);
         User adam = new User(new Long(12),"adam", "adam","10.02","8673425","aquarious","ajj10@hi.is",false);
         User marino = new User(new Long(13),"marino", "marino","22.05","8459701","twinsies","mak78@hi.is",false);
+        User isak = new User(new Long(14),"isak", "isak","08.12","6954725","sagittarius","iss23@hi.is",false);
 
         Group vinir = new Group("Vinirnir","bara vinirnir",new Long(21),false);
-        vinir.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam)));
+        vinir.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam,marino,isak)));
         Group aular = new Group("Aularnir","fokking aular",new Long(22),true);
-        aular.setMembers(new ArrayList<User>(Arrays.asList(marino, adam)));
+        aular.setMembers(new ArrayList<User>(Arrays.asList(marino, adam,isak)));
 
         Group eldri = new Group("Eldriborgarar","Ellismellirnir adam og birgir",new Long(23),false);
-        eldri.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam)));
+        eldri.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam,isak)));
 
         Comment skitaComment = new Comment(new Long(31),new Long(42),"ertu að grínast eða",new Long(13));
         Comment helladComment = new Comment(new Long(32),new Long(41),"vá hvað ég er spenntur",new Long(11));
@@ -42,7 +43,7 @@ public class MockData {
         Event fobo = new Event(new Long(43),"Fóbó","Nördabolti fyrir alla",new Long(23),"sports","25.03","25.03","Ásgarði",10,true);
 
         events = new ArrayList<Event>(Arrays.asList(afmaeli,aulahittingur,fobo));
-        users = new ArrayList<User>(Arrays.asList(birgir,adam,marino));
+        users = new ArrayList<User>(Arrays.asList(birgir,adam,marino,isak));
         comments = new ArrayList<Comment>(Arrays.asList(skitaComment,helladComment));
         groups = new ArrayList<Group>(Arrays.asList(vinir,aular,eldri));
     }
