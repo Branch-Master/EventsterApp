@@ -10,9 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.ViewEntity"
+            android:label="@string/title_activity_view_entity"></activity>
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+
+        <activity
             android:name=".ui.SearchActivity"
             android:label="@string/title_activity_search">
-
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".ui.MainActivity"

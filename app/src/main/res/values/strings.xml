@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">EventsterApp</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Search</string>
+    <string name="title_create_new">Create New</string>
+    <string name="title_menu">Menu</string>
     <string name="title_activity_search">Search</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">Search me</string>
+    <string name="search">Search</string>
+    <string name="action_settings">action</string>
+    <string name="title_activity_view_entity">ViewEntity</string>
 </resources>

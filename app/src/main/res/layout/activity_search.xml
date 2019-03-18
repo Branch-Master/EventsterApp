@@ -17,27 +17,15 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/search_bar"
+
+
+        <ExpandableListView
+            android:id="@+id/expandambleListView_search"
             android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:layout_alignStart="@+id/search_container"
-
-            android:layout_alignParentTop="true"
-            android:layout_gravity="top"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="top"
-            android:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_results"
-            android:layout_width="match_parent"
-            android:layout_height="302dp"
-
-            >
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="20sp"
+            ></ExpandableListView>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
