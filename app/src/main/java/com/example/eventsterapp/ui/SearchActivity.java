@@ -51,6 +51,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 case R.id.navigation_create_new:
                     mTextMessage.setText(R.string.title_create_new);
                     return true;
+                case R.id.navigation_menu:
+                    mTextMessage.setText(R.string.title_menu);
+                    return true;
             }
             return false;
         }

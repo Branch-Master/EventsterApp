@@ -18,4 +18,9 @@
         android:icon="@drawable/ic_baseline_add_circle_24dp"
         android:title="@string/title_create_new" />
 
+    <item
+        android:id="@+id/navigation_menu"
+        android:icon="@drawable/ic_baseline_menu_24dp"
+        android:title="@string/title_menu" />
+
 </menu>

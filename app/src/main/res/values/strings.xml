@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_create_new">Create New</string>
+    <string name="title_menu">Menu</string>
     <string name="title_activity_search">Search</string>
     <string name="app_label">Search</string>
     <string name="search_hint">Search me</string>
