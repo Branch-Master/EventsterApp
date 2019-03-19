@@ -2,6 +2,7 @@ package com.example.eventsterapp.ui;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,16 +47,18 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
+                    System.out.println("Navigation Home");
+                    Intent i = new Intent(SearchActivity.this, MainActivity.class);
+                    startActivity(i);
                     return true;
                 case R.id.navigation_search:
-
+                    System.out.println("Navigation Search");
                     return true;
                 case R.id.navigation_create_new:
-
+                    System.out.println("Navigation Create New");
                     return true;
                 case R.id.navigation_menu:
-
+                    System.out.println("Navigation Menu");
                     return true;
             }
             return false;
@@ -70,6 +73,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_search);
 
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
@@ -138,6 +142,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setSelectedItemId(R.id.navigation_search);
 
     }
 

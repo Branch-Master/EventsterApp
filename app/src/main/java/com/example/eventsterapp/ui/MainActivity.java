@@ -42,19 +42,18 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
-
+                    System.out.println("Navigation Home");
                     return true;
                 case R.id.navigation_search:
-
+                    System.out.println("Navigation Search");
                     Intent i = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_create_new:
-
+                    System.out.println("Navigation Create New");
                     return true;
                 case R.id.navigation_menu:
-
+                    System.out.println("Navigation Menu");
                     return true;
             }
             return false;
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
 
 
         eventView = findViewById(R.id.rv);
@@ -127,16 +127,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume() {
+       super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setSelectedItemId(R.id.navigation_home);
+
+    }
+
     private void loadData(){
-
         MockData mockData = new MockData();
-
         this.eventList.addAll(mockData.getEvents());
         this.groupList.addAll(mockData.getGroups());
         this.userList.addAll(mockData.getUsers());
-
-
-
     }
 
 }
