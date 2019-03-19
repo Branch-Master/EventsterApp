@@ -25,6 +25,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     private ArrayList<ParentRow> parentRowList;
     private ArrayList<ParentRow> originalList;
 
+
     public MyExpandableListAdapter(Context context,ArrayList<ParentRow> originalList) {
         this.context = context;
         this.parentRowList = new ArrayList<>();
@@ -101,6 +102,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         childText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 Toast.makeText(finalConvertView.getContext()
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();

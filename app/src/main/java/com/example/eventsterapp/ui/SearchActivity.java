@@ -149,7 +149,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         MockData mockData = new MockData();
 
         for(Event e : mockData.getEvents()){
-            childRows.add(new ChildRow(R.drawable.ic_baseline_calander_today_24dp,e.getEventName(),e.getId(),"evt"));
+            childRows.add(new ChildRow(R.drawable.default_event_img,e.getEventName(),e.getId(),"evt"));
         }
         parentRow = new ParentRow("Events",childRows);
         parentList.add(parentRow);
@@ -157,7 +157,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         childRows = new ArrayList<ChildRow>();
         for(Group g : mockData.getGroups() ){
-            childRows.add(new ChildRow(R.drawable.ic_baseline_calander_today_24dp,g.getGroupName(),g.getId(),"grp"));
+            childRows.add(new ChildRow(R.drawable.default_group_img,g.getGroupName(),g.getId(),"grp"));
         }
         parentRow = new ParentRow("Groups",childRows);
         parentList.add(parentRow);
@@ -165,9 +165,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         childRows = new ArrayList<ChildRow>();
         for(User u: mockData.getUsers() ){
-            childRows.add(new ChildRow(R.drawable.ic_baseline_calander_today_24dp,u.getUsername(),u.getId(),"usr"));
+            childRows.add(new ChildRow(R.drawable.default_user_img,u.getUsername(),u.getId(),"usr"));
         }
-        parentRow = new ParentRow("Groups",childRows);
+        parentRow = new ParentRow("Users",childRows);
         parentList.add(parentRow);
 
     }

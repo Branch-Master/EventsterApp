@@ -1,5 +1,6 @@
 package com.example.eventsterapp.ui;
 
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -64,7 +65,7 @@ public class ViewEntity extends AppCompatActivity {
         entityInfo = findViewById(R.id.entity_info);
         entityImage = findViewById(R.id.entity_img);
 
-        //entityImage.setImageDrawable(R.drawable.ic_baseline_calander_today_24dp);
+
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -80,16 +81,19 @@ public class ViewEntity extends AppCompatActivity {
             Event viewEvent = this.mockData.getEventById(idFromIntent);
             entityName.setText( viewEvent.getEventName() );
             entityInfo.setText( viewEvent.getEventInfo());
+            entityImage.setImageResource(R.drawable.default_event_img);
         }
         else if( viewEntityType.equals("grp")){
             Group viewGroup = this.mockData.getGroupById(idFromIntent);
             entityName.setText( viewGroup.getGroupName() );
             entityInfo.setText( viewGroup.getGroupInfo() );
+            entityImage.setImageResource(R.drawable.default_group_img);
         }
         else if(viewEntityType.equals("usr")){
             User viewUser = this.mockData.getUserById(idFromIntent);
             entityName.setText(viewUser.getUsername());
             entityInfo.setText( viewUser.getEmail() );
+            entityImage.setImageResource(R.drawable.default_user_img);
         }
 
 
