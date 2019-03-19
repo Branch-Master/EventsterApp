@@ -23,6 +23,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
         CardView cv;
         TextView cardName;
         TextView cardInfo;
+        ImageView cardImg;
 
 
 
@@ -33,6 +34,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
             cv = (CardView)itemView.findViewById(R.id.rv);
             cardName = (TextView)itemView.findViewById(R.id.event_name);
             cardInfo = (TextView)itemView.findViewById(R.id.event_info);
+            cardImg = (ImageView)itemView.findViewById(R.id.card_img);
 
         }
     }
@@ -78,15 +80,19 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
             case "event":
                 personViewHolder.cardName.setText(events.get(i).getEventName());
                 personViewHolder.cardInfo.setText(events.get(i).getEventInfo());
+                personViewHolder.cardImg.setImageResource(R.drawable.default_event_img);
                 break;
 
             case "group":
                 personViewHolder.cardName.setText(groups.get(i).getGroupName());
                 personViewHolder.cardInfo.setText(groups.get(i).getGroupInfo());
+                personViewHolder.cardImg.setImageResource(R.drawable.default_group_img);
                 break;
             case "user":
                 personViewHolder.cardName.setText(users.get(i).getUsername());
                 personViewHolder.cardInfo.setText(users.get(i).getEmail());
+                personViewHolder.cardImg.setImageResource(R.drawable.default_user_img);
+
                 break;
         }
 

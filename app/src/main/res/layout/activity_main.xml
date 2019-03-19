@@ -3,22 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".ui.MainActivity">
-
 
 
     <ScrollView
         android:id="@+id/scrollView_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_above="@+id/navigation"
+        android:layout_alignParentTop="true"
+        >
 
         <LinearLayout
             android:id="@+id/listLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
             <com.google.android.material.tabs.TabLayout
@@ -45,10 +47,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="493dp">
+                android:layout_height="485dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
