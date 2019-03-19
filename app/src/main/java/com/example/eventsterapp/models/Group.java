@@ -9,6 +9,8 @@ public class Group {
     private ArrayList<User> members;
     private Boolean visable;
 
+    public Group(){}
+
     public Group(String groupName, String groupInfo, Long id, Boolean visable) {
         this.groupName = groupName;
         this.groupInfo = groupInfo;

@@ -5,6 +5,7 @@ public class ChildRow {
     private String text;
     private Long id;
     private String type;
+    private String userphone;
 
     public Long getId() {
         return id;

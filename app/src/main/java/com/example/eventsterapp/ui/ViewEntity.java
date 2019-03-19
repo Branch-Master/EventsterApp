@@ -27,7 +27,7 @@ import java.util.List;
 public class ViewEntity extends AppCompatActivity {
 
     private ImageView entityImage;
-    private TextView mTextMessage;
+
     private TextView entityName;
     private TextView entityInfo;
     private MockData mockData;
@@ -39,16 +39,16 @@ public class ViewEntity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+
                     return true;
                 case R.id.navigation_search:
-                    mTextMessage.setText(R.string.title_search);
+
                     return true;
                 case R.id.navigation_create_new:
-                    mTextMessage.setText(R.string.title_create_new);
+
                     return true;
                 case R.id.navigation_menu:
-                    mTextMessage.setText(R.string.title_menu);
+
                     return true;
             }
             return false;
@@ -60,7 +60,7 @@ public class ViewEntity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_entity);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+
         entityName = findViewById(R.id.entity_name);
         entityInfo = findViewById(R.id.entity_info);
         entityImage = findViewById(R.id.entity_img);

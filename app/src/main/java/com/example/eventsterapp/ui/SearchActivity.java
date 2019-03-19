@@ -29,7 +29,6 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,SearchView.OnCloseListener {
 
-    private TextView mTextMessage;
 
     private SearchManager searchManager;
     private SearchView searchView;
@@ -47,16 +46,16 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+
                     return true;
                 case R.id.navigation_search:
-                    mTextMessage.setText(R.string.title_search);
+
                     return true;
                 case R.id.navigation_create_new:
-                    mTextMessage.setText(R.string.title_create_new);
+
                     return true;
                 case R.id.navigation_menu:
-                    mTextMessage.setText(R.string.title_menu);
+
                     return true;
             }
             return false;
@@ -68,7 +67,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -79,7 +78,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         displayList();
 
-        expandAll();
+        //expandAll();
     }
 
     private void expandAll() {

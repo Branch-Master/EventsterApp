@@ -1,5 +1,6 @@
 package com.example.eventsterapp.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,57 +8,102 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eventsterapp.R;
-import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.EventViewHolder>{
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
 
-    public static class EventViewHolder extends RecyclerView.ViewHolder {
+    public static class CardViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView eventName;
-        TextView eventInfo;
+        TextView cardName;
+        TextView cardInfo;
 
 
 
 
-        EventViewHolder(View itemView) {
+        CardViewHolder(View itemView) {
 
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.rv);
-            eventName = (TextView)itemView.findViewById(R.id.event_name);
-            eventInfo = (TextView)itemView.findViewById(R.id.event_info);
+            cardName = (TextView)itemView.findViewById(R.id.event_name);
+            cardInfo = (TextView)itemView.findViewById(R.id.event_info);
 
         }
     }
 
-    List<Event> events;
+    ArrayList<Event> events;
+    ArrayList<Group> groups;
+    ArrayList<User> users;
+    String type;
 
-   public RVAdapter(List<Event> events){
-        this.events = events;
+   public RVAdapter(ArrayList<Event> cards,Event e){
+
+       this.events = cards;
+       this.type="event";
+
+    }
+
+    public RVAdapter(ArrayList<Group> cards, Group g){
+
+        this.groups = cards;
+        this.type = "group";
+
+    }
+
+    public RVAdapter(ArrayList<User> cards , User u){
+
+        this.users = cards;
+        this.type = "user";
+
     }
 
 
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public CardViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.event_card, viewGroup, false);
-        EventViewHolder pvh = new EventViewHolder(v);
+        CardViewHolder pvh = new CardViewHolder(v);
         return pvh;
     }
 
 
-    public void onBindViewHolder(EventViewHolder personViewHolder, int i) {
-        personViewHolder.eventName.setText(events.get(i).getEventName());
-        personViewHolder.eventInfo.setText(events.get(i).getEventInfo());
+    public void onBindViewHolder(CardViewHolder personViewHolder, int i) {
+
+        switch (this.type.toLowerCase()) {
+            case "event":
+                personViewHolder.cardName.setText(events.get(i).getEventName());
+                personViewHolder.cardInfo.setText(events.get(i).getEventInfo());
+                break;
+
+            case "group":
+                personViewHolder.cardName.setText(groups.get(i).getGroupName());
+                personViewHolder.cardInfo.setText(groups.get(i).getGroupInfo());
+                break;
+            case "user":
+                personViewHolder.cardName.setText(users.get(i).getUsername());
+                personViewHolder.cardInfo.setText(users.get(i).getEmail());
+                break;
+        }
+
+
     }
 
     @Override
     public int getItemCount() {
-        return events.size();
+        switch (this.type.toLowerCase()) {
+            case "event":
+                return events.size();
+            case "group":
+                return groups.size();
+            case "user":
+                return users.size();
+        }
+        return 0;
     }
 
     @Override

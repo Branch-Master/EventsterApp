@@ -10,6 +10,8 @@ public class User {
     private String email;
     private boolean loggedIn;
 
+    public User(){}
+
     public User(Long id, String username, String password, String birthday, String phone, String zodiac, String email, boolean loggedIn) {
         this.id = id;
         this.username = username;

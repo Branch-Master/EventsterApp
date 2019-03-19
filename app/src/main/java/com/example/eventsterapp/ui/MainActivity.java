@@ -6,13 +6,17 @@ import android.os.Bundle;
 //import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.models.Group;
+import com.example.eventsterapp.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -25,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView eventView;
 
-    private TextView mTextMessage;
     private ArrayList<Event> eventList = new ArrayList<Event>();
+    private ArrayList<Group> groupList = new ArrayList<Group>();
+    private ArrayList<User> userList = new ArrayList<User>();
 
-    ArrayAdapter adapter;
+    RVAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,21 +43,57 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    mTextMessage.setText(R.string.title_home);
+
                     return true;
                 case R.id.navigation_search:
-                    mTextMessage.setText(R.string.title_search);
+
                     Intent i = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_create_new:
-                    mTextMessage.setText(R.string.title_create_new);
+
                     return true;
                 case R.id.navigation_menu:
-                    mTextMessage.setText(R.string.title_menu);
+
                     return true;
             }
             return false;
+        }
+    };
+
+
+    private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+
+        RVAdapter rvAdapter;
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            System.out.println("tab Selected: " + tab.getText() + "================================");
+
+            switch( tab.getText().toString() ){
+                case "Events":
+                    this.rvAdapter = new RVAdapter(eventList,new Event());
+                    eventView.setAdapter(this.rvAdapter);
+                    break;
+                case "Groups":
+                    this.rvAdapter = new RVAdapter(groupList,new Group());
+                    eventView.setAdapter(this.rvAdapter);
+                    break;
+                case "Users":
+                    this.rvAdapter = new RVAdapter(userList,new User());
+                    eventView.setAdapter(this.rvAdapter);
+                    break;
+            }
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
         }
     };
 
@@ -61,22 +102,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = findViewById(R.id.message);
+        loadData();
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayoutMain);
+        tabLayout.addOnTabSelectedListener(mOnTabSelectedListener);
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        mTextMessage.setText("Event List");
+
 
         eventView = findViewById(R.id.rv);
+        eventView.setNestedScrollingEnabled(false);
 
 
-        loadData();
 
         eventView.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         eventView.setLayoutManager(llm);
 
-        RVAdapter adapter = new RVAdapter(eventList);
+        RVAdapter adapter = new RVAdapter(eventList,new Event());
         eventView.setAdapter(adapter);
 
 
@@ -87,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
         MockData mockData = new MockData();
 
         this.eventList.addAll(mockData.getEvents());
+        this.groupList.addAll(mockData.getGroups());
+        this.userList.addAll(mockData.getUsers());
+
+
 
     }
 
