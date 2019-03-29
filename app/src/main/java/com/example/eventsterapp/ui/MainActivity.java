@@ -40,17 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Intent i;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     System.out.println("Navigation Home");
                     return true;
                 case R.id.navigation_search:
                     System.out.println("Navigation Search");
-                    Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                    i = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_create_new:
                     System.out.println("Navigation Create New");
+                    i = new Intent(MainActivity.this, CreateActivity.class);
+                    startActivity(i);
                     return true;
                 case R.id.navigation_menu:
                     System.out.println("Navigation Menu");
@@ -132,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
        super.onResume();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
-
     }
 
     private void loadData(){

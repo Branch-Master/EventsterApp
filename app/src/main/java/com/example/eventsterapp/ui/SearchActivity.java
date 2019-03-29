@@ -45,10 +45,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Intent i;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     System.out.println("Navigation Home");
-                    Intent i = new Intent(SearchActivity.this, MainActivity.class);
+                    i = new Intent(SearchActivity.this, MainActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_search:
@@ -56,9 +57,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     return true;
                 case R.id.navigation_create_new:
                     System.out.println("Navigation Create New");
+                    i = new Intent(SearchActivity.this, CreateActivity.class);
+                    startActivity(i);
                     return true;
                 case R.id.navigation_menu:
                     System.out.println("Navigation Menu");
+                    i = new Intent(SearchActivity.this, MainActivity.class);
+                    startActivity(i);
                     return true;
             }
             return false;
