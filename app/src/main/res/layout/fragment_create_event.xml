@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/createPage"
     android:layout_width="match_parent"
@@ -8,69 +7,151 @@
     tools:context=".ui.CreateActivity">
 
 
-    <LinearLayout
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
+        <LinearLayout
 
-
-        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/create_group_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/radioButton_public" />
+                android:text="Create Event "
+                android:textSize="32dp"
+                tools:ignore="HardcodedText"
+                android:textStyle="bold"/>
 
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
+
+            <RadioGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/radioButton_private" />
-        </RadioGroup>
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/editText5"
-            android:text="Event Name"
-            tools:ignore="HardcodedText" />
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radioButton_public" />
 
-        <EditText
-            android:id="@+id/name_create"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="Name hint"
-            android:ems="10"
-            android:inputType="textPersonName"
-            tools:text="Name" />
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radioButton_private" />
+            </RadioGroup>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/editText6"
-            android:text="Describtion" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editText5"
+                android:text="Event Name"
+                tools:ignore="HardcodedText"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
 
-        <EditText
-            android:id="@+id/Describtion_create"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="multilinehint"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:text="@string/describtion" />
+            <EditText
+                android:id="@+id/name_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Name hint"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:text="Name" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editText6"
+                android:text="Describtion"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
 
+            <EditText
+                android:id="@+id/Describtion_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="multilinehint"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="@string/describtion" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:capitalize="none"
+                    android:labelFor="@+id/event_start_time"
+                    android:text="Events starts at:"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/event_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="9:00"
+                    android:inputType="time" />
+            </TableRow>
+
+            <CalendarView
+                android:id="@+id/event_startDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="auto" />
+
+            <TableRow
+                android:id="@+id/start_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/event_end_time"
+                    android:text="Event Ends at:"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+
+                <EditText
+                    android:id="@+id/event_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="12:00"
+                    android:inputType="time"
+                    android:singleLine="false" />
+            </TableRow>
+
+            <CalendarView
+                android:id="@+id/event_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/create_event_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:text="Create Event" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
