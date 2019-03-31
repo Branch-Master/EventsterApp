@@ -14,7 +14,7 @@ public class Event {
 
     private String eventName;
     private String eventInfo;
-    private Long groupID;
+    private int groupID;
     private ArrayList<Comment> comments;
     private String tags;
     private String startDate;
@@ -22,12 +22,12 @@ public class Event {
     private ArrayList<User> going;
     private String location;
     private int eventSeats;
-    private Boolean visable;
+    private int visable;
 
     public Event() {
     }
 
-    public Event(Long id, String eventName, String eventInfo, Long groupID, String tag, String startDate, String endDate, String location, int eventSeats,Boolean vis) {
+    public Event(Long id, String eventName, String eventInfo, int groupID, String tag, String startDate, String endDate, String location, int eventSeats,int vis) {
         this.id = id;
         this.eventName = eventName;
         this.eventInfo = eventInfo;
@@ -82,11 +82,11 @@ public class Event {
         this.tags = tag;
     }
 
-    public void setGroupID(Long groupID) {
+    public void setGroupID(int groupID) {
         this.groupID = groupID;
     }
 
-    public Long getGroupID() {
+    public int getGroupID() {
         return this.groupID;
     }
 
@@ -130,11 +130,11 @@ public class Event {
         return this.eventSeats;
     }
 
-    public Boolean getVisable() {
+    public int getVisable() {
         return this.visable;
     }
 
-    public void setVisable(Boolean vis) {
+    public void setVisable(int vis) {
         this.visable = vis;
     }
 

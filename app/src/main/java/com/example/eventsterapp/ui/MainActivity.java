@@ -1,6 +1,8 @@
 package com.example.eventsterapp.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 //import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.Event;
 import com.example.eventsterapp.models.Group;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private RVAdapter eventAdapter;
     private RVAdapter groupAdapter;
     private RVAdapter userAdapter;
+    private DatabaseHelper mDatebaseHelper;
 
 
     RVAdapter adapter;
@@ -113,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDatebaseHelper = new DatabaseHelper(this);
         loadData();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayoutMain);
@@ -147,15 +152,68 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        mDatebaseHelper.dropAllTables();
+
         MockData mockData = new MockData();
-        this.eventList.addAll(mockData.getEvents());
+        //this.eventList.addAll(mockData.getEvents());
         this.groupList.addAll(mockData.getGroups());
-        this.userList.addAll(mockData.getUsers());
+        //this.userList.addAll(mockData.getUsers());
+
+
+
+
+        for(User u : mockData.getUsers()){
+            mDatebaseHelper.addUser(u);
+        }
+        for(Event e: mockData.getEvents()){
+            mDatebaseHelper.addEvent(e);
+        }
+
+
+        Cursor allusers = mDatebaseHelper.getAllUsers();
+        while(allusers.moveToNext()){
+            String name = allusers.getString(1);
+            String pass = allusers.getString(2);
+            String email = allusers.getString(3);
+            String bday = allusers.getString(4);
+            String zodiac = allusers.getString(5);
+            String phone = allusers.getString(6);
+
+            this.userList.add(new User(new Long(13),name,pass,bday,phone,zodiac,email,false ));
+        }
+
+        Cursor allevents = mDatebaseHelper.getAllEvents();
+        while(allevents.moveToNext()){
+            String eventName = allevents.getString(1);
+            String eventInfo = allevents.getString(2);
+            int groupID = allevents.getInt(3);
+            String tag = allevents.getString(4);
+            String startDate = allevents.getString(5);
+            String endDate = allevents.getString(6);
+            String location = allevents.getString(7);
+            int eventSeats = allevents.getInt(8);
+            int vis = allevents.getInt(9);
+
+            this.eventList.add(new Event(new Long(13),eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis));
+        }
 
         eventAdapter = new RVAdapter(eventList,new Event());
         groupAdapter = new RVAdapter(groupList,new Group());
         userAdapter = new RVAdapter(userList,new User());
 
+    }
+
+    private void addUser(User newEntry){
+
+
+        boolean insertData = mDatebaseHelper.addUser(newEntry);
+
+        if(insertData){
+            System.out.println("data sucessfully added=======");
+        }
+        else{
+            System.out.println("data not added============");
+        }
     }
 
 

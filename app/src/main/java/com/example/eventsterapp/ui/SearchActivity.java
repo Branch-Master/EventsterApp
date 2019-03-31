@@ -3,12 +3,14 @@ package com.example.eventsterapp.ui;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
 import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.ChildRow;
 import com.example.eventsterapp.models.Event;
@@ -162,6 +164,19 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         ArrayList<ChildRow> childRows = new ArrayList<ChildRow>();
         ParentRow parentRow;
 
+        DatabaseHelper mdb = new DatabaseHelper(this);
+
+        Cursor users = mdb.getAllUsers();
+        while(users.moveToNext()){
+            String username = users.getString(1);
+            int id = users.getInt(0);
+            childRows.add(new ChildRow(R.drawable.default_user_img,username,new Long(id),"usr"));
+        }
+        parentRow = new ParentRow("Users",childRows);
+        parentList.add(parentRow);
+
+
+/*
         MockData mockData = new MockData();
 
         for(Event e : mockData.getEvents()){
@@ -185,6 +200,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
         parentRow = new ParentRow("Users",childRows);
         parentList.add(parentRow);
-
+*/
     }
 }

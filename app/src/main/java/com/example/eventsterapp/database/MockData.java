@@ -16,7 +16,6 @@ public class MockData {
     ArrayList<Group> groups;
 
 
-
     public MockData() {
         User birgir = new User(new Long(11),"birgir", "birgir","27.06","8665825","cancer","boo11@hi.is",false);
         User adam = new User(new Long(12),"adam", "adam","10.02","8673425","aquarious","ajj10@hi.is",false);
@@ -54,7 +53,7 @@ public class MockData {
                 "Etiam egestas sagittis ipsum. Nam facilisis gravida ante quis commodo. Quisque in urna vel sapien sodales iaculis. In non felis metus. Fusce vel blandit odio. Quisque pulvinar eros est, non ultricies mauris fermentum id. Nam id fermentum arcu. Nunc tortor felis, semper et luctus sed, ornare fringilla sem. Nulla facilisi. Mauris eget quam quis nunc ornare luctus. Fusce vitae blandit est, ac tincidunt orci. Integer diam massa, ullamcorper vitae tortor non, feugiat condimentum sapien. Morbi finibus lorem nec ligula iaculis molestie. In hac habitasse platea dictumst. Curabitur malesuada, diam sed pulvinar blandit, justo urna varius odio, pharetra sollicitudin nisi risus vel eros.\n" +
                 "\n" +
                 "Aliquam ex neque, luctus sodales eros eget, vestibulum tristique risus. Pellentesque auctor quam magna, eu finibus mi fermentum vel. Pellentesque iaculis elementum ligula, in aliquam turpis. Phasellus congue, magna non ultrices consequat, magna lacus finibus mauris, vitae vulputate velit quam quis ipsum. Morbi ut ipsum porttitor, hendrerit erat a, fringilla dolor. Vivamus ultrices nibh eu lorem sagittis hendrerit. Quisque porttitor volutpat dolor vel tincidunt. Aliquam ut imperdiet sapien. Morbi eget facilisis velit. Mauris malesuada vitae erat eget ultricies. Quisque tincidunt sapien quis nulla tincidunt ultrices. Sed ultrices consectetur diam vitae semper. Mauris finibus dignissim condimentum. Praesent congue at neque et condimentum.\n" +
-                "\n",new Long(21),"party","22.05","23.05","Grafarvoginum hjá marino",3,false);
+                "\n",21,"party","22.05","23.05","Grafarvoginum hjá marino",3,0);
 
         afmaeli.setGoing(new ArrayList<User>(Arrays.asList(birgir, adam, marino)));
         afmaeli.setComments(new ArrayList<Comment>(Arrays.asList(helladComment)));
@@ -68,7 +67,7 @@ public class MockData {
                 "Etiam egestas sagittis ipsum. Nam facilisis gravida ante quis commodo. Quisque in urna vel sapien sodales iaculis. In non felis metus. Fusce vel blandit odio. Quisque pulvinar eros est, non ultricies mauris fermentum id. Nam id fermentum arcu. Nunc tortor felis, semper et luctus sed, ornare fringilla sem. Nulla facilisi. Mauris eget quam quis nunc ornare luctus. Fusce vitae blandit est, ac tincidunt orci. Integer diam massa, ullamcorper vitae tortor non, feugiat condimentum sapien. Morbi finibus lorem nec ligula iaculis molestie. In hac habitasse platea dictumst. Curabitur malesuada, diam sed pulvinar blandit, justo urna varius odio, pharetra sollicitudin nisi risus vel eros.\n" +
                 "\n" +
                 "Aliquam ex neque, luctus sodales eros eget, vestibulum tristique risus. Pellentesque auctor quam magna, eu finibus mi fermentum vel. Pellentesque iaculis elementum ligula, in aliquam turpis. Phasellus congue, magna non ultrices consequat, magna lacus finibus mauris, vitae vulputate velit quam quis ipsum. Morbi ut ipsum porttitor, hendrerit erat a, fringilla dolor. Vivamus ultrices nibh eu lorem sagittis hendrerit. Quisque porttitor volutpat dolor vel tincidunt. Aliquam ut imperdiet sapien. Morbi eget facilisis velit. Mauris malesuada vitae erat eget ultricies. Quisque tincidunt sapien quis nulla tincidunt ultrices. Sed ultrices consectetur diam vitae semper. Mauris finibus dignissim condimentum. Praesent congue at neque et condimentum.",
-                new Long(22),"party","05.05","07.05","B5",2,true);
+                22,"party","05.05","07.05","B5",2,1);
 
         aulahittingur.setGoing(new ArrayList<User>(Arrays.asList(adam)));
         aulahittingur.setComments(new ArrayList<Comment>(Arrays.asList(skitaComment)));
@@ -82,7 +81,7 @@ public class MockData {
                 "Etiam egestas sagittis ipsum. Nam facilisis gravida ante quis commodo. Quisque in urna vel sapien sodales iaculis. In non felis metus. Fusce vel blandit odio. Quisque pulvinar eros est, non ultricies mauris fermentum id. Nam id fermentum arcu. Nunc tortor felis, semper et luctus sed, ornare fringilla sem. Nulla facilisi. Mauris eget quam quis nunc ornare luctus. Fusce vitae blandit est, ac tincidunt orci. Integer diam massa, ullamcorper vitae tortor non, feugiat condimentum sapien. Morbi finibus lorem nec ligula iaculis molestie. In hac habitasse platea dictumst. Curabitur malesuada, diam sed pulvinar blandit, justo urna varius odio, pharetra sollicitudin nisi risus vel eros.\n" +
                 "\n" +
                 "Aliquam ex neque, luctus sodales eros eget, vestibulum tristique risus. Pellentesque auctor quam magna, eu finibus mi fermentum vel. Pellentesque iaculis elementum ligula, in aliquam turpis. Phasellus congue, magna non ultrices consequat, magna lacus finibus mauris, vitae vulputate velit quam quis ipsum. Morbi ut ipsum porttitor, hendrerit erat a, fringilla dolor. Vivamus ultrices nibh eu lorem sagittis hendrerit. Quisque porttitor volutpat dolor vel tincidunt. Aliquam ut imperdiet sapien. Morbi eget facilisis velit. Mauris malesuada vitae erat eget ultricies. Quisque tincidunt sapien quis nulla tincidunt ultrices. Sed ultrices consectetur diam vitae semper. Mauris finibus dignissim condimentum. Praesent congue at neque et condimentum."
-                ,new Long(23),"sports","25.03","25.03","Ásgarði",10,true);
+                ,23,"sports","25.03","25.03","Ásgarði",10,1);
 
         events = new ArrayList<Event>(Arrays.asList(afmaeli,aulahittingur,fobo));
         users = new ArrayList<User>(Arrays.asList(birgir,adam,marino,isak));
@@ -128,7 +127,7 @@ public class MockData {
                 return e;
             }
         }
-        return new Event(new Long(-1),"Ekkert fannst","Engar upplýsingar",new Long(-1),"ekkert","25.03","25.03","Ekkert",10,false);
+        return new Event(new Long(-1),"Ekkert fannst","Engar upplýsingar",-1,"ekkert","25.03","25.03","Ekkert",10,0);
     }
 
     public Group getGroupById(Long id){
