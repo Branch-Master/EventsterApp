@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
         MockData mockData = new MockData();
         //this.eventList.addAll(mockData.getEvents());
-        this.groupList.addAll(mockData.getGroups());
+        //this.groupList.addAll(mockData.getGroups());
         //this.userList.addAll(mockData.getUsers());
 
 
@@ -167,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
         }
         for(Event e: mockData.getEvents()){
             mDatebaseHelper.addEvent(e);
+        }
+        for(Group g: mockData.getGroups()){
+            mDatebaseHelper.addGroup(g);
         }
 
 
@@ -195,6 +198,15 @@ public class MainActivity extends AppCompatActivity {
             int vis = allevents.getInt(9);
 
             this.eventList.add(new Event(new Long(13),eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis));
+        }
+
+        Cursor allgroups = mDatebaseHelper.getAllGroups();
+        while(allgroups.moveToNext()){
+            String groupname = allgroups.getString(1);
+            String info = allgroups.getString(2);
+            int vis = allgroups.getInt(3);
+
+            this.groupList.add(new Group( groupname, info,new Long(13) ,vis));
         }
 
         eventAdapter = new RVAdapter(eventList,new Event());

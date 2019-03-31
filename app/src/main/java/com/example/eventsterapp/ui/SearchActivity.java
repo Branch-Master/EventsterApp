@@ -166,6 +166,20 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         DatabaseHelper mdb = new DatabaseHelper(this);
 
+
+
+        Cursor events = mdb.getAllEvents();
+        while(events.moveToNext()){
+            String eventName = events.getString(1);
+            int id = events.getInt(0);
+            childRows.add(new ChildRow(R.drawable.default_event_img,eventName,new Long(id),"evt"));
+        }
+        parentRow = new ParentRow("Events",childRows);
+        parentList.add(parentRow);
+
+
+        childRows = new ArrayList<ChildRow>();
+
         Cursor users = mdb.getAllUsers();
         while(users.moveToNext()){
             String username = users.getString(1);
@@ -174,6 +188,21 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
         parentRow = new ParentRow("Users",childRows);
         parentList.add(parentRow);
+
+
+        childRows = new ArrayList<ChildRow>();
+
+        Cursor groups = mdb.getAllGroups();
+        while(groups.moveToNext()){
+            String name = groups.getString(1);
+            int id = groups.getInt(0);
+            childRows.add(new ChildRow(R.drawable.default_group_img,name,new Long(id),"grp"));
+        }
+        parentRow = new ParentRow("Groups",childRows);
+        parentList.add(parentRow);
+
+
+
 
 
 /*

@@ -31,14 +31,14 @@ public class MockData {
                 "Etiam egestas sagittis ipsum. Nam facilisis gravida ante quis commodo. Quisque in urna vel sapien sodales iaculis. In non felis metus. Fusce vel blandit odio. Quisque pulvinar eros est, non ultricies mauris fermentum id. Nam id fermentum arcu. Nunc tortor felis, semper et luctus sed, ornare fringilla sem. Nulla facilisi. Mauris eget quam quis nunc ornare luctus. Fusce vitae blandit est, ac tincidunt orci. Integer diam massa, ullamcorper vitae tortor non, feugiat condimentum sapien. Morbi finibus lorem nec ligula iaculis molestie. In hac habitasse platea dictumst. Curabitur malesuada, diam sed pulvinar blandit, justo urna varius odio, pharetra sollicitudin nisi risus vel eros.\n" +
                 "\n" +
                 "Aliquam ex neque, luctus sodales eros eget, vestibulum tristique risus. Pellentesque auctor quam magna, eu finibus mi fermentum vel. Pellentesque iaculis elementum ligula, in aliquam turpis. Phasellus congue, magna non ultrices consequat, magna lacus finibus mauris, vitae vulputate velit quam quis ipsum. Morbi ut ipsum porttitor, hendrerit erat a, fringilla dolor. Vivamus ultrices nibh eu lorem sagittis hendrerit. Quisque porttitor volutpat dolor vel tincidunt. Aliquam ut imperdiet sapien. Morbi eget facilisis velit. Mauris malesuada vitae erat eget ultricies. Quisque tincidunt sapien quis nulla tincidunt ultrices. Sed ultrices consectetur diam vitae semper. Mauris finibus dignissim condimentum. Praesent congue at neque et condimentum.\n" +
-                "\n",new Long(21),false);
+                "\n",new Long(21),0);
 
 
         vinir.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam,marino,isak)));
-        Group aular = new Group("Aularnir","fokking aular",new Long(22),true);
+        Group aular = new Group("Aularnir","fokking aular",new Long(22),1);
         aular.setMembers(new ArrayList<User>(Arrays.asList(marino, adam,isak)));
 
-        Group eldri = new Group("Eldriborgarar","Ellismellirnir adam og birgir",new Long(23),false);
+        Group eldri = new Group("Eldriborgarar","Ellismellirnir adam og birgir",new Long(23),0);
         eldri.setMembers(new ArrayList<User>(Arrays.asList(birgir, adam,isak)));
 
         Comment skitaComment = new Comment(new Long(31),new Long(42),"ertu að grínast eða",new Long(13));
@@ -136,7 +136,7 @@ public class MockData {
                 return g;
             }
         }
-        return new Group("ekkert fannst","Engar upplýsingar",new Long(-1),false);
+        return new Group("ekkert fannst","Engar upplýsingar",new Long(-1),0);
     }
 
     public User getUserById(long id){

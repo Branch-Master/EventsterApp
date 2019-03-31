@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -38,6 +39,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //GROUPS=======================================
     private static final String TABLE_Groups = "Groups";
+    private static final String group_name = "GroupName";
+    private static final String group_info = "Group_info";
+    private static final String group_vis = "vis";
+
+
 
 
 
@@ -83,12 +89,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         db.execSQL(createEventTable);
         System.out.println("event TABLE CREATED ==================================");
+
+        String createGroupTable = "CREATE TABLE " + TABLE_Groups +
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                group_name + " VARCHAR(128), " +
+                group_info + " VARCHAR(128), " +
+                group_vis + " INTEGER" +
+                ")";
+        db.execSQL(createGroupTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Users);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Events);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Groups);
         onCreate(db);
     }
 
@@ -164,6 +179,38 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor data = db.rawQuery(query,null);
         return data;
     }
+
+
+    public boolean addGroup(Group group){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(group_name,group.getGroupName());
+        contentValues.put(group_info, group.getGroupInfo());
+        contentValues.put(group_vis,group.getVisable());
+
+
+        Log.d(Tag, "addData: Adding " + group.getGroupName() + " to " + TABLE_Groups);
+
+        long result = db.insert(TABLE_Groups, null, contentValues);
+
+        if(result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+    public Cursor getAllGroups(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Groups;
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
 
     public void dropAllTables(){
         SQLiteDatabase db = this.getWritableDatabase();

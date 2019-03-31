@@ -7,11 +7,11 @@ public class Group {
     private String groupInfo;
     private Long id;
     private ArrayList<User> members;
-    private Boolean visable;
+    private int visable;
 
     public Group(){}
 
-    public Group(String groupName, String groupInfo, Long id, Boolean visable) {
+    public Group(String groupName, String groupInfo, Long id, int visable) {
         this.groupName = groupName;
         this.groupInfo = groupInfo;
         this.id = id;
@@ -51,11 +51,11 @@ public class Group {
         this.members = members;
     }
 
-    public Boolean getVisable() {
+    public int getVisable() {
         return visable;
     }
 
-    public void setVisable(Boolean visable) {
+    public void setVisable(int visable) {
         this.visable = visable;
     }
 }
