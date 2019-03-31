@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 //import android.support.v7.widget.RecyclerView;
+import android.util.JsonReader;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
@@ -18,12 +19,15 @@ import com.example.eventsterapp.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Event> eventList = new ArrayList<Event>();
     private ArrayList<Group> groupList = new ArrayList<Group>();
     private ArrayList<User> userList = new ArrayList<User>();
+
+    private RVAdapter eventAdapter;
+    private RVAdapter groupAdapter;
+    private RVAdapter userAdapter;
+
 
     RVAdapter adapter;
 
@@ -72,18 +81,18 @@ public class MainActivity extends AppCompatActivity {
         public void onTabSelected(TabLayout.Tab tab) {
             System.out.println("tab Selected: " + tab.getText() + "================================");
 
-            switch( tab.getText().toString() ){
-                case "Events":
-                    this.rvAdapter = new RVAdapter(eventList,new Event());
-                    eventView.setAdapter(this.rvAdapter);
+            switch( tab.getPosition() ){
+                case 0:
+
+                    eventView.setAdapter(eventAdapter);
                     break;
-                case "Groups":
-                    this.rvAdapter = new RVAdapter(groupList,new Group());
-                    eventView.setAdapter(this.rvAdapter);
+                case 1:
+                   // groupAdapter = new RVAdapter(groupList,new Group());
+                    eventView.setAdapter(groupAdapter);
                     break;
-                case "Users":
-                    this.rvAdapter = new RVAdapter(userList,new User());
-                    eventView.setAdapter(this.rvAdapter);
+                case 2:
+                    //userAdapter = new RVAdapter(userList,new User());
+                    eventView.setAdapter(userAdapter);
                     break;
             }
         }
@@ -137,11 +146,17 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
     }
 
-    private void loadData(){
+    private void loadData() {
         MockData mockData = new MockData();
         this.eventList.addAll(mockData.getEvents());
         this.groupList.addAll(mockData.getGroups());
         this.userList.addAll(mockData.getUsers());
+
+        eventAdapter = new RVAdapter(eventList,new Event());
+        groupAdapter = new RVAdapter(groupList,new Group());
+        userAdapter = new RVAdapter(userList,new User());
+
     }
 
-}
+
+    }

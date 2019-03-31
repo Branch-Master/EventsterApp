@@ -15,6 +15,8 @@ public class MockData {
     ArrayList<User> users;
     ArrayList<Group> groups;
 
+
+
     public MockData() {
         User birgir = new User(new Long(11),"birgir", "birgir","27.06","8665825","cancer","boo11@hi.is",false);
         User adam = new User(new Long(12),"adam", "adam","10.02","8673425","aquarious","ajj10@hi.is",false);
@@ -146,6 +148,8 @@ public class MockData {
         }
         return new User(new Long(-1),"fannstEkki", "ekki","27.06","ekkert","ekkert","ekkert@hi.is",false);
     }
+
+
 
 
 }

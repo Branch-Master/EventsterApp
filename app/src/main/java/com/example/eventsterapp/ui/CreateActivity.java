@@ -1,16 +1,61 @@
 package com.example.eventsterapp.ui;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
+import com.example.eventsterapp.Fragments.CreateEventFragment;
+import com.example.eventsterapp.Fragments.CreateGroupFragment;
 import com.example.eventsterapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateActivity extends FragmentActivity {
+
+
+    private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            System.out.println("tab Selected: " + tab.getPosition() + "================================");
+
+            //Fragment createFragment =  (Fragment) findViewById(R.id.create_fragment);
+
+            switch( tab.getPosition() ){
+                case 0:
+                    CreateEventFragment createEventFragment = new CreateEventFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.create_fragment_container,createEventFragment).commit();
+
+                    break;
+                case 1:
+
+
+                    CreateGroupFragment createGroupFragment = new CreateGroupFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.create_fragment_container,createGroupFragment).commit();
+
+                    break;
+
+            }
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -44,7 +89,14 @@ public class CreateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+        setContentView(R.layout.activity_create);
+
+        TabLayout tabLayout_event = (TabLayout) findViewById(R.id.tablayoutCreate);
+        tabLayout_event.addOnTabSelectedListener(mOnTabSelectedListener);
+
+        CreateEventFragment createEventFragment = new CreateEventFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.create_fragment_container,createEventFragment).commit();
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
