@@ -3,11 +3,11 @@ package com.example.eventsterapp.models;
 public class ChildRow {
     private int icon;
     private String text;
-    private Long id;
+    private int id;
     private String type;
     private String userphone;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -15,7 +15,7 @@ public class ChildRow {
         return type;
     }
 
-    public ChildRow(int icon, String text, Long id, String type) {
+    public ChildRow(int icon, String text, int id, String type) {
         this.icon = icon;
         this.text = text;
         this.id = id;

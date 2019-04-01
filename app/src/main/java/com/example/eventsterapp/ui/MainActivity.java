@@ -2,20 +2,14 @@ package com.example.eventsterapp.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 //import android.support.v7.widget.RecyclerView;
-import android.util.JsonReader;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
-import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.Event;
 import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.User;
@@ -156,29 +150,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        //mDatebaseHelper.dropAllTables();
+        //mDatebaseHelper.dropAllData();
 
-        MockData mockData = new MockData();
-        //this.eventList.addAll(mockData.getEvents());
-        //this.groupList.addAll(mockData.getGroups());
-        //this.userList.addAll(mockData.getUsers());
+
+
 
         this.eventList = new ArrayList<Event>();
         this.groupList = new ArrayList<Group>();
         this.userList = new ArrayList<User>();
 
-
-        /*
-        for(User u : mockData.getUsers()){
-            mDatebaseHelper.addUser(u);
-        }
-        for(Event e: mockData.getEvents()){
-            mDatebaseHelper.addEvent(e);
-        }
-        for(Group g: mockData.getGroups()){
-            mDatebaseHelper.addGroup(g);
-        }
-         */
 
         Cursor allusers = mDatebaseHelper.getAllUsers();
         while(allusers.moveToNext()){
@@ -204,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             int eventSeats = allevents.getInt(8);
             int vis = allevents.getInt(9);
 
-            this.eventList.add(new Event(new Long(13),eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis));
+            this.eventList.add(new Event(eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis));
         }
 
         Cursor allgroups = mDatebaseHelper.getAllGroups();
@@ -213,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             String info = allgroups.getString(2);
             int vis = allgroups.getInt(3);
 
-            this.groupList.add(new Group( groupname, info,new Long(13) ,vis));
+            this.groupList.add(new Group( groupname, info ,vis));
         }
 
         eventAdapter = new RVAdapter(eventList,new Event());

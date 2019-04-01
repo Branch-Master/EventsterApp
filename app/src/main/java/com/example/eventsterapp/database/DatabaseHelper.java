@@ -56,7 +56,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         super(context, Tag, null,1);
 
-
     }
 
     @Override
@@ -140,6 +139,26 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    public User getUserById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users +
+                " WHERE ID = " + id;
+        Cursor data = db.rawQuery(query, null);
+
+        while (data.moveToNext()){
+
+            String name = data.getString(1);
+            String pass = data.getString(2);
+            String email = data.getString(3);
+            String bday = data.getString(4);
+            String zodiac = data.getString(5);
+            String phone = data.getString(6);
+            return new User(new Long(13), name, pass, bday, phone, zodiac, email, false);
+        }
+        return new User(new Long(-1),"ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst",false);
+
+    }
+
 
     public boolean addEvent(Event event){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -180,6 +199,29 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
+    public Event getEventById(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Events +
+                " WHERE ID = " + id ;
+        Cursor data = db.rawQuery(query,null);
+
+        while(data.moveToNext()){
+            String eventName = data.getString(1);
+            String eventInfo = data.getString(2);
+            int groupID = data.getInt(3);
+            String tag = data.getString(4);
+            String startDate = data.getString(5);
+            String endDate = data.getString(6);
+            String location = data.getString(7);
+            int eventSeats = data.getInt(8);
+            int vis = data.getInt(9);
+
+            return new Event(eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis);
+        }
+        return new Event("ekkert fannst","ekkert fannst",-1,"ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst",-1,1);
+
+    }
+
 
     public boolean addGroup(Group group){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -212,7 +254,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public void dropAllTables(){
+    public Group getGroupById(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Groups +
+                " WHERE ID = " + id ;
+        Cursor data = db.rawQuery(query,null);
+
+        while(data.moveToNext()){
+            String groupname = data.getString(1);
+            String info = data.getString(2);
+            int vis = data.getInt(3);
+
+            return new Group( groupname, info ,vis);
+        }
+        return new Group("ekkert fannst","ekkert fannst",1);
+    }
+
+
+    public void dropAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         onUpgrade(db,0,1);
     }

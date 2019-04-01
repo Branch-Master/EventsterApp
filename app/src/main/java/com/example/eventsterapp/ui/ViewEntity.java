@@ -1,13 +1,12 @@
 package com.example.eventsterapp.ui;
 
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
 import com.example.eventsterapp.R;
-import com.example.eventsterapp.database.MockData;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
 import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.User;
@@ -19,18 +18,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.lang.reflect.Type;
-import java.net.Proxy;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ViewEntity extends AppCompatActivity {
 
     private ImageView entityImage;
 
     private TextView entityName;
     private TextView entityInfo;
-    private MockData mockData;
+    private DatabaseHelper mydb;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,6 +54,8 @@ public class ViewEntity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_entity);
 
+        mydb = new DatabaseHelper(this);
+
 
         entityName = findViewById(R.id.entity_name);
         entityInfo = findViewById(R.id.entity_info);
@@ -71,26 +67,26 @@ public class ViewEntity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        this.mockData = new MockData();
-        Long idFromIntent =  getIntent().getLongExtra("ent_id",-1);
+
+        int idFromIntent =  getIntent().getIntExtra("ent_id",-1);
         String viewEntityType = getIntent().getStringExtra("ent_type");
 
 
 
         if( viewEntityType.equals("evt")){
-            Event viewEvent = this.mockData.getEventById(idFromIntent);
+            Event viewEvent = this.mydb.getEventById(idFromIntent);
             entityName.setText( viewEvent.getEventName() );
             entityInfo.setText( viewEvent.getEventInfo());
             entityImage.setImageResource(R.drawable.default_event_img);
         }
         else if( viewEntityType.equals("grp")){
-            Group viewGroup = this.mockData.getGroupById(idFromIntent);
+            Group viewGroup = this.mydb.getGroupById(idFromIntent);
             entityName.setText( viewGroup.getGroupName() );
             entityInfo.setText( viewGroup.getGroupInfo() );
             entityImage.setImageResource(R.drawable.default_group_img);
         }
         else if(viewEntityType.equals("usr")){
-            User viewUser = this.mockData.getUserById(idFromIntent);
+            User viewUser = this.mydb.getUserById(idFromIntent);
             entityName.setText(viewUser.getUsername());
             entityInfo.setText( viewUser.getEmail() );
             entityImage.setImageResource(R.drawable.default_user_img);

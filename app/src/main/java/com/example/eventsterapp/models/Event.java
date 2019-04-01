@@ -10,7 +10,7 @@ import java.util.Date;
 public class Event {
     // Declare that this attribute is the id
 
-    private Long id;
+
 
     private String eventName;
     private String eventInfo;
@@ -27,8 +27,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String eventName, String eventInfo, int groupID, String tag, String startDate, String endDate, String location, int eventSeats,int vis) {
-        this.id = id;
+    public Event(String eventName, String eventInfo, int groupID, String tag, String startDate, String endDate, String location, int eventSeats,int vis) {
+
         this.eventName = eventName;
         this.eventInfo = eventInfo;
         this.groupID = groupID;
@@ -52,10 +52,6 @@ public class Event {
 
     public void deleteComment(Comment comment) {
         this.comments.remove(comment);
-    }
-
-    public Long getId() {
-        return this.id;
     }
 
     public void setEventName(String name) {

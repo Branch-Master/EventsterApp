@@ -49,14 +49,9 @@ public class CreateEventFragment extends Fragment {
     private int vis =0;
 
 
-
-
     private View.OnClickListener mCreateButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-
-
 
             String eventName = new_event_name.getText().toString();
             String info = new_event_info.getText().toString();
@@ -84,10 +79,9 @@ public class CreateEventFragment extends Fragment {
             System.out.println("visable: " + vis);
 
 
-            Event newEvent = new Event(new Long(13),eventName,info,1,"tag",sdate,edate,loc,seats,vis);
+            Event newEvent = new Event(eventName,info,1,"tag",sdate,edate,loc,seats,vis);
 
             mDatabasehelper.addEvent(newEvent);
-
         }
     };
 

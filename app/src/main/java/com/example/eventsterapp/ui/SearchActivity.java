@@ -11,12 +11,8 @@ import androidx.annotation.NonNull;
 import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
-import com.example.eventsterapp.database.MockData;
 import com.example.eventsterapp.models.ChildRow;
-import com.example.eventsterapp.models.Event;
-import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.ParentRow;
-import com.example.eventsterapp.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -172,7 +167,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         while(events.moveToNext()){
             String eventName = events.getString(1);
             int id = events.getInt(0);
-            childRows.add(new ChildRow(R.drawable.default_event_img,eventName,new Long(id),"evt"));
+            childRows.add(new ChildRow(R.drawable.default_event_img,eventName,id,"evt"));
         }
         parentRow = new ParentRow("Events",childRows);
         parentList.add(parentRow);
@@ -184,7 +179,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         while(users.moveToNext()){
             String username = users.getString(1);
             int id = users.getInt(0);
-            childRows.add(new ChildRow(R.drawable.default_user_img,username,new Long(id),"usr"));
+            childRows.add(new ChildRow(R.drawable.default_user_img,username,id,"usr"));
         }
         parentRow = new ParentRow("Users",childRows);
         parentList.add(parentRow);
@@ -196,39 +191,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         while(groups.moveToNext()){
             String name = groups.getString(1);
             int id = groups.getInt(0);
-            childRows.add(new ChildRow(R.drawable.default_group_img,name,new Long(id),"grp"));
+            childRows.add(new ChildRow(R.drawable.default_group_img,name,id,"grp"));
         }
         parentRow = new ParentRow("Groups",childRows);
         parentList.add(parentRow);
 
 
-
-
-
-/*
-        MockData mockData = new MockData();
-
-        for(Event e : mockData.getEvents()){
-            childRows.add(new ChildRow(R.drawable.default_event_img,e.getEventName(),e.getId(),"evt"));
-        }
-        parentRow = new ParentRow("Events",childRows);
-        parentList.add(parentRow);
-
-
-        childRows = new ArrayList<ChildRow>();
-        for(Group g : mockData.getGroups() ){
-            childRows.add(new ChildRow(R.drawable.default_group_img,g.getGroupName(),g.getId(),"grp"));
-        }
-        parentRow = new ParentRow("Groups",childRows);
-        parentList.add(parentRow);
-
-
-        childRows = new ArrayList<ChildRow>();
-        for(User u: mockData.getUsers() ){
-            childRows.add(new ChildRow(R.drawable.default_user_img,u.getUsername(),u.getId(),"usr"));
-        }
-        parentRow = new ParentRow("Users",childRows);
-        parentList.add(parentRow);
-*/
     }
 }

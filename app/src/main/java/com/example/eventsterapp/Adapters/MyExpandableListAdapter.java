@@ -107,7 +107,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(finalConvertView.getContext(), ViewEntity.class);
-                i.putExtra("ent_id",(long) childRow.getId() );
+                i.putExtra("ent_id", childRow.getId() );
                 i.putExtra("ent_type", childRow.getType());
                 context.startActivity(i);
             }

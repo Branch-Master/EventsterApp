@@ -5,16 +5,14 @@ import java.util.ArrayList;
 public class Group {
     private String groupName;
     private String groupInfo;
-    private Long id;
     private ArrayList<User> members;
     private int visable;
 
     public Group(){}
 
-    public Group(String groupName, String groupInfo, Long id, int visable) {
+    public Group(String groupName, String groupInfo, int visable) {
         this.groupName = groupName;
         this.groupInfo = groupInfo;
-        this.id = id;
         this.members = new ArrayList<>();
         this.visable = visable;
     }
@@ -33,14 +31,6 @@ public class Group {
 
     public void setGroupInfo(String groupInfo) {
         this.groupInfo = groupInfo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public ArrayList<User> getMembers() {
