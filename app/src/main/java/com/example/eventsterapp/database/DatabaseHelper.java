@@ -43,6 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String group_info = "Group_info";
     private static final String group_vis = "vis";
 
+    //MEMBERS=======================================
+    private static final String TABLE_members = "Members";
+    private static final String group_id = "groupID";
+    private static final String name_of_group = "groupName";
+    private static final String user_id = "userID";
+    private static final String user_name = "username";
+
+
 
 
 
@@ -96,6 +104,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 group_vis + " INTEGER" +
                 ")";
         db.execSQL(createGroupTable);
+
+        String createMembersTable = "CREATE TABLE " + TABLE_members + "(" +
+                group_id + " INTEGER NOT NULL REFERENCES " + TABLE_Groups + "(ID)," +
+                user_id + " INTEGER NOT NULL REFERENCES " + TABLE_Users + "(ID)" + ")";
+        db.execSQL(createMembersTable);
     }
 
     @Override
@@ -103,6 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Users);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Events);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Groups);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_members);
         onCreate(db);
     }
 
@@ -226,7 +240,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean addGroup(Group group){
         SQLiteDatabase db = this.getWritableDatabase();
 
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(group_name,group.getGroupName());
         contentValues.put(group_info, group.getGroupInfo());
@@ -271,10 +284,35 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    public Boolean addUserToGroup(int userid, int groupid){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(group_id,groupid);
+        contentValues.put(user_id, groupid);
+
+        Log.d(Tag, "addData: Adding " + "user: "+ userid + " to group: " + groupid);
+
+        long result = db.insert(TABLE_Groups, null, contentValues);
+
+        if(result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
+
+
+    //TODO Eyða aðferð "dropAllData"
     public void dropAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         onUpgrade(db,0,1);
     }
+
+
 
 
 }

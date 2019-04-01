@@ -150,10 +150,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        //mDatebaseHelper.dropAllData();
+       // mDatebaseHelper.dropAllData();
 
 
-
+       // mDatebaseHelper.addUser(new User(new Long(1), "Marinó","1234","22/05","8459701","Tvíburi","mak78@hi.is",false ));
+       // mDatebaseHelper.addEvent(new Event("Tónleikar","Tónleikar hjá Ed Sheeran",1, "tónleikar","01/05","02/05","laugardalshöll",500,1));
 
         this.eventList = new ArrayList<Event>();
         this.groupList = new ArrayList<Group>();

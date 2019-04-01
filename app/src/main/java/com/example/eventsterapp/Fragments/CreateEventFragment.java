@@ -46,7 +46,7 @@ public class CreateEventFragment extends Fragment {
     private int eday;
     private int emonth;
     private int eyear;
-    private int vis =0;
+
 
 
     private View.OnClickListener mCreateButton = new View.OnClickListener() {
@@ -59,7 +59,7 @@ public class CreateEventFragment extends Fragment {
             String edate = eday + "/" + emonth +"/"+ eyear + " at " + new_event_end_time.getText().toString();
             String loc = new_event_loc.getText().toString();
             int seats = Integer.parseInt(new_event_seats.getText().toString());
-
+            int vis =0;
 
             switch (new_event_vis.getCheckedRadioButtonId()){
                 case R.id.event_public_create:
