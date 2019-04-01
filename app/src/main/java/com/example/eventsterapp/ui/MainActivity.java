@@ -149,19 +149,26 @@ public class MainActivity extends AppCompatActivity {
        super.onResume();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
+
+        loadData();
+
+
     }
 
     private void loadData() {
-        mDatebaseHelper.dropAllTables();
+        //mDatebaseHelper.dropAllTables();
 
         MockData mockData = new MockData();
         //this.eventList.addAll(mockData.getEvents());
         //this.groupList.addAll(mockData.getGroups());
         //this.userList.addAll(mockData.getUsers());
 
+        this.eventList = new ArrayList<Event>();
+        this.groupList = new ArrayList<Group>();
+        this.userList = new ArrayList<User>();
 
 
-
+        /*
         for(User u : mockData.getUsers()){
             mDatebaseHelper.addUser(u);
         }
@@ -171,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         for(Group g: mockData.getGroups()){
             mDatebaseHelper.addGroup(g);
         }
-
+         */
 
         Cursor allusers = mDatebaseHelper.getAllUsers();
         while(allusers.moveToNext()){
@@ -215,18 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addUser(User newEntry){
 
-
-        boolean insertData = mDatebaseHelper.addUser(newEntry);
-
-        if(insertData){
-            System.out.println("data sucessfully added=======");
-        }
-        else{
-            System.out.println("data not added============");
-        }
-    }
 
 
     }
