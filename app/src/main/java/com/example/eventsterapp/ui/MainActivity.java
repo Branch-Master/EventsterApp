@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
+import com.example.eventsterapp.DrawerActivity;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_menu:
                     System.out.println("Navigation Menu");
+                    i = new Intent(MainActivity.this, DrawerActivity.class);
+                    startActivity(i);
                     return true;
             }
             return false;
@@ -124,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
         eventView = findViewById(R.id.rv);
         eventView.setNestedScrollingEnabled(false);
-
 
 
         eventView.setHasFixedSize(true);

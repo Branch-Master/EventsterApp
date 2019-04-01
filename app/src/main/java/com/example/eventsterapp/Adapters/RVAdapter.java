@@ -26,8 +26,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
         ImageView cardImg;
 
 
-
-
         CardViewHolder(View itemView) {
 
             super(itemView);
