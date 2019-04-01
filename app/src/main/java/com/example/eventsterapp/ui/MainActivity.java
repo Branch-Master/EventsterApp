@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.eventsterapp.Adapters.RVAdapter;
+import com.example.eventsterapp.Adapters.RVEventCardAdapter;
+import com.example.eventsterapp.Adapters.RVGroupCardAdapter;
+import com.example.eventsterapp.Adapters.RVUserCardAdapter;
 import com.example.eventsterapp.DrawerActivity;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
@@ -35,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Group> groupList = new ArrayList<Group>();
     private ArrayList<User> userList = new ArrayList<User>();
 
-    private RVAdapter eventAdapter;
-    private RVAdapter groupAdapter;
-    private RVAdapter userAdapter;
+    private RVEventCardAdapter eventAdapter;
+    private RVGroupCardAdapter groupAdapter;
+    private RVUserCardAdapter userAdapter;
     private DatabaseHelper mDatebaseHelper;
 
 
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         eventView.setLayoutManager(llm);
 
-        RVAdapter adapter = new RVAdapter(eventList,new Event());
+        RVEventCardAdapter adapter = new RVEventCardAdapter(eventList);
         eventView.setAdapter(adapter);
 
 
@@ -199,13 +202,11 @@ public class MainActivity extends AppCompatActivity {
             this.groupList.add(new Group( groupname, info ,vis));
         }
 
-        eventAdapter = new RVAdapter(eventList,new Event());
-        groupAdapter = new RVAdapter(groupList,new Group());
-        userAdapter = new RVAdapter(userList,new User());
+        eventAdapter = new RVEventCardAdapter(eventList);
+        groupAdapter = new RVGroupCardAdapter(groupList);
+        userAdapter = new RVUserCardAdapter(userList);
 
     }
-
-
 
 
     }

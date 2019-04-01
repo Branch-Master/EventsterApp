@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cv"
+    android:id="@+id/event_cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:baselineAligned="false"
 
     android:clickable="false"
@@ -14,8 +16,7 @@
         android:id="@+id/card_img"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+
 
         />
 
@@ -23,34 +24,88 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:textSize="30sp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/event_start_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event starts at: " />
+
+        <TextView
+            android:id="@+id/event_starts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25:70" />
+    </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:id="@+id/event_end_label"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
-            android:text="Event starts at: " />
+            android:text="Events ends at:" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/event_ends"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25:70" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/event_loc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: " />
+
+        <TextView
+            android:id="@+id/event_location"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/event_seats_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="# Seats: " />
+
+        <TextView
+            android:id="@+id/event_nr_steats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </TableRow>
+
+    <TextView
+        android:id="@+id/describtion_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Describtion" />
 
     <TextView
         android:id="@+id/event_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/event_name"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
 
         />
