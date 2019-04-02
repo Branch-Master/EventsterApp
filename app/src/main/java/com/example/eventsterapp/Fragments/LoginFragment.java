@@ -65,7 +65,6 @@ public class LoginFragment extends Fragment {
             }
             else{
                 notValid.setText("Username or password incorrect");
-                notValid.setTextColor(getResources().getColor(R.color.errorColor));
             }
 
         }

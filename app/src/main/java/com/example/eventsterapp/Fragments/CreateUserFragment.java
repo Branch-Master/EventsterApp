@@ -48,7 +48,7 @@ public class CreateUserFragment extends Fragment {
             Boolean emailTaken =mDatabasehelper.emailUsed(email);
             Boolean nameTaken = mDatabasehelper.usernameTaken(username);
             Boolean pmatch = password1.equals(password);
-            Boolean ptest = password.length() < 7 || password1.length() < 7;
+            Boolean ptest = password.length() > 7 || password1.length() > 7;
 
             new_email.setTextColor(getResources().getColor(R.color.blackColor));
             new_username.setTextColor(getResources().getColor(R.color.blackColor));
