@@ -69,15 +69,14 @@
 
         <TextView
             android:id="@+id/event_loc_label"
-            android:layout_width="wrap_content"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:text="Location: " />
 
         <TextView
             android:id="@+id/event_location"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="wrap_content" />
     </TableRow>
 
     <TableRow
@@ -86,15 +85,14 @@
 
         <TextView
             android:id="@+id/event_seats_label"
-            android:layout_width="wrap_content"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:text="# Seats: " />
 
         <TextView
             android:id="@+id/event_nr_steats"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="wrap_content" />
     </TableRow>
 
     <TextView

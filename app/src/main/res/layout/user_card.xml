@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/customborder"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -11,34 +13,84 @@
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/user_card_name"
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Username" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/user_card_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email" />
+        <TextView
+            android:id="@+id/user_card_name_label"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Username" />
 
-    <TextView
-        android:id="@+id/user_card_bday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Birthday" />
+        <TextView
+            android:id="@+id/user_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/user_card_zodiac"
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Zodiac Sign" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/user_card_phone"
+        <TextView
+            android:id="@+id/user_card_email_label"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Email" />
+
+        <TextView
+            android:id="@+id/user_card_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Phone Number" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/user_card_bday_label"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Birthday" />
+
+        <TextView
+            android:id="@+id/user_card_bday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/user_card_zodiac_label"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Zodiac Sign" />
+
+        <TextView
+            android:id="@+id/user_card_zodiac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/user_card_phone_label"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:text="Phone Number" />
+
+        <TextView
+            android:id="@+id/user_card_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
 
 </LinearLayout>
