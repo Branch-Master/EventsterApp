@@ -1,7 +1,8 @@
-package com.example.eventsterapp;
+package com.example.eventsterapp.ui;
 
 import android.os.Bundle;
 
+import com.example.eventsterapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

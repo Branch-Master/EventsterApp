@@ -11,7 +11,6 @@ import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.Adapters.RVEventCardAdapter;
 import com.example.eventsterapp.Adapters.RVGroupCardAdapter;
 import com.example.eventsterapp.Adapters.RVUserCardAdapter;
-import com.example.eventsterapp.DrawerActivity;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
