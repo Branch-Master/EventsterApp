@@ -24,15 +24,17 @@ public class RVGroupCardAdapter extends RecyclerView.Adapter<RVGroupCardAdapter.
         CardView cv;
         TextView cardName;
         TextView cardInfo;
+        TextView cardVis;
         ImageView cardImg;
 
         GroupCard(View itemView){
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.rv);
-            cardName = (TextView)itemView.findViewById(R.id.event_name);
-            cardInfo = (TextView)itemView.findViewById(R.id.event_info);
-            cardImg = (ImageView)itemView.findViewById(R.id.card_img);
-        }
+            cardName = (TextView)itemView.findViewById(R.id.group_card_name);
+            cardInfo = (TextView)itemView.findViewById(R.id.group_card_info);
+            cardImg = (ImageView)itemView.findViewById(R.id.group_card_img);
+            cardVis = (TextView) itemView.findViewById(R.id.group_card_vis);
+         }
     }
 
     ArrayList<Group> groups;
@@ -54,6 +56,18 @@ public class RVGroupCardAdapter extends RecyclerView.Adapter<RVGroupCardAdapter.
         holder.cardName.setText(groups.get(i).getGroupName());
         holder.cardInfo.setText(groups.get(i).getGroupInfo());
         holder.cardImg.setImageResource(R.drawable.default_group_img);
+        String vis = "idk";
+        switch(groups.get(i).getVisable()){
+            case 0:
+                vis = "private";
+                break;
+            case 1:
+                vis = "public";
+                break;
+        }
+
+
+        holder.cardVis.setText(vis);
     }
 
     @Override
