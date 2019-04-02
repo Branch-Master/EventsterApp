@@ -1,6 +1,7 @@
 package com.example.eventsterapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.ui.HomeActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -82,6 +84,9 @@ public class CreateEventFragment extends Fragment {
             Event newEvent = new Event(eventName,info,1,"tag",sdate,edate,loc,seats,vis);
 
             mDatabasehelper.addEvent(newEvent);
+
+            Intent i = new Intent(getActivity(), HomeActivity.class);
+            startActivity(i);
         }
     };
 
