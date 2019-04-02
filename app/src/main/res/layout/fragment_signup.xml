@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TableRow
+        android:id="@+id/username_signup_tablerow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/signup_username_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Username:"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/signup_username"
@@ -19,25 +23,83 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Username"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="HardcodedText"
+            android:autofillHints="" />
     </TableRow>
 
     <TableRow
+        android:id="@+id/Email_signup_tablerow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/signup_email_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="example@example.com"
+            android:inputType="textEmailAddress"
+            tools:ignore="HardcodedText" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/password_signup_tablerow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/signup_password1_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="password" />
+            android:text="password"
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/signup_password1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:visibility="visible" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/password2_signup_tablerow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/signup_password2_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retype password" />
+
+        <EditText
+            android:id="@+id/signup_password2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="password"
+            android:hint="Password"
             android:inputType="textPassword" />
     </TableRow>
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
 </LinearLayout>
