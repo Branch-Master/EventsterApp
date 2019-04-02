@@ -19,7 +19,7 @@
         <LinearLayout
             android:id="@+id/listLinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
@@ -31,17 +31,17 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Events" />
+                    android:text="@string/events" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Groups" />
+                    android:text="@string/groups" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Users" />
+                    android:text="@string/users" />
 
             </com.google.android.material.tabs.TabLayout>
 
