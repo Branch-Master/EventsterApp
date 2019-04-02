@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
@@ -36,7 +37,14 @@ public class CreateUserFragment extends Fragment {
 
             User newUser = new User(username, password, email);
 
-            mDatabasehelper.addUser(newUser);
+
+            if(!mDatabasehelper.emailUsed(email)){
+                mDatabasehelper.addUser(newUser);
+
+                Toast.makeText(getView().getContext(), "User Created", Toast.LENGTH_SHORT).show();
+            }
+
+
 
 
         }

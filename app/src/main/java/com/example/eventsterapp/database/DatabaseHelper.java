@@ -304,6 +304,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    public Boolean emailUsed(String email){
+        String query = "SELECT * FROM " + TABLE_Users + " WHERE " + user_email + " = " + "\'" + email + "\'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor data = db.rawQuery(query,null);
+
+        if(data.moveToNext()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
     //TODO Eyða aðferð "dropAllData"
