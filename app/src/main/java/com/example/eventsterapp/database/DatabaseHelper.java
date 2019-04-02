@@ -334,6 +334,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
+    public User validateLogin(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM " + TABLE_Users + " WHERE " +
+                user_name + " = " + "\'" + username + "\'" +
+                " AND " + users_pass + " = " + "\'" + password + "\'";
+
+        Cursor data = db.rawQuery(query,null);
+
+        if(data.moveToNext()){
+            String name = data.getString(1);
+            String pass = data.getString(2);
+            String email = data.getString(3);
+            return new User(name, pass, email);
+        }
+        else{
+            return null;
+        }
+
+    }
+
 
 
     //TODO Eyða aðferð "dropAllData"

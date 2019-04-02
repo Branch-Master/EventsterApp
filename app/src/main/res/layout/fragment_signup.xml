@@ -26,6 +26,12 @@
             android:inputType="textPersonName" />
     </TableRow>
 
+    <TextView
+        android:id="@+id/signup_notvalid_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/errorColor" />
+
     <TableRow
         android:id="@+id/Email_signup_tablerow"
         android:layout_width="match_parent"
@@ -42,12 +48,39 @@
             android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:hint="example@example.com"
             android:inputType="textEmailAddress"
-            tools:ignore="HardcodedText"
-            android:autofillHints="" />
+            tools:ignore="HardcodedText" />
 
+    </TableRow>
+
+    <TextView
+        android:id="@+id/signup_notvalid_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/errorColor" />
+
+    <TableRow
+        android:id="@+id/password2_signup_tablerow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/signup_password2_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retype password" />
+
+        <EditText
+            android:id="@+id/signup_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
     </TableRow>
 
     <TableRow
@@ -75,26 +108,11 @@
 
     </TableRow>
 
-    <TableRow
-        android:id="@+id/password2_signup_tablerow"
+    <TextView
+        android:id="@+id/signup_notvalid_password"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <TextView
-            android:id="@+id/signup_password2_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retype password" />
-
-        <EditText
-            android:id="@+id/signup_password2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword" />
-    </TableRow>
+        android:layout_height="wrap_content"
+        android:textColor="@color/errorColor" />
 
     <Button
         android:id="@+id/signup_button"

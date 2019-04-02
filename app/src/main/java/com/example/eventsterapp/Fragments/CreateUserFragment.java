@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eventsterapp.R;
@@ -30,6 +31,10 @@ public class CreateUserFragment extends Fragment {
     private Button signUp;
     private Button cancelSignup;
 
+    private TextView email_notValid;
+    private TextView username_notValid;
+    private TextView password_notValid;
+
     private View.OnClickListener signUpConfirmed = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -47,22 +52,25 @@ public class CreateUserFragment extends Fragment {
 
             new_email.setTextColor(getResources().getColor(R.color.blackColor));
             new_username.setTextColor(getResources().getColor(R.color.blackColor));
-            new_password.setBackgroundColor(getResources().getColor(R.color.blackColor));
-            new_retypePassword.setBackgroundColor(getResources().getColor(R.color.blackColor));
+
 
 
             if(emailTaken){
-                Toast.makeText(getView().getContext(), "Email is Taken", Toast.LENGTH_SHORT).show();
-                new_email.setTextColor(getResources().getColor(R.color.errorColor));
-                new_email.setText("Given Email was Taken");
+                email_notValid.setText("An account with this email already exists");
             }
             if(nameTaken){
-                Toast.makeText(getView().getContext(), "Username is Taken", Toast.LENGTH_SHORT).show();
-                new_username.setTextColor(getResources().getColor(R.color.errorColor));
+                username_notValid.setText("This username is unavailable");
             }
-            if(pmatch || ptest){
-                new_password.setBackgroundColor(getResources().getColor(R.color.errorColor));
-                new_retypePassword.setBackgroundColor(getResources().getColor(R.color.errorColor));
+            if(pmatch && !ptest){
+                password_notValid.setText("Your password has to be at least 8 characters long");
+
+            }
+            if(!pmatch && ptest){
+                password_notValid.setText("The given passwords did not match");
+
+            }
+            if(!pmatch && !ptest){
+                password_notValid.setText("Your password has to be at least 8 characters long" + "\n" + "The given passwords did not match" );
             }
 
             if(!emailTaken && !nameTaken && pmatch && ptest){
@@ -110,6 +118,10 @@ public class CreateUserFragment extends Fragment {
 
         signUp.setOnClickListener(signUpConfirmed);
         cancelSignup.setOnClickListener(cancel);
+
+        email_notValid = (TextView) v.findViewById(R.id.signup_notvalid_email);
+        username_notValid = (TextView) v.findViewById(R.id.signup_notvalid_username);
+        password_notValid = (TextView) v.findViewById(R.id.signup_notvalid_password);
 
         return v;
     }
