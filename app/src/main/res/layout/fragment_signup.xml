@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,10 +13,9 @@
 
         <TextView
             android:id="@+id/signup_username_label"
-            android:layout_width="wrap_content"
+            android:layout_width="109dp"
             android:layout_height="wrap_content"
-            android:text="Username:"
-            tools:ignore="HardcodedText" />
+            android:text="Username" />
 
         <EditText
             android:id="@+id/signup_username"
@@ -23,9 +23,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Username"
-            android:inputType="textPersonName"
-            tools:ignore="HardcodedText"
-            android:autofillHints="" />
+            android:inputType="textPersonName" />
     </TableRow>
 
     <TableRow
@@ -35,7 +33,7 @@
 
         <TextView
             android:id="@+id/signup_email_label"
-            android:layout_width="match_parent"
+            android:layout_width="109dp"
             android:layout_height="wrap_content"
             android:text="Email:"
             tools:ignore="HardcodedText" />
@@ -47,7 +45,8 @@
             android:ems="10"
             android:hint="example@example.com"
             android:inputType="textEmailAddress"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            android:autofillHints="" />
 
     </TableRow>
 
@@ -58,7 +57,7 @@
 
         <TextView
             android:id="@+id/signup_password1_label"
-            android:layout_width="wrap_content"
+            android:layout_width="109dp"
             android:layout_height="wrap_content"
             android:text="password"
             android:visibility="visible"
@@ -89,8 +88,9 @@
 
         <EditText
             android:id="@+id/signup_password2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword" />
