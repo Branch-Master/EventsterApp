@@ -19,19 +19,25 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
 
 
     public static class UserCard extends RecyclerView.ViewHolder {
+
         CardView cv;
         TextView cardName;
-        TextView cardInfo;
+        TextView cardEmail;
+        TextView cardBday;
+        TextView cardZodiac;
+        TextView cardPhone;
         ImageView cardImg;
-
 
         UserCard(View itemView) {
 
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.rv);
-            cardName = (TextView)itemView.findViewById(R.id.event_name);
-            cardInfo = (TextView)itemView.findViewById(R.id.event_info);
-            cardImg = (ImageView)itemView.findViewById(R.id.card_img);
+            cardName = (TextView)itemView.findViewById(R.id.user_card_name);
+            cardEmail = (TextView)itemView.findViewById(R.id.user_card_email);
+            cardBday = (ImageView)itemView.findViewById(R.id.user_card_bday);
+            cardZodiac = (TextView) itemView.findViewById(R.id.user_card_zodiac);
+            cardPhone = (TextView) itemView.findViewById(R.id.user_card_phone);
+            cardImg = (ImageView)itemView.findViewById(R.id.group_card_img);
 
         }
     }
@@ -46,7 +52,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
     @NonNull
     @Override
     public RVUserCardAdapter.UserCard onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card, parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card, parent,false);
         UserCard userCard = new UserCard(v);
         return userCard;
     }
@@ -54,7 +60,10 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
     @Override
     public void onBindViewHolder(@NonNull UserCard holder, int i) {
         holder.cardName.setText(users.get(i).getUsername());
-        holder.cardInfo.setText(users.get(i).getEmail());
+        holder.cardEmail.setText(users.get(i).getEmail());
+        holder.cardBday.setText(users.get(i).getBirthday());
+        holder.cardZodiac.setText(users.get(i).getZodiac());
+        holder.cardPhone.setText(users.get(i).getPhone());
         holder.cardImg.setImageResource(R.drawable.default_user_img);
     }
 
