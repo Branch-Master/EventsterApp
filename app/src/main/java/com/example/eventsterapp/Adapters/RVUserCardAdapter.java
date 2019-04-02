@@ -34,7 +34,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
             cv = (CardView)itemView.findViewById(R.id.rv);
             cardName = (TextView)itemView.findViewById(R.id.user_card_name);
             cardEmail = (TextView)itemView.findViewById(R.id.user_card_email);
-            cardBday = (ImageView)itemView.findViewById(R.id.user_card_bday);
+            cardBday = (TextView)itemView.findViewById(R.id.user_card_bday);
             cardZodiac = (TextView) itemView.findViewById(R.id.user_card_zodiac);
             cardPhone = (TextView) itemView.findViewById(R.id.user_card_phone);
             cardImg = (ImageView)itemView.findViewById(R.id.group_card_img);
