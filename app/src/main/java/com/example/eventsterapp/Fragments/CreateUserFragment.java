@@ -47,6 +47,8 @@ public class CreateUserFragment extends Fragment {
 
             new_email.setTextColor(getResources().getColor(R.color.blackColor));
             new_username.setTextColor(getResources().getColor(R.color.blackColor));
+            new_password.setBackgroundColor(getResources().getColor(R.color.blackColor));
+            new_retypePassword.setBackgroundColor(getResources().getColor(R.color.blackColor));
 
 
             if(emailTaken){
@@ -57,6 +59,10 @@ public class CreateUserFragment extends Fragment {
             if(nameTaken){
                 Toast.makeText(getView().getContext(), "Username is Taken", Toast.LENGTH_SHORT).show();
                 new_username.setTextColor(getResources().getColor(R.color.errorColor));
+            }
+            if(pmatch || ptest){
+                new_password.setBackgroundColor(getResources().getColor(R.color.errorColor));
+                new_retypePassword.setBackgroundColor(getResources().getColor(R.color.errorColor));
             }
 
             if(!emailTaken && !nameTaken && pmatch && ptest){
