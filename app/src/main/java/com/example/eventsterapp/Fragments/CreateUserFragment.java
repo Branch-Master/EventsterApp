@@ -17,6 +17,8 @@ import com.example.eventsterapp.models.Group;
 import com.example.eventsterapp.models.User;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class CreateUserFragment extends Fragment {
 
@@ -26,6 +28,7 @@ public class CreateUserFragment extends Fragment {
     private EditText new_retypePassword;
     private EditText new_email;
     private Button signUp;
+    private Button cancelSignup;
 
     private View.OnClickListener signUpConfirmed = new View.OnClickListener() {
         @Override
@@ -37,18 +40,53 @@ public class CreateUserFragment extends Fragment {
 
             User newUser = new User(username, password, email);
 
+            Boolean emailTaken =mDatabasehelper.emailUsed(email);
+            Boolean nameTaken = mDatabasehelper.usernameTaken(username);
+            Boolean pmatch = password1.equals(password);
+            Boolean ptest = password.length() < 7 || password1.length() < 7;
 
-            if(!mDatabasehelper.emailUsed(email)){
-                mDatabasehelper.addUser(newUser);
+            new_email.setTextColor(getResources().getColor(R.color.blackColor));
+            new_username.setTextColor(getResources().getColor(R.color.blackColor));
 
-                Toast.makeText(getView().getContext(), "User Created", Toast.LENGTH_SHORT).show();
+
+            if(emailTaken){
+                Toast.makeText(getView().getContext(), "Email is Taken", Toast.LENGTH_SHORT).show();
+                new_email.setTextColor(getResources().getColor(R.color.errorColor));
+                new_email.setText("Given Email was Taken");
+            }
+            if(nameTaken){
+                Toast.makeText(getView().getContext(), "Username is Taken", Toast.LENGTH_SHORT).show();
+                new_username.setTextColor(getResources().getColor(R.color.errorColor));
             }
 
+            if(!emailTaken && !nameTaken && pmatch && ptest){
+                mDatabasehelper.addUser(newUser);
+                Toast.makeText(getView().getContext(), "User Created", Toast.LENGTH_SHORT).show();
 
+                LoginFragment loginFragment = new LoginFragment();
 
+                FragmentManager fragmentManager =getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                transaction.replace(R.id.login_fragment_container,loginFragment).commit();
+            }
 
         }
     };
+
+    private View.OnClickListener cancel = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            LoginFragment loginFragment = new LoginFragment();
+
+            FragmentManager fragmentManager =getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            transaction.replace(R.id.login_fragment_container,loginFragment).commit();
+        }
+    };
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,8 +100,10 @@ public class CreateUserFragment extends Fragment {
         new_retypePassword = (EditText) v.findViewById(R.id.signup_password2);
         new_email = (EditText) v.findViewById(R.id.signup_email);
         signUp = (Button) v.findViewById(R.id.signup_button);
+        cancelSignup = (Button) v.findViewById(R.id.cancel_signup);
 
         signUp.setOnClickListener(signUpConfirmed);
+        cancelSignup.setOnClickListener(cancel);
 
         return v;
     }

@@ -319,6 +319,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
+    public Boolean usernameTaken(String name){
+        String query = "SELECT * FROM " + TABLE_Users + " WHERE " + user_name + " = " + "\'" + name + "\'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor data = db.rawQuery(query,null);
+
+        if(data.moveToNext()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
     //TODO Eyða aðferð "dropAllData"
