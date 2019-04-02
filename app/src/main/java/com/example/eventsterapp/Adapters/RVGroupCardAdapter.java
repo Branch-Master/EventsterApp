@@ -46,7 +46,7 @@ public class RVGroupCardAdapter extends RecyclerView.Adapter<RVGroupCardAdapter.
     @NonNull
     @Override
     public GroupCard onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card, parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_card, parent,false);
         GroupCard groupCard = new GroupCard(v);
         return groupCard;
     }
