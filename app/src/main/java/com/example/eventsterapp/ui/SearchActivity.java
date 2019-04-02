@@ -57,9 +57,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     i = new Intent(SearchActivity.this, CreateActivity.class);
                     startActivity(i);
                     return true;
-                case R.id.navigation_menu:
-                    System.out.println("Navigation Menu");
-                    i = new Intent(SearchActivity.this, HomeActivity.class);
+                case R.id.navigation_aboutme:
+                    System.out.println("Navigation About me");
+                    i = new Intent(SearchActivity.this, AboutmeActivity.class);
                     startActivity(i);
                     return true;
             }

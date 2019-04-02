@@ -12,10 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.DrawerActivity"
-            android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.CreateActivity" />
         <activity
             android:name=".ui.ViewEntity"
@@ -49,6 +45,7 @@
             android:name=".ui.HomeActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".ui.AboutmeActivity" />
     </application>
 
 </manifest>
