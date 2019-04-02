@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.ChildRow;
 import com.example.eventsterapp.models.ParentRow;
-import com.example.eventsterapp.ui.MainActivity;
-import com.example.eventsterapp.ui.SearchActivity;
 import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;

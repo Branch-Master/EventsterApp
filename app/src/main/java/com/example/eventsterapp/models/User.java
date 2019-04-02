@@ -12,15 +12,15 @@ public class User {
 
     public User(){}
 
-    public User(Long id, String username, String password, String birthday, String phone, String zodiac, String email, boolean loggedIn) {
+    public User(String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.birthday = birthday;
-        this.phone = phone;
-        this.zodiac = zodiac;
+        this.birthday = null;
+        this.phone = null;
+        this.zodiac = null;
         this.email = email;
-        this.loggedIn = loggedIn;
+        this.loggedIn = false;
     }
 
     public Long getId() {

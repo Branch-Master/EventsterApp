@@ -1,15 +1,11 @@
 package com.example.eventsterapp.ui;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.example.eventsterapp.Fragments.CreateEventFragment;
 import com.example.eventsterapp.Fragments.CreateGroupFragment;
@@ -67,7 +63,7 @@ public class CreateActivity extends FragmentActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     System.out.println("Navigation Home");
-                    i = new Intent(CreateActivity.this, MainActivity.class);
+                    i = new Intent(CreateActivity.this, HomeActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_search:

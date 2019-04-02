@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     RecyclerView eventView;
 
@@ -58,17 +58,17 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_search:
                     System.out.println("Navigation Search");
-                    i = new Intent(MainActivity.this, SearchActivity.class);
+                    i = new Intent(HomeActivity.this, SearchActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_create_new:
                     System.out.println("Navigation Create New");
-                    i = new Intent(MainActivity.this, CreateActivity.class);
+                    i = new Intent(HomeActivity.this, CreateActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_menu:
                     System.out.println("Navigation Menu");
-                    i = new Intent(MainActivity.this, DrawerActivity.class);
+                    i = new Intent(HomeActivity.this, DrawerActivity.class);
                     startActivity(i);
                     return true;
             }
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         mDatebaseHelper = new DatabaseHelper(this);
         loadData();
@@ -171,11 +171,8 @@ public class MainActivity extends AppCompatActivity {
             String name = allusers.getString(1);
             String pass = allusers.getString(2);
             String email = allusers.getString(3);
-            String bday = allusers.getString(4);
-            String zodiac = allusers.getString(5);
-            String phone = allusers.getString(6);
 
-            this.userList.add(new User(new Long(13),name,pass,bday,phone,zodiac,email,false ));
+            this.userList.add(new User(name,pass,email));
         }
 
         Cursor allevents = mDatebaseHelper.getAllEvents();

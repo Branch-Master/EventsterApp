@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     System.out.println("Navigation Home");
-                    i = new Intent(SearchActivity.this, MainActivity.class);
+                    i = new Intent(SearchActivity.this, HomeActivity.class);
                     startActivity(i);
                     return true;
                 case R.id.navigation_search:
@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     return true;
                 case R.id.navigation_menu:
                     System.out.println("Navigation Menu");
-                    i = new Intent(SearchActivity.this, MainActivity.class);
+                    i = new Intent(SearchActivity.this, HomeActivity.class);
                     startActivity(i);
                     return true;
             }

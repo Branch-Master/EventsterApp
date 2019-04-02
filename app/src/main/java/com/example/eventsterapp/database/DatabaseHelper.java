@@ -167,9 +167,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String bday = data.getString(4);
             String zodiac = data.getString(5);
             String phone = data.getString(6);
-            return new User(new Long(13), name, pass, bday, phone, zodiac, email, false);
+            return new User(name, pass, email);
         }
-        return new User(new Long(-1),"ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst","ekkert fannst",false);
+        return new User("ekkert fannst","ekkert fannst","ekkert fannst");
 
     }
 
