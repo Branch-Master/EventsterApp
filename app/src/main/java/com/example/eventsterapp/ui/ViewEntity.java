@@ -53,7 +53,7 @@ public class ViewEntity extends AppCompatActivity {
                 case R.id.navigation_create_new:
 
                     return true;
-                case R.id.navigation_menu:
+                case R.id.navigation_aboutme:
 
                     return true;
             }

@@ -65,9 +65,9 @@ public class HomeActivity extends AppCompatActivity {
                     i = new Intent(HomeActivity.this, CreateActivity.class);
                     startActivity(i);
                     return true;
-                case R.id.navigation_menu:
+                case R.id.navigation_aboutme:
                     System.out.println("Navigation Menu");
-                    i = new Intent(HomeActivity.this, DrawerActivity.class);
+                    i = new Intent(HomeActivity.this, AboutmeActivity.class);
                     startActivity(i);
                     return true;
             }

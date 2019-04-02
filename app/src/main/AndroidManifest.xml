@@ -49,6 +49,7 @@
             android:name=".ui.HomeActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".ui.AboutmeActivity" />
     </application>
 
 </manifest>

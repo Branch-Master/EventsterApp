@@ -22,9 +22,9 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/navigation_menu"
+        android:id="@+id/navigation_aboutme"
         android:icon="@drawable/ic_baseline_menu_24dp"
-        android:title="@string/title_menu"
+        android:title="@string/title_aboutme"
         android:visible="true" />
 
 </menu>

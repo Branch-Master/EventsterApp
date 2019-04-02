@@ -74,8 +74,10 @@ public class CreateActivity extends FragmentActivity {
                 case R.id.navigation_create_new:
                     System.out.println("Navigation Create New");
                     return true;
-                case R.id.navigation_menu:
-                    System.out.println("Navigation Menu");
+                case R.id.navigation_aboutme:
+                    System.out.println("Navigation About me");
+                    i = new Intent(CreateActivity.this, AboutmeActivity.class);
+                    startActivity(i);
                     return true;
             }
             return false;
