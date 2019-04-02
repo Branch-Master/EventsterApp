@@ -37,6 +37,8 @@ public class CreateUserFragment extends Fragment {
             User newUser = new User(username, password, email);
 
             mDatabasehelper.addUser(newUser);
+
+
         }
     };
 
@@ -45,13 +47,13 @@ public class CreateUserFragment extends Fragment {
         Context context = getContext();
         mDatabasehelper = new DatabaseHelper(context);
 
-        final View v = inflater.inflate(R.layout.fragment_create_group, container, false);
+        final View v = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        new_username = (EditText) v.findViewById(R.id.signUpName);
-        new_password = (EditText) v.findViewById(R.id.signUpPass);
-        new_retypePassword = (EditText) v.findViewById(R.id.signUpPass1);
-        new_email = (EditText) v.findViewById(R.id.signUpEmail);
-        signUp = (Button) v.findViewById(R.id.button);
+        new_username = (EditText) v.findViewById(R.id.signup_username);
+        new_password = (EditText) v.findViewById(R.id.signup_password1);
+        new_retypePassword = (EditText) v.findViewById(R.id.signup_password2);
+        new_email = (EditText) v.findViewById(R.id.signup_email);
+        signUp = (Button) v.findViewById(R.id.signup_button);
 
         signUp.setOnClickListener(signUpConfirmed);
 
