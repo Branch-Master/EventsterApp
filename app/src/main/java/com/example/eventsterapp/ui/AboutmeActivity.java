@@ -77,6 +77,7 @@ public class AboutmeActivity extends AppCompatActivity {
             String e = aboutmeEmail.getText().toString();
             String z = aboutmeZodiac.getText().toString();
             String p = aboutmephone.getText().toString();
+            System.out.println(p + "=============simanumer");
 
             String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
             System.out.println(sessionEmail + "===currEmail");
@@ -95,6 +96,7 @@ public class AboutmeActivity extends AppCompatActivity {
             if(!e.equals(cu.getEmail()) && !mdb.emailUsed(e)){
                 mdb.changeEmail(id,e);
                 editor.clear();
+                editor.commit();
                 editor.putString(userid,e);
                 editor.commit();
                 System.out.println("email changed to: " + e);
@@ -141,7 +143,6 @@ public class AboutmeActivity extends AppCompatActivity {
         String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
 
         User currentUser = mdb.findUserByEmail(sessionEmail);
-        System.out.println(currentUser.getPhone() +"===phone");
 
         id = currentUser.getId();
         aboutmeName.setText(currentUser.getUsername());
