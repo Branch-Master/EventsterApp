@@ -167,10 +167,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String email = data.getString(3);
             String bday = data.getString(4);
             String zodiac = data.getString(5);
-            String phone = data.getString(6);
-            return new User(name, pass, email);
+            String phone = data.getString(7);
+            return new User(id, name, pass, email, bday, phone, zodiac);
         }
-        return new User("ekkert fannst","ekkert fannst","ekkert fannst");
+        return new User(id,"ekkert fannst","ekkert fannst","ekkert fannst", "ekkert fannst", "ekkert fannst", "ekkert fannst");
 
     }
 
@@ -334,7 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String uemail = data.getString(3);
             String bday = data.getString(4);
             String zodiac = data.getString(5);
-            String phone = data.getString(6);
+            String phone = data.getString(7);
             return new User(id,name, pass, uemail, bday,phone,zodiac);
         }
         else{
