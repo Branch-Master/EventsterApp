@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.eventsterapp.Fragments.CreateEventFragment;
 import com.example.eventsterapp.Fragments.CreateGroupFragment;
@@ -77,6 +78,7 @@ public class AboutmeActivity extends AppCompatActivity {
             String p = aboutmephone.getText().toString();
 
             String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
+            System.out.println(sessionEmail + "===currEmail");
             User cu = mdb.findUserByEmail(sessionEmail);
 
             if(!n.equals(cu.getUsername())){
@@ -97,7 +99,12 @@ public class AboutmeActivity extends AppCompatActivity {
                 System.out.println("email changed to: " + e);
             }
 
+            sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
+            System.out.println(sessionEmail + "===currEmail");
+
             displayUserInfo();
+
+            Toast.makeText(AboutmeActivity.this, "User information changed", Toast.LENGTH_SHORT).show();
         }
     };
 
