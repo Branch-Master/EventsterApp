@@ -38,6 +38,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="save_login_information">Save login information</string>
+    <string name="add_members">add members</string>
 
 
 </resources>

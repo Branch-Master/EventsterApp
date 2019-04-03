@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
         this.sharedpreferences = getSharedPreferences(mypref,Context.MODE_PRIVATE);
         this.editor = sharedpreferences.edit();
 
-
     }
 
     public void createSession(String email){
