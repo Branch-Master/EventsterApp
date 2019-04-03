@@ -112,7 +112,6 @@ public class LoginFragment extends Fragment {
         Context c = getContext();
         databaseHelper = new DatabaseHelper(c);
 
-
         this.loginPreferences = PreferenceManager.getDefaultSharedPreferences(c);
         this.editor = loginPreferences.edit();
 

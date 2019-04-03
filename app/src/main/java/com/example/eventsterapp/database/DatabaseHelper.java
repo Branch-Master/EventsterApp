@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //USER==========================================
     private static final String Tag = "DatabaseHelper";
     private static final String TABLE_Users = "Users";
-    //private static final String users_id= "id";
+    private static final String id= "id";
     private static final String users_name = "username";
     private static final String users_pass = "pw";
     private static final String user_email = "email";
@@ -266,6 +266,37 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public Cursor getAllGroups(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_Groups;
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public String findUserIdByEmail(String email){
+        String query = "SELECT " + id + " FROM " + TABLE_Users + " WHERE " + user_email + " = \'" + email + "\'";
+        System.out.println(query);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery(query,null);
+        if(data.moveToNext()) {
+            return data.getString(0);
+        } else {
+            return null;
+        }
+    }
+
+
+    public Cursor getVisGroups(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Groups + " where " + group_vis + "=\'1\' or " + group_vis +
+                "=\'0\' and " + id + " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + id + "\')";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public Cursor getVisEvents(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Events + " where " + event_vis + "=\'1\' or " + event_groupId +
+                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + id + "\')";
+        System.out.println(query);
         Cursor data = db.rawQuery(query,null);
         return data;
     }

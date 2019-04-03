@@ -121,6 +121,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String myprefResult = sharedpreferences.getString(userid,"default String");
+
         mDatebaseHelper = new DatabaseHelper(this);
         loadData();
 
@@ -143,10 +146,6 @@ public class HomeActivity extends AppCompatActivity {
 
         RVEventCardAdapter adapter = new RVEventCardAdapter(eventList);
         eventView.setAdapter(adapter);
-
-        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
-        String myprefResult = sharedpreferences.getString(userid,"default String");
-        System.out.println(myprefResult + "================");
     }
 
     @Override
@@ -193,7 +192,11 @@ public class HomeActivity extends AppCompatActivity {
             this.userList.add(new User(id,name,pass,email, bday, phone, zodiac, info));
         }
 
-        Cursor allevents = mDatebaseHelper.getAllEvents();
+        String email = sharedpreferences.getString(userid,"default String");
+        System.out.println(email);
+        String id = mDatebaseHelper.findUserIdByEmail(email);
+
+        Cursor allevents = mDatebaseHelper.getVisEvents(id);
         while(allevents.moveToNext()){
             String eventName = allevents.getString(1);
             String eventInfo = allevents.getString(2);
@@ -208,7 +211,9 @@ public class HomeActivity extends AppCompatActivity {
             this.eventList.add(new Event(eventName, eventInfo, groupID,tag,startDate,endDate,location,eventSeats,vis));
         }
 
-        Cursor allgroups = mDatebaseHelper.getAllGroups();
+
+
+        Cursor allgroups = mDatebaseHelper.getVisGroups(id);
         while(allgroups.moveToNext()){
             String groupname = allgroups.getString(1);
             String info = allgroups.getString(2);
