@@ -85,19 +85,13 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), ViewEntity.class);
-                i.putExtra("ent_type", "evt");
-                i.putExtra("ent_id", count);
-                v.getContext().startActivity(i);
-                //System.out.println("Event ID: " + count);
+                Intent intent = new Intent(v.getContext(), ViewEntity.class);
+                intent.putExtra("ent_type", "evt");
+                intent.putExtra("ent_id", count);
+                v.getContext().startActivity(intent);
+
             }
         });
-
-
-
-
-
-
 
     }
 

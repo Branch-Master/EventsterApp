@@ -1,13 +1,16 @@
 package com.example.eventsterapp.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.User;
+import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         TextView cardPhone;
         TextView cardInfo;
         ImageView cardImg;
+        LinearLayout card;
 
         UserCard(View itemView) {
 
@@ -40,7 +44,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
             cardPhone = (TextView) itemView.findViewById(R.id.user_card_phone);
             cardInfo = (TextView) itemView.findViewById(R.id.user_card_info);
             cardImg = (ImageView)itemView.findViewById(R.id.imageView2);
-
+            card = (LinearLayout)itemView.findViewById(R.id.user_cv);
         }
     }
 
@@ -61,6 +65,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
 
     @Override
     public void onBindViewHolder(@NonNull UserCard holder, int i) {
+        final int count = i+1;
         holder.cardName.setText(users.get(i).getUsername());
         holder.cardEmail.setText(users.get(i).getEmail());
         holder.cardBday.setText(users.get(i).getBirthday());
@@ -68,6 +73,16 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         holder.cardPhone.setText(users.get(i).getPhone());
         holder.cardInfo.setText(users.get(i).getInfo());
         holder.cardImg.setImageResource(R.drawable.default_user_img);
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ViewEntity.class);
+                intent.putExtra("ent_type","usr");
+                intent.putExtra("ent_id",count);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
