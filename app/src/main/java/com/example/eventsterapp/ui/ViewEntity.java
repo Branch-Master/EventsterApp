@@ -80,8 +80,6 @@ public class ViewEntity extends AppCompatActivity {
         int idFromIntent =  getIntent().getIntExtra("ent_id",-1);
         String viewEntityType = getIntent().getStringExtra("ent_type");
 
-        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
         parentList = new ArrayList<ParentRow>();
         showThisParentList = new ArrayList<ParentRow>();
 
@@ -117,7 +115,7 @@ public class ViewEntity extends AppCompatActivity {
             loadDataGroupsAndEvents();
         }
 
-        myList = (ExpandableListView) findViewById(R.id.expandambleListView_search);
+        myList = (ExpandableListView) findViewById(R.id.expandambleListView_viewEntity);
         listAdapter = new MyExpandableListAdapter(ViewEntity.this,parentList);
         myList.setAdapter(listAdapter);
 
