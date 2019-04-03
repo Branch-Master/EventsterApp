@@ -14,18 +14,26 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             />
+
         <TextView
-            android:id= "@+id/child_text"
+            android:id="@+id/child_text_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="45sp"
-            android:paddingTop="12sp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/child_icon_add"
+            android:paddingLeft="45sp"
+            android:paddingTop="12sp"
             android:text="place holder"
-            android:textAppearance="?android:textAppearanceMedium"
-            />
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/child_button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="3dp"
+            android:text="Add" />
 
     </RelativeLayout>
 

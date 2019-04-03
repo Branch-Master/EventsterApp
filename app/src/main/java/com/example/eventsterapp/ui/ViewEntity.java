@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
+import com.example.eventsterapp.Adapters.MyExpandableListAdapterAdd;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.ChildRow;
@@ -33,10 +34,12 @@ public class ViewEntity extends AppCompatActivity {
     private TextView entityName;
     private TextView entityInfo;
     private DatabaseHelper mydb;
-    private MyExpandableListAdapter listAdapter;
+    private MyExpandableListAdapterAdd listAdapter;
     private ArrayList<ParentRow> parentList;
     private ArrayList<ParentRow> showThisParentList;
     private ExpandableListView myList;
+    private int idFromIntent;
+    private String typeFromIntent;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,27 +80,27 @@ public class ViewEntity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        int idFromIntent =  getIntent().getIntExtra("ent_id",-1);
-        String viewEntityType = getIntent().getStringExtra("ent_type");
+        idFromIntent =  getIntent().getIntExtra("ent_id",-1);
+        typeFromIntent = getIntent().getStringExtra("ent_type");
 
         parentList = new ArrayList<ParentRow>();
         showThisParentList = new ArrayList<ParentRow>();
 
-        if( viewEntityType.equals("evt")){
+        if( typeFromIntent.equals("evt")){
             Event viewEvent = this.mydb.getEventById(idFromIntent);
             entityName.setText( viewEvent.getEventName() );
             entityInfo.setText( viewEvent.getEventInfo());
             entityImage.setImageResource(R.drawable.default_event_img);
             displayList(1);
         }
-        else if( viewEntityType.equals("grp")){
+        else if( typeFromIntent.equals("grp")){
             Group viewGroup = this.mydb.getGroupById(idFromIntent);
             entityName.setText( viewGroup.getGroupName() );
             entityInfo.setText( viewGroup.getGroupInfo() );
             entityImage.setImageResource(R.drawable.default_group_img);
             displayList(1);
         }
-        else if(viewEntityType.equals("usr")){
+        else if(typeFromIntent.equals("usr")){
             User viewUser = this.mydb.getUserById(idFromIntent);
             entityName.setText(viewUser.getUsername());
             entityInfo.setText( viewUser.getEmail() );
@@ -116,7 +119,7 @@ public class ViewEntity extends AppCompatActivity {
         }
 
         myList = (ExpandableListView) findViewById(R.id.expandambleListView_viewEntity);
-        listAdapter = new MyExpandableListAdapter(ViewEntity.this,parentList);
+        listAdapter = new MyExpandableListAdapterAdd(ViewEntity.this,parentList, getIntent().getIntExtra("ent_id",-1), getIntent().getStringExtra("ent_type"));
         myList.setAdapter(listAdapter);
 
     }
@@ -133,7 +136,15 @@ public class ViewEntity extends AppCompatActivity {
             int id = users.getInt(0);
             childRows.add(new ChildRow(R.drawable.default_user_img,username,id,"usr"));
         }
-        parentRow = new ParentRow("Users",childRows);
+        parentRow = new ParentRow("All Users",childRows);
+        parentList.add(parentRow);
+
+        while(users.moveToNext()){
+            String username = users.getString(1);
+            int id = users.getInt(0);
+            childRows.add(new ChildRow(R.drawable.default_user_img,username,id,"usr"));
+        }
+        parentRow = new ParentRow("Users Attending",childRows);
         parentList.add(parentRow);
 
     }

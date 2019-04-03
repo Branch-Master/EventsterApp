@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,19 +18,23 @@ import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;
 
-public class MyExpandableListAdapter extends BaseExpandableListAdapter {
+public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<ParentRow> parentRowList;
     private ArrayList<ParentRow> originalList;
+    private int entity;
+    private String type;
 
 
-    public MyExpandableListAdapter(Context context,ArrayList<ParentRow> originalList) {
+    public MyExpandableListAdapterAdd(Context context,ArrayList<ParentRow> originalList,int entity, String type) {
         this.context = context;
         this.parentRowList = new ArrayList<>();
         this.parentRowList.addAll(originalList);
         this.originalList = new ArrayList<>();
         this.originalList.addAll(originalList);
+        this.entity = entity;
+        this.type = type;
     }
 
     @Override
@@ -88,12 +93,22 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater)
                     context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.child_row,null);
+            convertView = layoutInflater.inflate(R.layout.child_row_add,null);
         }
         ImageView childIcon = (ImageView) convertView.findViewById(R.id.child_icon_add);
         childIcon.setImageResource(childRow.getIcon());
 
-        final TextView childText = (TextView) convertView.findViewById(R.id.child_text);
+        Button childButton = (Button) convertView.findViewById(R.id.child_button_add);
+
+        childButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = childRow.getId();
+                System.out.println(id);
+            }
+        });
+
+        final TextView childText = (TextView) convertView.findViewById(R.id.child_text_add);
         childText.setText(childRow.getText().trim());
 
         final View finalConvertView = convertView;

@@ -10,22 +10,23 @@
     <LinearLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"
-        android:layout_height="581dp"
+        android:layout_height="match_parent"
 
         android:layout_above="@+id/navigation"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
 
-
         <ExpandableListView
             android:id="@+id/expandambleListView_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/search_container"
+            android:layout_alignTop="@+id/search_container"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="20sp"
-            />
+            android:layout_marginTop="20sp" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
