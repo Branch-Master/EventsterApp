@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.EditText;
 
 import com.example.eventsterapp.Fragments.CreateUserFragment;
 import com.example.eventsterapp.Fragments.LoginFragment;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private final String userid = "sessionEmail";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         this.sharedpreferences = getSharedPreferences(mypref,Context.MODE_PRIVATE);
         this.editor = sharedpreferences.edit();
 
+
     }
 
     public void createSession(String email){
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         //String getPref = sharedpreferences.getString(userid, "ekkertfannst");
 
     }
+
 
 
 
