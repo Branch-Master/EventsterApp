@@ -85,6 +85,7 @@ public class LoginFragment extends Fragment {
         databaseHelper = new DatabaseHelper(c);
 
 
+
         final View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         username = (EditText) v.findViewById(R.id.login_username);
@@ -95,7 +96,6 @@ public class LoginFragment extends Fragment {
 
         signup_button.setOnClickListener(signupButtonClick);
         login_button.setOnClickListener(loginButtonClick);
-
 
         return v;
     }

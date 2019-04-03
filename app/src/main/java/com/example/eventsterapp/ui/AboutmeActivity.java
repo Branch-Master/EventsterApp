@@ -53,6 +53,8 @@ public class AboutmeActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_search:
                     System.out.println("Navigation Search");
+                    i = new Intent(AboutmeActivity.this, SearchActivity.class);
+                    startActivity(i);
                     return true;
                 case R.id.navigation_create_new:
                     System.out.println("Navigation Create New");
@@ -61,8 +63,7 @@ public class AboutmeActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_aboutme:
                     System.out.println("Navigation About me");
-                    i = new Intent(AboutmeActivity.this, AboutmeActivity.class);
-                    startActivity(i);
+
                     return true;
             }
             return false;
@@ -114,7 +115,11 @@ public class AboutmeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aboutme);
 
         mdb = new DatabaseHelper(this);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_aboutme);
+
         aboutmeEmail = (EditText) findViewById(R.id.aboutme_email);
         aboutmeName = (EditText) findViewById(R.id.aboutme_username);
         aboutmeZodiac = (EditText) findViewById(R.id.aboutme_zodiac);
@@ -136,6 +141,7 @@ public class AboutmeActivity extends AppCompatActivity {
         String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
 
         User currentUser = mdb.findUserByEmail(sessionEmail);
+        System.out.println(currentUser.getPhone() +"===phone");
 
         id = currentUser.getId();
         aboutmeName.setText(currentUser.getUsername());
