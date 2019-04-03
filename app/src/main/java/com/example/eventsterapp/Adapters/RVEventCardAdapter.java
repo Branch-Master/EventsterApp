@@ -1,19 +1,26 @@
 package com.example.eventsterapp.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.ui.HomeActivity;
+import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.EventCard> {
 
@@ -26,6 +33,7 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         TextView cardEnds;
         TextView cardLoc;
         TextView cardSeats;
+        LinearLayout card;
 
 
 
@@ -41,6 +49,9 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
             cardEnds = (TextView)itemView.findViewById(R.id.event_ends);
             cardLoc = (TextView)itemView.findViewById(R.id.event_location);
             cardSeats = (TextView)itemView.findViewById(R.id.event_nr_steats);
+            card = (LinearLayout) itemView.findViewById(R.id.event_cv);
+
+
         }
     }
 
@@ -52,14 +63,17 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
 
     @NonNull
     @Override
-    public RVEventCardAdapter.EventCard onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RVEventCardAdapter.EventCard onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card, parent,false);
         EventCard eventCard = new EventCard(v);
+
         return eventCard;
     }
 
     @Override
     public void onBindViewHolder(EventCard holder, int i) {
+        final int count = i+1;
+
         holder.cardName.setText(events.get(i).getEventName());
         holder.cardInfo.setText(events.get(i).getEventInfo());
         holder.cardStarts.setText(events.get(i).getStartDate());
@@ -67,6 +81,22 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         holder.cardImg.setImageResource(R.drawable.default_event_img);
         holder.cardLoc.setText(events.get(i).getLocation());
         holder.cardSeats.setText(events.get(i).getEventSeats() +"");
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ViewEntity.class);
+                i.putExtra("ent_type", "evt");
+                i.putExtra("ent_id", count);
+                v.getContext().startActivity(i);
+                //System.out.println("Event ID: " + count);
+            }
+        });
+
+
+
+
+
 
 
     }
