@@ -75,8 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 user_email + " VARCHAR(128)," +
                 user_bday + " VARCHAR(128)," +
                 user_zodiac + " VARCHAR(128)," +
-                user_logged + " boolean" +
-                user_phone + "VARCHAR(8)" +
+                user_logged + " boolean, " +
+                user_phone + " VARCHAR(8)" +
                 ")";
         db.execSQL(createUserTable);
         System.out.println("user TABLE CREATED ==================================");
@@ -130,6 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(user_email, user.getEmail());
         contentValues.put(user_zodiac,user.getZodiac());
         contentValues.put(user_bday,user.getBirthday());
+        contentValues.put(user_phone,user.getPhone());
         contentValues.put(user_logged,false);
 
 
@@ -318,6 +319,74 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return false;
         }
     }
+
+    public User findUserByEmail(String email){
+        String query = "SELECT * FROM " + TABLE_Users + " WHERE " + user_email + " = " + "\'" + email + "\'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor data = db.rawQuery(query,null);
+
+        if( data.moveToNext()){
+            int id = data.getInt(0);
+            String name = data.getString(1);
+            String pass = data.getString(2);
+            String uemail = data.getString(3);
+            String bday = data.getString(4);
+            String zodiac = data.getString(5);
+            String phone = data.getString(6);
+            return new User(id,name, pass, uemail, bday,phone,zodiac);
+        }
+        else{
+            return null;
+        }
+    }
+
+    public void changeUsername(int id,String name){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_name + " = " + "\'" + name + "\'" + " WHERE ID = " + id;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+    public void changeEmail(int id,String email){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_email + " = " + "\'" + email + "\'" + " WHERE ID = " + id;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+    public void changePhone(int id,String phone){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_phone + " = " + "\'" + phone + "\'" + " WHERE ID = " + id;
+
+        System.out.println(query);
+        System.out.println(phone.length());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+    public void changeZodiac(int id,String zodiac){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_zodiac + " = " + "\'" + zodiac + "\'" + " WHERE ID = " + id;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+
+
+
 
     public Boolean usernameTaken(String name){
         String query = "SELECT * FROM " + TABLE_Users + " WHERE " + user_name + " = " + "\'" + name + "\'";

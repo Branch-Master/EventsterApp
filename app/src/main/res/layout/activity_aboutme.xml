@@ -76,13 +76,13 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/aboutme_phone"
+            android:id="@+id/aboutme_phone_label"
             android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:text="Phone Number" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/aboutme_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -105,7 +105,7 @@
         android:textSize="12dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/change_my_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"

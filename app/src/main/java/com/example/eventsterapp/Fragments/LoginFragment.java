@@ -2,6 +2,7 @@ package com.example.eventsterapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,11 @@ public class LoginFragment extends Fragment {
 
 
             if(validLoginInfo != null && test1 && test2){
+
+
+
+                ((LoginActivity)getActivity()).createSession(validLoginInfo.getEmail());
+
                 Intent i = new Intent(getActivity(), HomeActivity.class);
                 startActivity(i);
             }
@@ -77,6 +83,7 @@ public class LoginFragment extends Fragment {
 
         Context c = getContext();
         databaseHelper = new DatabaseHelper(c);
+
 
         final View v = inflater.inflate(R.layout.fragment_login, container, false);
 

@@ -1,6 +1,8 @@
 package com.example.eventsterapp.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,9 @@ public class HomeActivity extends AppCompatActivity {
     private RVGroupCardAdapter groupAdapter;
     private RVUserCardAdapter userAdapter;
     private DatabaseHelper mDatebaseHelper;
+    private SharedPreferences sharedpreferences;
+    private final String userid = "sessionEmail";
+    private final String mypref = "myprefrences";
 
 
     RVAdapter adapter;
@@ -139,7 +144,9 @@ public class HomeActivity extends AppCompatActivity {
         RVEventCardAdapter adapter = new RVEventCardAdapter(eventList);
         eventView.setAdapter(adapter);
 
-
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String myprefResult = sharedpreferences.getString(userid,"default String");
+        System.out.println(myprefResult + "================");
     }
 
     @Override

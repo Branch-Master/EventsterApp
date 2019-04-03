@@ -1,7 +1,7 @@
 package com.example.eventsterapp.models;
 
 public class User {
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String birthday;
@@ -23,13 +23,23 @@ public class User {
         this.loggedIn = false;
     }
 
-    public Long getId() {
+    public User(int id,String username, String password, String email, String bday, String phone, String zodiac) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birthday = bday;
+        this.phone = phone;
+        this.zodiac = zodiac;
+        this.email = email;
+        this.loggedIn = false;
+    }
+
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
