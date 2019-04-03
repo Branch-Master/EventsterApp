@@ -181,8 +181,9 @@ public class HomeActivity extends AppCompatActivity {
             String bday = allusers.getString(4);
             String zodiac = allusers.getString(5);
             String phone = allusers.getString(7);
+            String info = allusers.getString(8);
 
-            this.userList.add(new User(id,name,pass,email, bday, phone, zodiac));
+            this.userList.add(new User(id,name,pass,email, bday, phone, zodiac, info));
         }
 
         Cursor allevents = mDatebaseHelper.getAllEvents();

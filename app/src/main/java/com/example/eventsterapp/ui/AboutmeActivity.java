@@ -32,6 +32,7 @@ public class AboutmeActivity extends AppCompatActivity {
 
     private EditText aboutmeEmail;
     private EditText aboutmeName;
+    private EditText aboutmebday;
     private EditText aboutmeZodiac;
     private EditText aboutmephone;
     private EditText aboutmeinfo;
@@ -77,6 +78,8 @@ public class AboutmeActivity extends AppCompatActivity {
             String e = aboutmeEmail.getText().toString();
             String z = aboutmeZodiac.getText().toString();
             String p = aboutmephone.getText().toString();
+            String in = aboutmeinfo.getText().toString();
+            String b = aboutmebday.getText().toString();
             System.out.println(p + "=============simanumer");
 
             String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
@@ -91,7 +94,12 @@ public class AboutmeActivity extends AppCompatActivity {
             }
             if(!p.equals(cu.getPhone())){
                 mdb.changePhone(id,p);
-                System.out.println("phone changed to: " + p);
+            }
+            if(!in.equals(cu.getInfo())){
+                mdb.changeInfo(id,in);
+            }
+            if(!b.equals(cu.getBirthday())){
+                mdb.changeBirthday(id,b);
             }
             if(!e.equals(cu.getEmail()) && !mdb.emailUsed(e)){
                 mdb.changeEmail(id,e);
@@ -99,11 +107,9 @@ public class AboutmeActivity extends AppCompatActivity {
                 editor.commit();
                 editor.putString(userid,e);
                 editor.commit();
-                System.out.println("email changed to: " + e);
             }
 
             sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
-            System.out.println(sessionEmail + "===currEmail");
 
             displayUserInfo();
 
@@ -125,6 +131,7 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmeEmail = (EditText) findViewById(R.id.aboutme_email);
         aboutmeName = (EditText) findViewById(R.id.aboutme_username);
         aboutmeZodiac = (EditText) findViewById(R.id.aboutme_zodiac);
+        aboutmebday = (EditText) findViewById(R.id.aboutme_bday);
         aboutmephone = (EditText) findViewById(R.id.aboutme_phone);
         aboutmeinfo = (EditText) findViewById(R.id.aboutme_info);
         submitInfo = (Button) findViewById(R.id.change_my_info);
@@ -148,7 +155,9 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmeName.setText(currentUser.getUsername());
         aboutmeEmail.setText(currentUser.getEmail());
         aboutmeZodiac.setText(currentUser.getZodiac());
+        aboutmebday.setText(currentUser.getBirthday());
         aboutmephone.setText(currentUser.getPhone());
+        aboutmeinfo.setText(currentUser.getInfo());
     }
 
 

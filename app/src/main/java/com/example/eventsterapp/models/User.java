@@ -8,6 +8,7 @@ public class User {
     private String phone;
     private String zodiac;
     private String email;
+    private String info;
     private boolean loggedIn;
 
     public User(){}
@@ -20,10 +21,11 @@ public class User {
         this.phone = null;
         this.zodiac = null;
         this.email = email;
+        this.info = null;
         this.loggedIn = false;
     }
 
-    public User(int id,String username, String password, String email, String bday, String phone, String zodiac) {
+    public User(int id,String username, String password, String email, String bday, String phone, String zodiac, String info) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -31,6 +33,7 @@ public class User {
         this.phone = phone;
         this.zodiac = zodiac;
         this.email = email;
+        this.info = info;
         this.loggedIn = false;
     }
 
@@ -87,6 +90,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getInfo() {
+        return info;
     }
 
     public boolean isLoggedIn() {

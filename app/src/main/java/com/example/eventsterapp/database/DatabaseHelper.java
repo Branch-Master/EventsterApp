@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String user_zodiac = "zodiac";
     private static final String user_logged = "loggedin";
     private static final String user_phone = "phone";
+    private static final String user_info = "info";
 
     //EVENTS=======================================
     private static final String TABLE_Events = "Events";
@@ -76,7 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 user_bday + " VARCHAR(128)," +
                 user_zodiac + " VARCHAR(128)," +
                 user_logged + " boolean, " +
-                user_phone + " VARCHAR(8)" +
+                user_phone + " VARCHAR(8)," +
+                user_info + " text" +
                 ")";
         db.execSQL(createUserTable);
         System.out.println("user TABLE CREATED ==================================");
@@ -132,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(user_bday,user.getBirthday());
         contentValues.put(user_phone,user.getPhone());
         contentValues.put(user_logged,false);
-
+        contentValues.put(user_info,user.getInfo());
 
         Log.d(Tag, "addData: Adding " + user.getUsername() + " to " + TABLE_Users);
 
@@ -168,9 +170,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String bday = data.getString(4);
             String zodiac = data.getString(5);
             String phone = data.getString(7);
-            return new User(id, name, pass, email, bday, phone, zodiac);
+            String info = data.getString(8);
+            return new User(id, name, pass, email, bday, phone, zodiac, info);
         }
-        return new User(id,"ekkert fannst","ekkert fannst","ekkert fannst", "ekkert fannst", "ekkert fannst", "ekkert fannst");
+        return new User(id,"ekkert fannst","ekkert fannst","ekkert fannst", "ekkert fannst", "ekkert fannst", "ekkert fannst", "ekkert fannst");
 
     }
 
@@ -335,7 +338,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String bday = data.getString(4);
             String zodiac = data.getString(5);
             String phone = data.getString(7);
-            return new User(id,name, pass, uemail, bday,phone,zodiac);
+            String info = data.getString(8);
+            return new User(id,name, pass, uemail, bday,phone,zodiac, info);
         }
         else{
             return null;
@@ -377,6 +381,26 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void changeZodiac(int id,String zodiac){
         String query = "Update " + TABLE_Users +
                 " SET " + user_zodiac + " = " + "\'" + zodiac + "\'" + " WHERE ID = " + id;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+    public void changeInfo(int id,String info){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_info + " = " + "\'" + info + "\'" + " WHERE ID = " + id;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
+
+    public void changeBirthday(int id,String bday){
+        String query = "Update " + TABLE_Users +
+                " SET " + user_bday + " = " + "\'" + bday + "\'" + " WHERE ID = " + id;
 
 
         SQLiteDatabase db = this.getWritableDatabase();

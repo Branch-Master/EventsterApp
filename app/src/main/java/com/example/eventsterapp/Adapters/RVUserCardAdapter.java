@@ -26,6 +26,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         TextView cardBday;
         TextView cardZodiac;
         TextView cardPhone;
+        TextView cardInfo;
         ImageView cardImg;
 
         UserCard(View itemView) {
@@ -37,6 +38,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
             cardBday = (TextView)itemView.findViewById(R.id.user_card_bday);
             cardZodiac = (TextView) itemView.findViewById(R.id.user_card_zodiac);
             cardPhone = (TextView) itemView.findViewById(R.id.user_card_phone);
+            cardInfo = (TextView) itemView.findViewById(R.id.user_card_info);
             cardImg = (ImageView)itemView.findViewById(R.id.imageView2);
 
         }
@@ -64,6 +66,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         holder.cardBday.setText(users.get(i).getBirthday());
         holder.cardZodiac.setText(users.get(i).getZodiac());
         holder.cardPhone.setText(users.get(i).getPhone());
+        holder.cardInfo.setText(users.get(i).getInfo());
         holder.cardImg.setImageResource(R.drawable.default_user_img);
     }
 
