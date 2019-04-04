@@ -3,6 +3,7 @@ package com.example.eventsterapp.ui;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -35,6 +36,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private ArrayList<ParentRow> parentList;
     private ArrayList<ParentRow> showThisParentList;
     private MenuItem searchItem;
+    private SharedPreferences sharedpreferences;
+    private final String userid = "sessionEmail";
+    private final String mypref = "myprefrences";
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -160,10 +164,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         ParentRow parentRow;
 
         DatabaseHelper mdb = new DatabaseHelper(this);
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String email = sharedpreferences.getString(userid,"default String");
+        String idid = mdb.findUserIdByEmail(email);
 
-
-
-        Cursor events = mdb.getAllEvents();
+        Cursor events = mdb.getVisEvents(idid);
         while(events.moveToNext()){
             String eventName = events.getString(1);
             int id = events.getInt(0);
@@ -187,7 +192,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         childRows = new ArrayList<ChildRow>();
 
-        Cursor groups = mdb.getAllGroups();
+        Cursor groups = mdb.getVisGroups(idid);
         while(groups.moveToNext()){
             String name = groups.getString(1);
             int id = groups.getInt(0);

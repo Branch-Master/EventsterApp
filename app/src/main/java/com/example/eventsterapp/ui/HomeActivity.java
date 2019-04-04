@@ -193,7 +193,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         String email = sharedpreferences.getString(userid,"default String");
-        System.out.println(email);
         String id = mDatebaseHelper.findUserIdByEmail(email);
 
         Cursor allevents = mDatebaseHelper.getVisEvents(id);
