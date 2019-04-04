@@ -283,19 +283,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public Cursor getVisGroups(String id){
+    public Cursor getVisGroups(String idid){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_Groups + " where " + group_vis + "=\'1\' or " + group_vis +
-                "=\'0\' and " + id + " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + id + "\')";
+        String query = "SELECT * FROM " + TABLE_Groups + " where " + group_vis + "=\'1\' or " + id + " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')";
         System.out.println(query);
         Cursor data = db.rawQuery(query,null);
         return data;
     }
 
-    public Cursor getVisEvents(String id){
+    public Cursor getVisEvents(String idid){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_Events + " where " + event_vis + "=\'1\' or " + event_groupId +
-                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + id + "\')";
+                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')";
         System.out.println(query);
         Cursor data = db.rawQuery(query,null);
         return data;
@@ -324,16 +323,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(group_id,groupid);
-        contentValues.put(user_id, groupid);
+        contentValues.put(user_id,userid);
 
         Log.d(Tag, "addData: Adding " + "user: "+ userid + " to group: " + groupid);
 
-        long result = db.insert(TABLE_Groups, null, contentValues);
+        long result = db.insert(TABLE_members, null, contentValues);
 
         if(result == -1){
             return false;
         }
         else{
+            System.out.println("=============================================gekk");
             return true;
         }
 
