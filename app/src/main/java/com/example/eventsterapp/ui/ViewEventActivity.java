@@ -18,8 +18,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewEventActivity extends AppCompatActivity {
     private ImageView entityImage;
-    private TextView entityName;
-    private TextView entityInfo;
+    private TextView EventName;
+    private TextView EventInfo;
+    private TextView EventStart;
+    private TextView EventEnd;
+    private TextView EventLocation;
+    private TextView EventSeats;
     private DatabaseHelper mydb;
 
     private int idFromIntent;
@@ -81,9 +85,13 @@ public class ViewEventActivity extends AppCompatActivity {
         mydb = new DatabaseHelper(this);
 
 
-        entityName = findViewById(R.id.entity_name);
-        entityInfo = findViewById(R.id.entity_info);
-        entityImage = findViewById(R.id.entity_img);
+        EventName = findViewById(R.id.view_event_name);
+        EventInfo = findViewById(R.id.view_event_info);
+        EventStart = findViewById(R.id.view_event_starts);
+        EventEnd = findViewById(R.id.view_event_ends);
+        EventLocation = findViewById(R.id.view_event_location);
+        EventSeats = findViewById(R.id.view_event_nr_steats);
+        entityImage = findViewById(R.id.event_img);
 
         showmembers = findViewById(R.id.show_members);
         addmembers = findViewById(R.id.add_members);
@@ -97,8 +105,12 @@ public class ViewEventActivity extends AppCompatActivity {
         idFromIntent =  getIntent().getIntExtra("ent_id",-1);
 
         Event viewEvent = this.mydb.getEventById(idFromIntent);
-        entityName.setText( viewEvent.getEventName() );
-        entityInfo.setText( viewEvent.getEventInfo());
+        EventName.setText( viewEvent.getEventName() );
+        EventInfo.setText( viewEvent.getEventInfo());
+        EventStart.setText( viewEvent.getStartDate());
+        EventEnd.setText( viewEvent.getEndDate());
+        EventLocation.setText( viewEvent.getLocation());
+        EventSeats.setText( viewEvent.getEventSeats());
         entityImage.setImageResource(R.drawable.default_event_img);
 
 

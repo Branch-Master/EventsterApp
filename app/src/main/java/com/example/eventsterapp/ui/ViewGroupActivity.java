@@ -17,9 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewGroupActivity extends AppCompatActivity {
-    private ImageView entityImage;
-    private TextView entityName;
-    private TextView entityInfo;
+    private ImageView groupImage;
+    private TextView groupName;
+    private TextView groupInfo;
     private DatabaseHelper mydb;
 
     private int idFromIntent;
@@ -81,9 +81,9 @@ public class ViewGroupActivity extends AppCompatActivity {
         mydb = new DatabaseHelper(this);
 
 
-        entityName = findViewById(R.id.entity_name);
-        entityInfo = findViewById(R.id.entity_info);
-        entityImage = findViewById(R.id.entity_img);
+        groupName = findViewById(R.id.group_name);
+        groupInfo = findViewById(R.id.group_info);
+        groupImage = findViewById(R.id.group_img);
 
         showmembers = findViewById(R.id.show_members);
         addmembers = findViewById(R.id.add_members);
@@ -98,9 +98,9 @@ public class ViewGroupActivity extends AppCompatActivity {
 
 
         Group viewGroup = this.mydb.getGroupById(idFromIntent);
-        entityName.setText( viewGroup.getGroupName() );
-        entityInfo.setText( viewGroup.getGroupInfo() );
-        entityImage.setImageResource(R.drawable.default_group_img);
+        groupName.setText( viewGroup.getGroupName() );
+        groupInfo.setText( viewGroup.getGroupInfo() );
+        groupImage.setImageResource(R.drawable.default_group_img);
 
     }
 
