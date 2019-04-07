@@ -152,6 +152,7 @@
             android:ems="10"
             android:hint="Type current password"
             android:inputType="textPersonName"
+            android:password="true"
             android:textSize="12dp" />
     </TableRow>
 
@@ -172,6 +173,7 @@
             android:ems="10"
             android:hint="Type new password"
             android:inputType="textPersonName"
+            android:password="true"
             android:textSize="12dp" />
     </TableRow>
 

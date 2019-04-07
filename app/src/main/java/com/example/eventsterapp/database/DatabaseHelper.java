@@ -439,7 +439,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(query);
     }
 
+    public void changePassword(int id,String newPass){
+        String query = "Update " + TABLE_Users +
+                " SET " + users_pass + " = " + "\'" + newPass + "\'" + " WHERE ID = " + id;
 
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(query);
+    }
 
 
 

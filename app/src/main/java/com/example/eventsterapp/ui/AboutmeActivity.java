@@ -36,7 +36,10 @@ public class AboutmeActivity extends AppCompatActivity {
     private EditText aboutmeZodiac;
     private EditText aboutmephone;
     private EditText aboutmeinfo;
+    private EditText aboutmeoldpass;
+    private EditText aboutmenewpass;
     private Button submitInfo;
+    private Button changePassword;
 
     private int id;
 
@@ -117,6 +120,29 @@ public class AboutmeActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener changePass = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String oldPass = aboutmeoldpass.getText().toString();
+            String newPass = aboutmenewpass.getText().toString();
+
+            String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
+            User cu = mdb.findUserByEmail(sessionEmail);
+
+            if(oldPass.equals(cu.getPassword())){
+                if(!newPass.equals(cu.getPassword())) {
+                    mdb.changePassword(id, newPass);
+                    Toast.makeText(AboutmeActivity.this, "Password changed", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AboutmeActivity.this, "Cant use old password again", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(AboutmeActivity.this, "Wrong current password", Toast.LENGTH_SHORT).show();
+            }
+            displayUserInfo();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,9 +160,13 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmebday = (EditText) findViewById(R.id.aboutme_bday);
         aboutmephone = (EditText) findViewById(R.id.aboutme_phone);
         aboutmeinfo = (EditText) findViewById(R.id.aboutme_info);
+        aboutmeoldpass = (EditText) findViewById(R.id.aboutme_pass);
+        aboutmenewpass = (EditText) findViewById(R.id.aboutme_pass1);
         submitInfo = (Button) findViewById(R.id.change_my_info);
+        changePassword = (Button) findViewById(R.id.aboutme_pass_button);
 
         submitInfo.setOnClickListener(changeinfo);
+        changePassword.setOnClickListener(changePass);
 
         sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
@@ -158,6 +188,8 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmebday.setText(currentUser.getBirthday());
         aboutmephone.setText(currentUser.getPhone());
         aboutmeinfo.setText(currentUser.getInfo());
+        aboutmeoldpass.setText("");
+        aboutmenewpass.setText("");
     }
 
 
