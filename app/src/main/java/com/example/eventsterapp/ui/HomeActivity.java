@@ -159,13 +159,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void goToEntity(int id, String type){
-       Intent i = new Intent(HomeActivity.this, ViewEntity.class);
-       i.putExtra("ent_id", id);
-       i.putExtra("ent_type",type);
-       startActivity(i);
-    }
-
     private void loadData() {
        // mDatebaseHelper.dropAllData();
 

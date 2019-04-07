@@ -14,9 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.CreateActivity"
                   android:label="Create New"/>
-        <activity
-            android:name=".ui.ViewEntity"
-            android:label="@string/title_activity_view_entity" />
 
         <meta-data
             android:name="android.app.searchable"

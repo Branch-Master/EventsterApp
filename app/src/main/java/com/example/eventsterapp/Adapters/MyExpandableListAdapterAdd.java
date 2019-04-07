@@ -15,6 +15,9 @@ import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.ChildRow;
 import com.example.eventsterapp.models.ParentRow;
 import com.example.eventsterapp.ui.ViewEntity;
+import com.example.eventsterapp.ui.ViewEventActivity;
+import com.example.eventsterapp.ui.ViewGroupActivity;
+import com.example.eventsterapp.ui.ViewUserActivity;
 
 import java.util.ArrayList;
 
@@ -119,9 +122,16 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
                 Toast.makeText(finalConvertView.getContext()
                         , childText.getText(),
                         Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(finalConvertView.getContext(), ViewEntity.class);
+                Intent i = null;
+
+                if (childRow.getType().equals("ent")) {
+                    i = new Intent(finalConvertView.getContext(), ViewEventActivity.class);
+                } else if (childRow.getType().equals("usr")) {
+                    i = new Intent(finalConvertView.getContext(), ViewUserActivity.class);
+                } else if (childRow.getType().equals("grp")) {
+                    i = new Intent(finalConvertView.getContext(), ViewGroupActivity.class);
+                }
                 i.putExtra("ent_id", childRow.getId() );
-                i.putExtra("ent_type", childRow.getType());
                 context.startActivity(i);
             }
         });
