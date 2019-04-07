@@ -17,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewUserActivity extends AppCompatActivity {
-    private ImageView entityImage;
-    private TextView entityName;
-    private TextView entityInfo;
+    private ImageView UserImage;
+    private TextView UserName;
+    private TextView UserEmail;
+    private TextView UserZodiac;
+    private TextView UserPhone;
+    private TextView UserInfo;
     private DatabaseHelper mydb;
 
     private int idFromIntent;
@@ -81,9 +84,12 @@ public class ViewUserActivity extends AppCompatActivity {
         mydb = new DatabaseHelper(this);
 
 
-        entityName = findViewById(R.id.entity_name);
-        entityInfo = findViewById(R.id.entity_info);
-        entityImage = findViewById(R.id.entity_img);
+        UserName = findViewById(R.id.viewuser_card_name);
+        UserInfo = findViewById(R.id.viewuser_card_info);
+        UserName = findViewById(R.id.viewuser_card_email);
+        UserInfo = findViewById(R.id.viewuser_card_zodiac);
+        UserInfo = findViewById(R.id.viewuser_card_phone);
+        UserImage = findViewById(R.id.viewuser_image);
 
         showmembers = findViewById(R.id.show_members);
         addmembers = findViewById(R.id.add_members);
@@ -97,9 +103,12 @@ public class ViewUserActivity extends AppCompatActivity {
         idFromIntent =  getIntent().getIntExtra("ent_id",-1);
 
         User viewUser = this.mydb.getUserById(idFromIntent);
-        entityName.setText(viewUser.getUsername());
-        entityInfo.setText( viewUser.getEmail() );
-        entityImage.setImageResource(R.drawable.default_user_img);
+        UserName.setText(viewUser.getUsername());
+        UserEmail.setText( viewUser.getEmail() );
+        UserName.setText(viewUser.getPhone());
+        UserZodiac.setText(viewUser.getZodiac());
+        UserInfo.setText( viewUser.getInfo() );
+        UserImage.setImageResource(R.drawable.default_user_img);
 
 
     }
