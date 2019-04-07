@@ -86,15 +86,10 @@ public class ViewUserActivity extends AppCompatActivity {
 
         UserName = findViewById(R.id.viewuser_card_name);
         UserInfo = findViewById(R.id.viewuser_card_info);
-        UserName = findViewById(R.id.viewuser_card_email);
-        UserInfo = findViewById(R.id.viewuser_card_zodiac);
-        UserInfo = findViewById(R.id.viewuser_card_phone);
+        UserEmail = findViewById(R.id.viewuser_card_email);
+        UserZodiac = findViewById(R.id.viewuser_card_zodiac);
+        UserPhone = findViewById(R.id.viewuser_card_phone);
         UserImage = findViewById(R.id.viewuser_image);
-
-        showmembers = findViewById(R.id.show_members);
-        addmembers = findViewById(R.id.add_members);
-        showmembers.setOnClickListener(showmembersButton);
-        addmembers.setOnClickListener(addmembmersButton);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -105,7 +100,7 @@ public class ViewUserActivity extends AppCompatActivity {
         User viewUser = this.mydb.getUserById(idFromIntent);
         UserName.setText(viewUser.getUsername());
         UserEmail.setText( viewUser.getEmail() );
-        UserName.setText(viewUser.getPhone());
+        UserPhone.setText(viewUser.getPhone());
         UserZodiac.setText(viewUser.getZodiac());
         UserInfo.setText( viewUser.getInfo() );
         UserImage.setImageResource(R.drawable.default_user_img);

@@ -90,7 +90,7 @@ public class ViewEventActivity extends AppCompatActivity {
         EventStart = findViewById(R.id.view_event_starts);
         EventEnd = findViewById(R.id.view_event_ends);
         EventLocation = findViewById(R.id.view_event_location);
-        EventSeats = findViewById(R.id.view_event_nr_steats);
+        EventSeats = findViewById(R.id.view_event_nr_seats);
         entityImage = findViewById(R.id.event_img);
 
         showmembers = findViewById(R.id.show_members);
@@ -110,7 +110,7 @@ public class ViewEventActivity extends AppCompatActivity {
         EventStart.setText( viewEvent.getStartDate());
         EventEnd.setText( viewEvent.getEndDate());
         EventLocation.setText( viewEvent.getLocation());
-        EventSeats.setText( viewEvent.getEventSeats());
+        EventSeats.setText( String.valueOf(viewEvent.getEventSeats()));
         entityImage.setImageResource(R.drawable.default_event_img);
 
 

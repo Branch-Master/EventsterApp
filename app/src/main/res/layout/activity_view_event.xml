@@ -97,7 +97,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/view_event_nr_steats"
+                    android:id="@+id/view_event_nr_seats"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="20sp" />
