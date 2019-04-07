@@ -26,10 +26,6 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         CardView cv;
         TextView cardName;
         TextView cardEmail;
-        TextView cardBday;
-        TextView cardZodiac;
-        TextView cardPhone;
-        TextView cardInfo;
         ImageView cardImg;
         LinearLayout card;
 
@@ -39,10 +35,6 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
             cv = (CardView)itemView.findViewById(R.id.rv);
             cardName = (TextView)itemView.findViewById(R.id.user_card_name);
             cardEmail = (TextView)itemView.findViewById(R.id.user_card_email);
-            cardBday = (TextView)itemView.findViewById(R.id.user_card_bday);
-            cardZodiac = (TextView) itemView.findViewById(R.id.user_card_zodiac);
-            cardPhone = (TextView) itemView.findViewById(R.id.user_card_phone);
-            cardInfo = (TextView) itemView.findViewById(R.id.user_card_info);
             cardImg = (ImageView)itemView.findViewById(R.id.imageView2);
             card = (LinearLayout)itemView.findViewById(R.id.user_cv);
         }
@@ -68,16 +60,12 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
         final int count = i+1;
         holder.cardName.setText(users.get(i).getUsername());
         holder.cardEmail.setText(users.get(i).getEmail());
-        holder.cardBday.setText(users.get(i).getBirthday());
-        holder.cardZodiac.setText(users.get(i).getZodiac());
-        holder.cardPhone.setText(users.get(i).getPhone());
-        holder.cardInfo.setText(users.get(i).getInfo());
         holder.cardImg.setImageResource(R.drawable.default_user_img);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewEntity.class);
+                Intent intent = new Intent(v.getContext(), ViewUserActivity.class);
                 intent.putExtra("ent_type","usr");
                 intent.putExtra("ent_id",count);
                 v.getContext().startActivity(intent);
