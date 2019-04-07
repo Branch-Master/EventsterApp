@@ -1,6 +1,5 @@
 package com.example.eventsterapp.Adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +10,12 @@ import android.widget.TextView;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.Event;
-import com.example.eventsterapp.ui.HomeActivity;
-import com.example.eventsterapp.ui.ViewEntity;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.EventCard> {
 
@@ -85,7 +80,7 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewEntity.class);
+                Intent intent = new Intent(v.getContext(), ViewEventActivity.class);
                 intent.putExtra("ent_type", "evt");
                 intent.putExtra("ent_id", count);
                 v.getContext().startActivity(intent);

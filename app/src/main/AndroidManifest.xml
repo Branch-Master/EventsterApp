@@ -40,6 +40,18 @@
             android:label="@string/app_name">
         </activity>
         <activity
+            android:name=".ui.ViewEventActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".ui.ViewUserActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".ui.ViewGroupActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
             android:name=".ui.HomeActivity"
             android:label="@string/app_name">
         </activity>

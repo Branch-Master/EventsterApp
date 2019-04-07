@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.Group;
-import com.example.eventsterapp.ui.ViewEntity;
+import com.example.eventsterapp.ui.ViewGroupActivity;
 
 import java.util.ArrayList;
 
@@ -77,7 +77,7 @@ public class RVGroupCardAdapter extends RecyclerView.Adapter<RVGroupCardAdapter.
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewEntity.class);
+                Intent intent = new Intent(v.getContext(), ViewGroupActivity.class);
                 intent.putExtra("ent_type","grp");
                 intent.putExtra("ent_id", count);
                 v.getContext().startActivity(intent);

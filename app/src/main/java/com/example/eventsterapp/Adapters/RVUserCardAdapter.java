@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.models.User;
-import com.example.eventsterapp.ui.ViewEntity;
 import com.example.eventsterapp.ui.ViewUserActivity;
 
 import java.util.ArrayList;
