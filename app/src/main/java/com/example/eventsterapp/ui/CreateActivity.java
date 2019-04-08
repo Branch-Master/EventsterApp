@@ -1,7 +1,6 @@
 package com.example.eventsterapp.ui;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
@@ -14,7 +13,7 @@ import com.example.eventsterapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateActivity extends FragmentActivity {
 
 
     private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
