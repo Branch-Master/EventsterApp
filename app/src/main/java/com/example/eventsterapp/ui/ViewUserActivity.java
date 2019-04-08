@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eventsterapp.Fragments.AddToGroupFragment;
+import com.example.eventsterapp.Fragments.ShowEntitiesFragment;
+import com.example.eventsterapp.Fragments.ShowMembersFragment;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.User;
@@ -27,8 +29,7 @@ public class ViewUserActivity extends AppCompatActivity {
 
     private String nameFromIntent;
 
-    private Button addmembers;
-    private Button showmembers;
+    ShowEntitiesFragment showEntitiesFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -53,29 +54,6 @@ public class ViewUserActivity extends AppCompatActivity {
         }
     };
 
-
-    private View.OnClickListener addmembmersButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-/*
-            AddToGroupFragment addToGroupFragment = new AddToGroupFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt("ent_id", idFromIntent);
-            addToGroupFragment.setArguments(bundle);
-
-
-            getSupportFragmentManager().beginTransaction().add(R.id.show_users_container_ ,addToGroupFragment).commit(); */
-        }
-    };
-
-    private View.OnClickListener showmembersButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            System.out.println("SHOW MEMBERS");
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +72,6 @@ public class ViewUserActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
         nameFromIntent =  getIntent().getStringExtra("ent_name");
         int id = this.mydb.getIdFromUser(nameFromIntent);
         User viewUser = this.mydb.getUserById(id);
@@ -104,6 +81,13 @@ public class ViewUserActivity extends AppCompatActivity {
         UserZodiac.setText(viewUser.getZodiac());
         UserInfo.setText( viewUser.getInfo() );
         UserImage.setImageResource(R.drawable.default_user_img);
+
+        showEntitiesFragment = new ShowEntitiesFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("ent_name", nameFromIntent);
+        showEntitiesFragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.show_users_container_ ,showEntitiesFragment).commit();
 
 
     }

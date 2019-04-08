@@ -199,6 +199,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    public Cursor getEventsByUserId(String userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Events + " WHERE ID IN (SELECT " + event_id +
+                " FROM " + TABLE_attendees + " WHERE " + user_id +  "=\'" + userId + "\')";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public Cursor getGroupsByUserId(String userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Groups + " WHERE ID IN (SELECT " + group_id +
+                " FROM " + TABLE_members + " WHERE " + user_id +  "=\'" + userId + "\')";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
     public User getUserById(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_Users +
