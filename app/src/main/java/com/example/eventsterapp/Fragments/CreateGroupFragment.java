@@ -24,6 +24,7 @@ public class CreateGroupFragment extends Fragment {
     private EditText new_group_info;
     private RadioGroup new_group_vis;
     private Button create_group_button;
+    private int idFromIntent;
 
     private View.OnClickListener mCreateButton = new View.OnClickListener() {
         @Override
@@ -43,6 +44,8 @@ public class CreateGroupFragment extends Fragment {
             Group newGroup = new Group(name,info,vis);
 
             mDatabasehelper.addGroup(newGroup);
+            int groupid = mDatabasehelper.getIdFromGroup(name);
+            mDatabasehelper.addUserToGroup(idFromIntent,groupid);
 
             Intent i = new Intent(getActivity(), HomeActivity.class);
             startActivity(i);
@@ -57,6 +60,11 @@ public class CreateGroupFragment extends Fragment {
         mDatabasehelper = new DatabaseHelper(context);
 
         final View v = inflater.inflate(R.layout.fragment_create_group, container, false);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            idFromIntent = bundle.getInt("ent_id");
+        }
 
         new_group_name = (EditText) v.findViewById(R.id.group_name_create);
         new_group_info = (EditText) v.findViewById(R.id.group_info_create);

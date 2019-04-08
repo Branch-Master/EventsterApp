@@ -41,6 +41,7 @@ public class CreateEventFragment extends Fragment {
     private Button create_event;
     private EditText new_event_seats;
     private RadioGroup new_event_vis;
+    private int idFromIntent;
 
     private int sday;
     private int smonth;
@@ -81,9 +82,12 @@ public class CreateEventFragment extends Fragment {
             System.out.println("visable: " + vis);
 
 
-            Event newEvent = new Event(eventName,info,1,"tag",sdate,edate,loc,seats,vis);
+            Event newEvent = new Event(eventName,info,0,"tag",sdate,edate,loc,seats,vis);
 
             mDatabasehelper.addEvent(newEvent);
+            int eventid = mDatabasehelper.getIdFromEvent(eventName);
+            System.out.println(eventid + " "+eventName+" "+idFromIntent);
+            mDatabasehelper.addUserToEvent(idFromIntent,eventid);
 
             Intent i = new Intent(getActivity(), HomeActivity.class);
             startActivity(i);
@@ -107,6 +111,11 @@ public class CreateEventFragment extends Fragment {
         new_event_seats = (EditText) v.findViewById(R.id.seats_create);
         new_event_vis = (RadioGroup) v.findViewById(R.id.event_vis_create);
         create_event = (Button) v.findViewById(R.id.create_event_button);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            idFromIntent = bundle.getInt("ent_id");
+        }
 
         new_event_start_date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

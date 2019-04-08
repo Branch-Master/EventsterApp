@@ -365,7 +365,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public Cursor getVisGroups(String idid){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_Groups + " where " + group_vis + "=\'1\' or " + id + " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')";
+        String query = "SELECT * FROM " + TABLE_Groups + " where " + group_vis + "=\'1\' or " + id +
+                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')";
         System.out.println(query);
         Cursor data = db.rawQuery(query,null);
         return data;
@@ -374,7 +375,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public Cursor getVisEvents(String idid){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_Events + " where " + event_vis + "=\'1\' or " + event_groupId +
-                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')";
+                " in (SELECT " + group_id + " FROM " + TABLE_members + " WHERE " + user_id + "=\'" + idid + "\')" +
+                " or " + id + " in (SELECT " + event_id + " FROM " + TABLE_attendees + " WHERE " + user_id + "=\'" + idid + "\')";
         System.out.println(query);
         Cursor data = db.rawQuery(query,null);
         return data;

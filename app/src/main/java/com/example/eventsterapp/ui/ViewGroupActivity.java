@@ -29,6 +29,7 @@ public class ViewGroupActivity extends AppCompatActivity {
 
     private Button addmembers;
     private Button showmembers;
+    private Button join;
     private ShowMembersFragment showMembersFragment;
     private AddToGroupFragment addToGroupFragment;
 
@@ -73,6 +74,13 @@ public class ViewGroupActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener joinButton = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            System.out.println("what");
+        }
+    }
+
     private View.OnClickListener showmembersButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -111,8 +119,10 @@ public class ViewGroupActivity extends AppCompatActivity {
 
         showmembers = findViewById(R.id.show_members);
         addmembers = findViewById(R.id.add_members);
+        join = findViewById(R.id.group_add_me);
         showmembers.setOnClickListener(showmembersButton);
         addmembers.setOnClickListener(addmembmersButton);
+        join.setOnClickListener(joinButton);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

@@ -1,20 +1,30 @@
 package com.example.eventsterapp.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AppComponentFactory;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.eventsterapp.Fragments.CreateEventFragment;
 import com.example.eventsterapp.Fragments.CreateGroupFragment;
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class CreateActivity extends FragmentActivity {
+public class CreateActivity extends AppCompatActivity {
 
+    private int nameFromIntent;
+    private SharedPreferences sharedpreferences;
+    private final String userid = "sessionEmail";
+    private final String mypref = "myprefrences";
+    private DatabaseHelper mDatebaseHelper;
 
     private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
 
@@ -25,9 +35,13 @@ public class CreateActivity extends FragmentActivity {
 
             //Fragment createFragment =  (Fragment) findViewById(R.id.create_fragment);
 
+            Bundle bundle;
             switch( tab.getPosition() ){
                 case 0:
                     CreateEventFragment createEventFragment = new CreateEventFragment();
+                    bundle = new Bundle();
+                    bundle.putInt("ent_id", nameFromIntent);
+                    createEventFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.create_fragment_container,createEventFragment).commit();
 
                     break;
@@ -35,6 +49,9 @@ public class CreateActivity extends FragmentActivity {
 
 
                     CreateGroupFragment createGroupFragment = new CreateGroupFragment();
+                    bundle = new Bundle();
+                    bundle.putInt("ent_id", nameFromIntent);
+                    createGroupFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.create_fragment_container,createGroupFragment).commit();
 
                     break;
@@ -92,9 +109,19 @@ public class CreateActivity extends FragmentActivity {
         TabLayout tabLayout_event = (TabLayout) findViewById(R.id.tablayoutCreate);
         tabLayout_event.addOnTabSelectedListener(mOnTabSelectedListener);
 
-        CreateEventFragment createEventFragment = new CreateEventFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.create_fragment_container,createEventFragment).commit();
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String myprefResult = sharedpreferences.getString(userid,"default String");
 
+        mDatebaseHelper = new DatabaseHelper(this);
+
+        String email = sharedpreferences.getString(userid,"default String");
+        nameFromIntent = Integer.valueOf(mDatebaseHelper.findUserIdByEmail(email));
+
+        CreateEventFragment createEventFragment = new CreateEventFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ent_id", nameFromIntent);
+        createEventFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.create_fragment_container,createEventFragment).commit();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
