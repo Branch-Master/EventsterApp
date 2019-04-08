@@ -120,16 +120,27 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/add_members"
+                android:id="@+id/event_add_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_members" />
+                android:text="Attend Event" />
 
-            <Button
-                android:id="@+id/show_members"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Show members" />
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/add_members"
+                    android:layout_width="208dp"
+                    android:layout_height="wrap_content"
+                    android:text="Invite" />
+
+                <Button
+                    android:id="@+id/show_members"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show " />
+            </TableRow>
 
             <FrameLayout
                 android:id="@+id/show_users_container_"

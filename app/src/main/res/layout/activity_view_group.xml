@@ -50,16 +50,27 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/add_members"
+                android:id="@+id/group_add_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_members" />
+                android:text="Join Group" />
 
-            <Button
-                android:id="@+id/show_members"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Show members" />
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/add_members"
+                    android:layout_width="206dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_members" />
+
+                <Button
+                    android:id="@+id/show_members"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show members" />
+            </TableRow>
 
             <FrameLayout
                 android:id="@+id/show_users_container_"
