@@ -24,8 +24,8 @@ public class AddToGroupFragment extends Fragment {
     private ArrayList<ParentRow> parentList;
     private ArrayList<ParentRow> showThisParentList;
     private ExpandableListView myList;
-    private int idFromIntent;
-    private String typeFromIntent;
+    private String nameFromIntent;
+    private DatabaseHelper mDatabasehelper;
 
 
 
@@ -36,8 +36,7 @@ public class AddToGroupFragment extends Fragment {
         System.out.println("addmembers fragment");
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            idFromIntent = bundle.getInt("ent_id", -1);
-            typeFromIntent = bundle.getString("ent_type");
+            nameFromIntent = bundle.getString("ent_name");
         }
         displayList(1,v);
 
@@ -57,7 +56,7 @@ public class AddToGroupFragment extends Fragment {
         // idFromIntent = getActivity().getIntent().getIntExtra("ent_id",-1);
         // typeFromIntent = getActivity().getIntent().getStringExtra("ent_type");
 
-        listAdapter = new MyExpandableListAdapterAdd(getContext(),parentList,idFromIntent , typeFromIntent);
+        listAdapter = new MyExpandableListAdapterAdd(getContext(),parentList, nameFromIntent, 0);
         myList.setAdapter(listAdapter);
 
     }

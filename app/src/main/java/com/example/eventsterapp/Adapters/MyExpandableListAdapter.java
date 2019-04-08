@@ -110,14 +110,12 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
                 if (childRow.getType().equals("evt")) {
                     i = new Intent(finalConvertView.getContext(), ViewEventActivity.class);
-                    i.putExtra("ent_id", childRow.getId() );
                 } else if (childRow.getType().equals("usr")) {
                     i = new Intent(finalConvertView.getContext(), ViewUserActivity.class);
-                    i.putExtra("ent_id", childRow.getId() );
                 } else if (childRow.getType().equals("grp")) {
                     i = new Intent(finalConvertView.getContext(), ViewGroupActivity.class);
-                    i.putExtra("ent_id", childRow.getId() );
                 }
+                i.putExtra("ent_name", childRow.getText() );
                 context.startActivity(i);
             }
         });

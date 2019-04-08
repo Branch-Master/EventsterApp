@@ -26,7 +26,8 @@ public class ViewEventActivity extends AppCompatActivity {
     private TextView EventSeats;
     private DatabaseHelper mydb;
 
-    private int idFromIntent;
+    private String nameFromIntent;
+    private String nameOfEvent;
 
     private Button addmembers;
     private Button showmembers;
@@ -61,11 +62,14 @@ public class ViewEventActivity extends AppCompatActivity {
 
             AddToGroupFragment addToGroupFragment = new AddToGroupFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("ent_id", idFromIntent);
+            bundle.putString("ent_name", nameFromIntent);
+            bundle.putString("ent_nameGE", nameOfEvent);
+            bundle.putInt("ent_typeGE", 0);
             addToGroupFragment.setArguments(bundle);
 
 
             getSupportFragmentManager().beginTransaction().add(R.id.show_users_container_ ,addToGroupFragment).commit();
+
         }
     };
 
@@ -102,10 +106,12 @@ public class ViewEventActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        idFromIntent =  getIntent().getIntExtra("ent_id",-1);
+        nameFromIntent =  getIntent().getStringExtra("ent_name");
 
-        Event viewEvent = this.mydb.getEventById(idFromIntent);
+        int id = this.mydb.getIdFromEvent(nameFromIntent);
+        Event viewEvent = this.mydb.getEventById(id);
         EventName.setText( viewEvent.getEventName() );
+        nameOfEvent = viewEvent.getEventName();
         EventInfo.setText( viewEvent.getEventInfo());
         EventStart.setText( viewEvent.getStartDate());
         EventEnd.setText( viewEvent.getEndDate());

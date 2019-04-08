@@ -78,8 +78,7 @@ public class RVGroupCardAdapter extends RecyclerView.Adapter<RVGroupCardAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewGroupActivity.class);
-                intent.putExtra("ent_type","grp");
-                intent.putExtra("ent_id", count);
+                intent.putExtra("ent_name", groups.get(count-1).getGroupName());
                 v.getContext().startActivity(intent);
             }
         });

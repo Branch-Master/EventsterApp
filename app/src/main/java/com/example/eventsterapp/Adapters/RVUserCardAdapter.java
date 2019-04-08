@@ -66,8 +66,7 @@ public class RVUserCardAdapter extends RecyclerView.Adapter<RVUserCardAdapter.Us
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewUserActivity.class);
-                intent.putExtra("ent_type","usr");
-                intent.putExtra("ent_id",count);
+                intent.putExtra("ent_name", users.get(count-1).getUsername());
                 v.getContext().startActivity(intent);
             }
         });

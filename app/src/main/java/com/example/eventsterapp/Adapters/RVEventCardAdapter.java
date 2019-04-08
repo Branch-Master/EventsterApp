@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
 import com.example.eventsterapp.ui.ViewEventActivity;
 
@@ -36,7 +37,6 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         EventCard(View itemView) {
 
             super(itemView);
-
             rv = (CardView)itemView.findViewById(R.id.rv);
             cardName = (TextView)itemView.findViewById(R.id.event_name);
             cardInfo = (TextView)itemView.findViewById(R.id.event_info);
@@ -69,7 +69,6 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
     @Override
     public void onBindViewHolder(EventCard holder, int i) {
         final int count = i+1;
-
         holder.cardName.setText(events.get(i).getEventName());
         holder.cardInfo.setText(events.get(i).getEventInfo());
         holder.cardStarts.setText(events.get(i).getStartDate());
@@ -82,10 +81,8 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewEventActivity.class);
-                intent.putExtra("ent_type", "evt");
-                intent.putExtra("ent_id", count);
+                intent.putExtra("ent_name", events.get(count-1).getEventName());
                 v.getContext().startActivity(intent);
-
             }
         });
 

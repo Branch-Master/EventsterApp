@@ -1,5 +1,6 @@
 package com.example.eventsterapp.ui;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,7 @@ public class ViewGroupActivity extends AppCompatActivity {
     private TextView groupInfo;
     private DatabaseHelper mydb;
 
-    private int idFromIntent;
+    private String nameFromIntent;
 
     private Button addmembers;
     private Button showmembers;
@@ -57,7 +58,7 @@ public class ViewGroupActivity extends AppCompatActivity {
 
             AddToGroupFragment addToGroupFragment = new AddToGroupFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("ent_id", idFromIntent);
+            bundle.putString("ent_name", nameFromIntent);
             addToGroupFragment.setArguments(bundle);
 
 
@@ -70,6 +71,10 @@ public class ViewGroupActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             System.out.println("SHOW MEMBERS");
+            Cursor groupMember = mydb.getGroupMember();
+            while(groupMember.moveToNext()){
+                System.out.println(Integer.parseInt(groupMember.getString(0)) + "_______________________" + Integer.parseInt(groupMember.getString(1)));
+            }
         }
     };
 
@@ -94,11 +99,12 @@ public class ViewGroupActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        idFromIntent =  getIntent().getIntExtra("ent_id",-1);
+        nameFromIntent =  getIntent().getStringExtra("ent_name");
 
-
-        Group viewGroup = this.mydb.getGroupById(idFromIntent);
+        int id = this.mydb.getIdFromGroup(nameFromIntent);
+        Group viewGroup = this.mydb.getGroupById(id);
         groupName.setText( viewGroup.getGroupName() );
+
         groupInfo.setText( viewGroup.getGroupInfo() );
         groupImage.setImageResource(R.drawable.default_group_img);
 

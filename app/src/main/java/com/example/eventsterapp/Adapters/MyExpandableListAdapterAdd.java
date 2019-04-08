@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eventsterapp.R;
+import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.ChildRow;
 import com.example.eventsterapp.models.ParentRow;
 import com.example.eventsterapp.ui.ViewEventActivity;
@@ -25,11 +26,13 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<ParentRow> parentRowList;
     private ArrayList<ParentRow> originalList;
-    private int entity;
-    private String type;
+    private String entity;
+    private int type;
+    private DatabaseHelper mDatabasehelper;
 
 
-    public MyExpandableListAdapterAdd(Context context,ArrayList<ParentRow> originalList,int entity, String type) {
+
+    public MyExpandableListAdapterAdd(Context context,ArrayList<ParentRow> originalList,String entity, int type) {
         this.context = context;
         this.parentRowList = new ArrayList<>();
         this.parentRowList.addAll(originalList);
@@ -37,6 +40,7 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
         this.originalList.addAll(originalList);
         this.entity = entity;
         this.type = type;
+        mDatabasehelper = new DatabaseHelper(this.context);
     }
 
     @Override
@@ -106,7 +110,10 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 int id = childRow.getId();
-                System.out.println(id);
+                System.out.println(entity + " " + childRow.getText() + " " + type);
+                int groupId = mDatabasehelper.getIdFromGroup(entity);
+                int userId = mDatabasehelper.getIdFromUser(childRow.getText());
+                mDatabasehelper.addUserToGroup(userId, groupId);
             }
         });
 
@@ -130,7 +137,7 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
                 } else if (childRow.getType().equals("grp")) {
                     i = new Intent(finalConvertView.getContext(), ViewGroupActivity.class);
                 }
-                i.putExtra("ent_id", childRow.getId() );
+                i.putExtra("ent_name", childRow.getText() );
                 context.startActivity(i);
             }
         });

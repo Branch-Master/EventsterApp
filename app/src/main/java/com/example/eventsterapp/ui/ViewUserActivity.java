@@ -25,7 +25,7 @@ public class ViewUserActivity extends AppCompatActivity {
     private TextView UserInfo;
     private DatabaseHelper mydb;
 
-    private int idFromIntent;
+    private String nameFromIntent;
 
     private Button addmembers;
     private Button showmembers;
@@ -57,14 +57,14 @@ public class ViewUserActivity extends AppCompatActivity {
     private View.OnClickListener addmembmersButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+/*
             AddToGroupFragment addToGroupFragment = new AddToGroupFragment();
             Bundle bundle = new Bundle();
             bundle.putInt("ent_id", idFromIntent);
             addToGroupFragment.setArguments(bundle);
 
 
-            getSupportFragmentManager().beginTransaction().add(R.id.show_users_container_ ,addToGroupFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.show_users_container_ ,addToGroupFragment).commit(); */
         }
     };
 
@@ -95,9 +95,9 @@ public class ViewUserActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        idFromIntent =  getIntent().getIntExtra("ent_id",-1);
-
-        User viewUser = this.mydb.getUserById(idFromIntent);
+        nameFromIntent =  getIntent().getStringExtra("ent_name");
+        int id = this.mydb.getIdFromUser(nameFromIntent);
+        User viewUser = this.mydb.getUserById(id);
         UserName.setText(viewUser.getUsername());
         UserEmail.setText( viewUser.getEmail() );
         UserPhone.setText(viewUser.getPhone());

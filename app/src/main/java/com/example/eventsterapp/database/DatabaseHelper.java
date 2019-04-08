@@ -177,6 +177,43 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    public int getIdFromEvent(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Events +
+                " WHERE " + event_name + " = \'" + name + "\'";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query, null);
+        data.moveToNext();
+        return data.getInt(0);
+    }
+
+    public int getIdFromGroup(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Groups +
+                " WHERE " + group_name + " = \'" + name + "\'";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query, null);
+        data.moveToNext();
+        return data.getInt(0);
+    }
+
+    public int getIdFromUser(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users +
+                " WHERE " + user_name + " = \'" + name + "\'";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query, null);
+        data.moveToNext();
+        return data.getInt(0);
+    }
+
+    public Cursor getGroupMember() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_members;
+        System.out.println(query);
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
 
     public boolean addEvent(Event event){
         SQLiteDatabase db = this.getWritableDatabase();
