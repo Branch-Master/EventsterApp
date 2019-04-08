@@ -184,6 +184,12 @@
         android:layout_height="wrap_content"
         android:text="Change Password" />
 
+    <Button
+        android:id="@+id/aboutme_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out" />
+
 </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
