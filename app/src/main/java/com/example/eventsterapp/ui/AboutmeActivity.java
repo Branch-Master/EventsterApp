@@ -40,6 +40,7 @@ public class AboutmeActivity extends AppCompatActivity {
     private EditText aboutmenewpass;
     private Button submitInfo;
     private Button changePassword;
+    private Button logout;
 
     private int id;
 
@@ -143,6 +144,14 @@ public class AboutmeActivity extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener logoutButton = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(AboutmeActivity.this, LoginActivity.class);
+            startActivity(i);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,9 +173,11 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmenewpass = (EditText) findViewById(R.id.aboutme_pass1);
         submitInfo = (Button) findViewById(R.id.change_my_info);
         changePassword = (Button) findViewById(R.id.aboutme_pass_button);
+        logout = (Button) findViewById(R.id.aboutme_logout);
 
         submitInfo.setOnClickListener(changeinfo);
         changePassword.setOnClickListener(changePass);
+        logout.setOnClickListener(logoutButton);
 
         sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
