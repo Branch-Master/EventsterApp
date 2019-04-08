@@ -1,5 +1,7 @@
 package com.example.eventsterapp.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -32,6 +34,11 @@ public class ViewGroupActivity extends AppCompatActivity {
     private Button join;
     private ShowMembersFragment showMembersFragment;
     private AddToGroupFragment addToGroupFragment;
+    private int currentGroupId;
+    private SharedPreferences sharedpreferences;
+    private final String userid = "sessionEmail";
+    private final String mypref = "myprefrences";
+    private int currentUserId;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -77,7 +84,7 @@ public class ViewGroupActivity extends AppCompatActivity {
     private View.OnClickListener joinButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("what");
+            mydb.addUserToGroup(currentUserId,currentGroupId);
         }
     };
 
@@ -112,6 +119,11 @@ public class ViewGroupActivity extends AppCompatActivity {
 
         mydb = new DatabaseHelper(this);
 
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String myprefResult = sharedpreferences.getString(userid,"default String");
+
+        String email = sharedpreferences.getString(userid,"default String");
+        currentUserId = Integer.valueOf(mydb.findUserIdByEmail(email));
 
         groupName = findViewById(R.id.group_name);
         groupInfo = findViewById(R.id.group_info);
@@ -130,8 +142,8 @@ public class ViewGroupActivity extends AppCompatActivity {
 
         nameFromIntent =  getIntent().getStringExtra("ent_name");
 
-        int id = this.mydb.getIdFromGroup(nameFromIntent);
-        Group viewGroup = this.mydb.getGroupById(id);
+        currentGroupId = this.mydb.getIdFromGroup(nameFromIntent);
+        Group viewGroup = this.mydb.getGroupById(currentGroupId);
         groupName.setText( viewGroup.getGroupName() );
 
         groupInfo.setText( viewGroup.getGroupInfo() );

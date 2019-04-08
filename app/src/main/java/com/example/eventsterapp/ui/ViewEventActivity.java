@@ -1,5 +1,7 @@
 package com.example.eventsterapp.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +28,11 @@ public class ViewEventActivity extends AppCompatActivity {
     private TextView EventLocation;
     private TextView EventSeats;
     private DatabaseHelper mydb;
+    private int currentEventId;
+    private SharedPreferences sharedpreferences;
+    private final String userid = "sessionEmail";
+    private final String mypref = "myprefrences";
+    private int currentUserId;
 
     private String nameFromIntent;
 
@@ -78,7 +85,7 @@ public class ViewEventActivity extends AppCompatActivity {
     private View.OnClickListener joinButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("what");
+            mydb.addUserToEvent(currentUserId,currentEventId);
         }
     };
 
@@ -106,6 +113,11 @@ public class ViewEventActivity extends AppCompatActivity {
 
         mydb = new DatabaseHelper(this);
 
+        sharedpreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        String myprefResult = sharedpreferences.getString(userid,"default String");
+
+        String email = sharedpreferences.getString(userid,"default String");
+        currentUserId = Integer.valueOf(mydb.findUserIdByEmail(email));
 
         EventName = findViewById(R.id.view_event_name);
         EventInfo = findViewById(R.id.view_event_info);
@@ -128,8 +140,8 @@ public class ViewEventActivity extends AppCompatActivity {
 
         nameFromIntent =  getIntent().getStringExtra("ent_name");
 
-        int id = this.mydb.getIdFromEvent(nameFromIntent);
-        Event viewEvent = this.mydb.getEventById(id);
+        currentEventId = this.mydb.getIdFromEvent(nameFromIntent);
+        Event viewEvent = this.mydb.getEventById(currentEventId);
         EventName.setText( viewEvent.getEventName() );
         EventInfo.setText( viewEvent.getEventInfo());
         EventStart.setText( viewEvent.getStartDate());
