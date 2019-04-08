@@ -132,6 +132,13 @@
 
             </TableRow>
 
+            <FrameLayout
+                android:id="@+id/show_users_container_"
+                android:layout_width="match_parent"
+                android:layout_height="360dp">
+
+            </FrameLayout>
+
 
         </LinearLayout>
     </ScrollView>

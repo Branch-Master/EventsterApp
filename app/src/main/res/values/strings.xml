@@ -11,7 +11,7 @@
     <string name="action_settings">action</string>
     <string name="title_activity_view_entity">ViewEntity</string>
     <string name="name">Name</string>
-    <string name="describtion">Describtion</string>
+    <string name="describtion">Description</string>
     <string name="radioButton_public">public</string>
     <string name="radioButton_private">private</string>
     <string name="title_activity_create_new">CreateNewActivity</string>

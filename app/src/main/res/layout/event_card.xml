@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/card_img"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
 
 
         />
@@ -27,7 +27,8 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -37,7 +38,8 @@
             android:id="@+id/event_start_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event starts at: " />
+            android:text="Event starts at: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/event_starts"
@@ -54,7 +56,8 @@
             android:id="@+id/event_end_label"
             android:layout_width="98dp"
             android:layout_height="wrap_content"
-            android:text="Events ends at:" />
+            android:text="Events ends at:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/event_ends"
@@ -71,7 +74,8 @@
             android:id="@+id/event_loc_label"
             android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:text="Location: " />
+            android:text="Location: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/event_location"
@@ -87,7 +91,8 @@
             android:id="@+id/event_seats_label"
             android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:text="# Seats: " />
+            android:text="# Seats: "
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/event_nr_steats"
@@ -99,7 +104,8 @@
         android:id="@+id/describtion_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Describtion" />
+        android:text="Description:"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/event_info"

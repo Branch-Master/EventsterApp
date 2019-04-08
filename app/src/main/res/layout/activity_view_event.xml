@@ -40,7 +40,8 @@
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Event starts at: "
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/view_event_starts"
@@ -58,7 +59,8 @@
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Events ends at:"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/view_event_ends"
@@ -76,7 +78,8 @@
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Location: "
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/view_event_location"
@@ -94,7 +97,8 @@
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="# Seats: "
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/view_event_nr_seats"
@@ -107,8 +111,9 @@
                 android:id="@+id/veiw_event_info_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Describtion"
-                android:textSize="20sp" />
+                android:text="Description:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/view_event_info"

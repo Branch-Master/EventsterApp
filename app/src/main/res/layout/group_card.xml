@@ -15,7 +15,7 @@
     <ImageView
         android:id="@+id/group_card_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TableRow
@@ -23,15 +23,11 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/group_card_name_label"
-            android:layout_width="114dp"
-            android:layout_height="wrap_content"
-            android:text="Group Name" />
-
-        <TextView
             android:id="@+id/group_card_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </TableRow>
 
     <TableRow
@@ -42,7 +38,8 @@
             android:id="@+id/group_card_info_label"
             android:layout_width="114dp"
             android:layout_height="wrap_content"
-            android:text="Group info" />
+            android:text="Group info"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/group_card_info"
@@ -58,7 +55,8 @@
             android:id="@+id/group_card_vis_label"
             android:layout_width="114dp"
             android:layout_height="wrap_content"
-            android:text="Group visability" />
+            android:text="Group visability"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/group_card_vis"

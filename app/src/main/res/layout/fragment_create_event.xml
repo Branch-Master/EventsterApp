@@ -31,7 +31,7 @@
                 android:id="@+id/event_vis_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/event_private_create"
+                android:checkedButton="@+id/event_public_create"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -39,14 +39,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/radioButton_public" />
+                    android:text="@string/radioButton_public"
+                    android:textSize="16dp" />
 
                 <RadioButton
                     android:id="@+id/event_private_create"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/radioButton_private" />
+                    android:text="@string/radioButton_private"
+                    android:textSize="16dp" />
             </RadioGroup>
 
             <TextView
@@ -90,7 +92,9 @@
                 android:id="@+id/evt_loc_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="location" />
+                android:text="Location"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/loc_create"
@@ -108,7 +112,9 @@
                     android:id="@+id/evt_seats_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Number of seats: " />
+                    android:text="Number of seats: "
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/seats_create"
@@ -126,7 +132,7 @@
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="129dp"
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/event_start_time"
                     android:text="Events starts at:"
@@ -155,7 +161,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="136dp"
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/event_end_time"
                     android:text="Event Ends at:"
@@ -184,7 +190,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/colorPrimary"
-                android:text="Create Event" />
+                android:text="Create Event"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>
