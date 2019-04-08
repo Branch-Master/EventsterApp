@@ -79,7 +79,7 @@ public class ViewGroupActivity extends AppCompatActivity {
         public void onClick(View v) {
             System.out.println("what");
         }
-    }
+    };
 
     private View.OnClickListener showmembersButton = new View.OnClickListener() {
         @Override
