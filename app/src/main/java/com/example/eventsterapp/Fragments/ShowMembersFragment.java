@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.example.eventsterapp.Adapters.MyExpandableListAdapter;
 import com.example.eventsterapp.Adapters.MyExpandableListAdapterAdd;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
 
-public class AddToGroupFragment extends Fragment {
+public class ShowMembersFragment extends Fragment {
 
-    private MyExpandableListAdapterAdd listAdapter;
+    private MyExpandableListAdapter listAdapter;
     private ArrayList<ParentRow> parentList;
     private ExpandableListView myList;
     private String nameFromIntent;
@@ -45,6 +46,7 @@ public class AddToGroupFragment extends Fragment {
 
 
     private void displayList(int number, View v){
+
         loadDataUsers();
 
         myList =  v.findViewById(R.id.expandambleListView_viewEntity);
@@ -52,7 +54,7 @@ public class AddToGroupFragment extends Fragment {
         // idFromIntent = getActivity().getIntent().getIntExtra("ent_id",-1);
         // typeFromIntent = getActivity().getIntent().getStringExtra("ent_type");
 
-        listAdapter = new MyExpandableListAdapterAdd(getContext(),parentList, nameFromIntent, typeFromIntent);
+        listAdapter = new MyExpandableListAdapter(getContext(),parentList);
         myList.setAdapter(listAdapter);
 
     }
@@ -64,28 +66,27 @@ public class AddToGroupFragment extends Fragment {
         ParentRow parentRow;
 
         DatabaseHelper mdb = new DatabaseHelper(getContext());
+
         if (typeFromIntent == 1) {
             int idid = mdb.getIdFromGroup(nameFromIntent);
-            Cursor users = mdb.getAllUsersNotInAGroup(idid);
+            Cursor users = mdb.getMembersFromGroup(idid);
             while (users.moveToNext()) {
                 String username = users.getString(1);
                 int id = users.getInt(0);
                 childRows.add(new ChildRow(R.drawable.default_user_img, username, id, "usr"));
             }
-            parentRow = new ParentRow("Users you can add", childRows);
+            parentRow = new ParentRow("Members", childRows);
             parentList.add(parentRow);
         } else {
             int idid = mdb.getIdFromEvent(nameFromIntent);
-            Cursor users = mdb.getAllUsersNotInAnEvent(idid);
+            Cursor users = mdb.getAttendeesFromEvent(idid);
             while (users.moveToNext()) {
                 String username = users.getString(1);
                 int id = users.getInt(0);
                 childRows.add(new ChildRow(R.drawable.default_user_img, username, id, "usr"));
             }
-            parentRow = new ParentRow("Users you can invite", childRows);
+            parentRow = new ParentRow("Users Attending", childRows);
             parentList.add(parentRow);
         }
-
     }
-
-    }
+}

@@ -17,8 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String Tag = "DatabaseHelper";
     private static final String TABLE_Users = "Users";
     private static final String id= "id";
-    private static final String users_name = "username";
-    private static final String users_pass = "pw";
+    private static final String user_name = "username";
+    private static final String user_pass = "pw";
     private static final String user_email = "email";
     private static final String user_bday = "bday";
     private static final String user_zodiac = "zodiac";
@@ -47,9 +47,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //MEMBERS=======================================
     private static final String TABLE_members = "Members";
     private static final String group_id = "groupID";
-    private static final String name_of_group = "groupName";
     private static final String user_id = "userID";
-    private static final String user_name = "username";
+
+    //MEMBERS=======================================
+    private static final String TABLE_attendees = "Attendees";
+    private static final String event_id = "eventID";
+
+
 
 
 
@@ -71,8 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String createUserTable = "CREATE TABLE "+ TABLE_Users +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                users_name + " VARCHAR(128)," +
-                users_pass + " VARCHAR(128)," +
+                user_name + " VARCHAR(128)," +
+                user_pass + " VARCHAR(128)," +
                 user_email + " VARCHAR(128)," +
                 user_bday + " VARCHAR(128)," +
                 user_zodiac + " VARCHAR(128)," +
@@ -111,6 +115,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 group_id + " INTEGER NOT NULL REFERENCES " + TABLE_Groups + "(ID)," +
                 user_id + " INTEGER NOT NULL REFERENCES " + TABLE_Users + "(ID)" + ")";
         db.execSQL(createMembersTable);
+
+        String createAttendeesTable = "CREATE TABLE " + TABLE_attendees + "(" +
+                event_id + " INTEGER NOT NULL REFERENCES " + TABLE_Events + "(ID)," +
+                user_id + " INTEGER NOT NULL REFERENCES " + TABLE_Users + "(ID)" + ")";
+        db.execSQL(createAttendeesTable);
     }
 
     @Override
@@ -119,16 +128,50 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Events);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Groups);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_members);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_attendees);
         onCreate(db);
     }
+
+    public Cursor getMembersFromGroup(int idid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users + " where " + id + " IN (SELECT " + user_id + " FROM " + TABLE_members + " WHERE " + group_id + "=\'" + idid + "\')";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public Cursor getAllUsersNotInAGroup(int idid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users + " where " + id + " NOT IN (SELECT " + user_id + " FROM " + TABLE_members + " WHERE " + group_id + "=\'" + idid + "\')";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public Cursor getAttendeesFromEvent(int idid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users + " where " + id + " IN (SELECT " + user_id + " FROM " + TABLE_attendees + " WHERE " + event_id + "=\'" + idid + "\')";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    public Cursor getAllUsersNotInAnEvent(int idid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_Users + " where " + id + " NOT IN (SELECT " + user_id + " FROM " + TABLE_attendees + " WHERE " + event_id + "=\'" + idid + "\')";
+        System.out.println(query);
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
 
     public boolean addUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(users_name,user.getUsername());
-        contentValues.put(users_pass,user.getPassword());
+        contentValues.put(user_name,user.getUsername());
+        contentValues.put(user_pass,user.getPassword());
         contentValues.put(user_email, user.getEmail());
         contentValues.put(user_zodiac,user.getZodiac());
         contentValues.put(user_bday,user.getBirthday());
@@ -376,6 +419,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    public Boolean addUserToEvent(int userid, int eventid){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(event_id,eventid);
+        contentValues.put(user_id,userid);
+
+        Log.d(Tag, "addData: Adding " + "user: "+ userid + " to group: " + eventid);
+
+        long result = db.insert(TABLE_attendees, null, contentValues);
+
+        if(result == -1){
+            return false;
+        }
+        else{
+            System.out.println("=============================================gekk");
+            return true;
+        }
+
+    }
+
     public Boolean emailUsed(String email){
         String query = "SELECT * FROM " + TABLE_Users + " WHERE " + user_email + " = " + "\'" + email + "\'";
 
@@ -478,7 +542,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public void changePassword(int id,String newPass){
         String query = "Update " + TABLE_Users +
-                " SET " + users_pass + " = " + "\'" + newPass + "\'" + " WHERE ID = " + id;
+                " SET " + user_pass + " = " + "\'" + newPass + "\'" + " WHERE ID = " + id;
 
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -508,7 +572,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         String query = "SELECT * FROM " + TABLE_Users + " WHERE " +
                 user_name + " = " + "\'" + username + "\'" +
-                " AND " + users_pass + " = " + "\'" + password + "\'";
+                " AND " + user_pass + " = " + "\'" + password + "\'";
 
         Cursor data = db.rawQuery(query,null);
 

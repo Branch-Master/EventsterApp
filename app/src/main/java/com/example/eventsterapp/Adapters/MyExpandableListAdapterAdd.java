@@ -105,17 +105,29 @@ public class MyExpandableListAdapterAdd extends BaseExpandableListAdapter {
         childIcon.setImageResource(childRow.getIcon());
 
         Button childButton = (Button) convertView.findViewById(R.id.child_button_add);
-
-        childButton.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = childRow.getId();
-                System.out.println(entity + " " + childRow.getText() + " " + type);
-                int groupId = mDatabasehelper.getIdFromGroup(entity);
-                int userId = mDatabasehelper.getIdFromUser(childRow.getText());
-                mDatabasehelper.addUserToGroup(userId, groupId);
-            }
-        });
+        if (type == 1) {
+            childButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = childRow.getId();
+                    System.out.println(entity + " " + childRow.getText() + " " + type);
+                    int groupId = mDatabasehelper.getIdFromGroup(entity);
+                    int userId = mDatabasehelper.getIdFromUser(childRow.getText());
+                    mDatabasehelper.addUserToGroup(userId, groupId);
+                }
+            });
+        } else {
+            childButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = childRow.getId();
+                    System.out.println(entity + " " + childRow.getText() + " " + type);
+                    int eventId = mDatabasehelper.getIdFromEvent(entity);
+                    int userId = mDatabasehelper.getIdFromUser(childRow.getText());
+                    mDatabasehelper.addUserToEvent(userId, eventId);
+                }
+            });
+        }
 
         final TextView childText = (TextView) convertView.findViewById(R.id.child_text_add);
         childText.setText(childRow.getText().trim());

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eventsterapp.Fragments.AddToGroupFragment;
+import com.example.eventsterapp.Fragments.ShowMembersFragment;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
@@ -27,10 +28,11 @@ public class ViewEventActivity extends AppCompatActivity {
     private DatabaseHelper mydb;
 
     private String nameFromIntent;
-    private String nameOfEvent;
 
     private Button addmembers;
     private Button showmembers;
+    private ShowMembersFragment showMembersFragment;
+    private AddToGroupFragment addToGroupFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,15 +62,14 @@ public class ViewEventActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            AddToGroupFragment addToGroupFragment = new AddToGroupFragment();
+            addToGroupFragment = new AddToGroupFragment();
             Bundle bundle = new Bundle();
             bundle.putString("ent_name", nameFromIntent);
-            bundle.putString("ent_nameGE", nameOfEvent);
-            bundle.putInt("ent_typeGE", 0);
+            bundle.putInt("ent_type", 0);
             addToGroupFragment.setArguments(bundle);
 
 
-            getSupportFragmentManager().beginTransaction().add(R.id.show_users_container_ ,addToGroupFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.show_users_container_ ,addToGroupFragment).commit();
 
         }
     };
@@ -77,7 +78,15 @@ public class ViewEventActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            System.out.println("SHOW MEMBERS");
+
+            showMembersFragment = new ShowMembersFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("ent_name", nameFromIntent);
+            bundle.putInt("ent_type", 0);
+            showMembersFragment.setArguments(bundle);
+
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.show_users_container_ ,showMembersFragment).commit();
         }
     };
 
@@ -111,7 +120,6 @@ public class ViewEventActivity extends AppCompatActivity {
         int id = this.mydb.getIdFromEvent(nameFromIntent);
         Event viewEvent = this.mydb.getEventById(id);
         EventName.setText( viewEvent.getEventName() );
-        nameOfEvent = viewEvent.getEventName();
         EventInfo.setText( viewEvent.getEventInfo());
         EventStart.setText( viewEvent.getStartDate());
         EventEnd.setText( viewEvent.getEndDate());
