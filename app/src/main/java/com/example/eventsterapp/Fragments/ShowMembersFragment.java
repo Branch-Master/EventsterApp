@@ -40,8 +40,16 @@ public class ShowMembersFragment extends Fragment {
             typeFromIntent = bundle.getInt("ent_type");
         }
         displayList(1,v);
+        expandAll();
 
         return v;
+    }
+
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for(int i =0; i < count; i++){
+            myList.expandGroup(i);
+        }
     }
 
 
