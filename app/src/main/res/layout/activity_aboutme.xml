@@ -134,6 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Submit Changes" />
 
     <TableRow
@@ -182,12 +183,14 @@
         android:id="@+id/aboutme_pass_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Change Password" />
 
     <Button
         android:id="@+id/aboutme_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Log out" />
 
 </LinearLayout>
