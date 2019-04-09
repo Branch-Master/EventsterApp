@@ -203,6 +203,14 @@ public class AboutmeActivity extends AppCompatActivity {
         aboutmenewpass.setText("");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setSelectedItemId(R.id.navigation_aboutme);
+
+    }
+
 
 
 
