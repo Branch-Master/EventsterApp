@@ -71,11 +71,11 @@ public class ShowEntitiesFragment extends Fragment {
 
         Cursor groups = mdb.getGroupsByUserId(userId);
         while(groups.moveToNext()){
-            String username = groups.getString(1);
+            String groupname = groups.getString(1);
             int id = groups.getInt(0);
-            childRows.add(new ChildRow(R.drawable.default_user_img,username,id,"usr"));
+            childRows.add(new ChildRow(R.drawable.default_group_img,groupname,id,"grp"));
         }
-        parentRow = new ParentRow("Users",childRows);
+        parentRow = new ParentRow("Groups",childRows);
         parentList.add(parentRow);
     }
 }
