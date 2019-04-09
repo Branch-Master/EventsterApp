@@ -2,24 +2,33 @@ package com.example.eventsterapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
+import com.example.eventsterapp.models.User;
 import com.example.eventsterapp.ui.HomeActivity;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,6 +39,10 @@ import androidx.fragment.app.Fragment;
 public class CreateEventFragment extends Fragment {
 
     private DatabaseHelper mDatabasehelper;
+    private final String mypref = "myprefrences";
+    private SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
+    private final String userid = "sessionEmail";
 
     private EditText new_event_name;
     private EditText new_event_info;
@@ -42,6 +55,7 @@ public class CreateEventFragment extends Fragment {
     private EditText new_event_seats;
     private RadioGroup new_event_vis;
     private int idFromIntent;
+    private Spinner groupSpinner;
 
     private int sday;
     private int smonth;
@@ -49,6 +63,7 @@ public class CreateEventFragment extends Fragment {
     private int eday;
     private int emonth;
     private int eyear;
+    private int grpid=0;
 
 
 
@@ -82,7 +97,7 @@ public class CreateEventFragment extends Fragment {
             System.out.println("visable: " + vis);
 
 
-            Event newEvent = new Event(eventName,info,0,"tag",sdate,edate,loc,seats,vis);
+            Event newEvent = new Event(eventName,info,grpid,"tag",sdate,edate,loc,seats,vis);
 
             mDatabasehelper.addEvent(newEvent);
             int eventid = mDatabasehelper.getIdFromEvent(eventName);
@@ -94,11 +109,35 @@ public class CreateEventFragment extends Fragment {
         }
     };
 
+    private AdapterView.OnItemSelectedListener selectedListener = new AdapterView.OnItemSelectedListener(){
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+
+        }
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            Toast.makeText(parent.getContext(),
+                    "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+                    Toast.LENGTH_SHORT).show();
+
+            if(pos != 0){
+                String selname = parent.getItemAtPosition(pos).toString();
+                grpid = mDatabasehelper.getIdFromGroup(selname);
+            }
+
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Context context = getContext();
         mDatabasehelper = new DatabaseHelper(context);
+
+        sharedpreferences = getActivity().getSharedPreferences(mypref, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
 
         final View v = inflater.inflate(R.layout.fragment_create_event, container, false);
         new_event_name = (EditText) v.findViewById(R.id.name_create);
@@ -111,6 +150,7 @@ public class CreateEventFragment extends Fragment {
         new_event_seats = (EditText) v.findViewById(R.id.seats_create);
         new_event_vis = (RadioGroup) v.findViewById(R.id.event_vis_create);
         create_event = (Button) v.findViewById(R.id.create_event_button);
+        groupSpinner = (Spinner) v.findViewById(R.id.choose_group);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -136,8 +176,32 @@ public class CreateEventFragment extends Fragment {
         });
 
         create_event.setOnClickListener(mCreateButton);
+        addListToSpinner();
 
         return v;
+    }
+
+    private void addListToSpinner(){
+
+        String sessionEmail = sharedpreferences.getString(userid,"ekkert fannst");
+        String user = mDatabasehelper.findUserIdByEmail(sessionEmail);
+
+        ArrayList<String> list = new ArrayList<>();
+        Cursor groups = mDatabasehelper.getGroupsByUserId(user);
+
+        list.add("No group");
+        while(groups.moveToNext()){
+            String groupname = groups.getString(1);
+            list.add(groupname);
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, list);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        groupSpinner.setAdapter(dataAdapter);
+        groupSpinner.setOnItemSelectedListener(selectedListener);
+
     }
 
 

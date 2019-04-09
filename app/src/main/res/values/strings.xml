@@ -26,6 +26,7 @@
     <string name="users">Users</string>
     <string name="retype_pass_hint">Retype_password</string>
     <string name="email_hint">Email</string>
+    <string name="group_prompt">Choose a group</string>
 
 
 

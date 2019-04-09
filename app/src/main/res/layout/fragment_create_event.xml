@@ -51,6 +51,13 @@
                     android:textSize="16dp" />
             </RadioGroup>
 
+            <Spinner
+                android:id="@+id/choose_group"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@color/colorPrimary"
+                android:prompt="@string/group_prompt" />
+
             <TextView
                 android:id="@+id/evt_name_TV"
                 android:layout_width="match_parent"
