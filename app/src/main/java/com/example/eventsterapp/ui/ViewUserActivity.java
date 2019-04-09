@@ -25,6 +25,7 @@ public class ViewUserActivity extends AppCompatActivity {
     private TextView UserZodiac;
     private TextView UserPhone;
     private TextView UserInfo;
+    private TextView UserBday;
     private DatabaseHelper mydb;
 
     private String nameFromIntent;
@@ -67,6 +68,7 @@ public class ViewUserActivity extends AppCompatActivity {
         UserEmail = findViewById(R.id.viewuser_card_email);
         UserZodiac = findViewById(R.id.viewuser_card_zodiac);
         UserPhone = findViewById(R.id.viewuser_card_phone);
+        UserBday = findViewById(R.id.viewuser_card_bday);
         UserImage = findViewById(R.id.viewuser_image);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -80,6 +82,7 @@ public class ViewUserActivity extends AppCompatActivity {
         UserPhone.setText(viewUser.getPhone());
         UserZodiac.setText(viewUser.getZodiac());
         UserInfo.setText( viewUser.getInfo() );
+        UserBday.setText(viewUser.getBirthday());
         UserImage.setImageResource(R.drawable.default_user_img);
 
         showEntitiesFragment = new ShowEntitiesFragment();
