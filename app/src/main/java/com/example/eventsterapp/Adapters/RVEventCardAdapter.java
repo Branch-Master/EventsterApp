@@ -1,5 +1,6 @@
 package com.example.eventsterapp.Adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,9 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         TextView cardEnds;
         TextView cardLoc;
         TextView cardSeats;
+        TextView cardGroup;
         LinearLayout card;
+
 
 
 
@@ -46,12 +49,15 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
             cardLoc = (TextView)itemView.findViewById(R.id.event_location);
             cardSeats = (TextView)itemView.findViewById(R.id.event_nr_steats);
             card = (LinearLayout) itemView.findViewById(R.id.event_cv);
+            cardGroup = (TextView) itemView.findViewById(R.id.event_group);
+
 
 
         }
     }
 
     ArrayList<Event> events;
+    DatabaseHelper mdb;
 
     public RVEventCardAdapter(ArrayList<Event> cards){
         this.events = cards;
@@ -62,6 +68,7 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
     public RVEventCardAdapter.EventCard onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card, parent,false);
         EventCard eventCard = new EventCard(v);
+        mdb = new DatabaseHelper(v.getContext());
 
         return eventCard;
     }
@@ -76,6 +83,15 @@ public class RVEventCardAdapter extends RecyclerView.Adapter<RVEventCardAdapter.
         holder.cardImg.setImageResource(R.drawable.default_event_img);
         holder.cardLoc.setText(events.get(i).getLocation());
         holder.cardSeats.setText(events.get(i).getEventSeats() +"");
+
+
+        String groupName = mdb.getGroupById(events.get(i).getGroupID()).getGroupName();
+
+        if(groupName.equals("ekkert fannst")){
+            groupName = "No Group";
+        }
+
+        holder.cardGroup.setText(groupName);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
