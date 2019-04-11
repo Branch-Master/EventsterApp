@@ -9,7 +9,6 @@ import android.os.Bundle;
 //import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import com.example.eventsterapp.Adapters.RVAdapter;
 import com.example.eventsterapp.Adapters.RVEventCardAdapter;
 import com.example.eventsterapp.Adapters.RVGroupCardAdapter;
 import com.example.eventsterapp.Adapters.RVUserCardAdapter;
@@ -48,8 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     private final String mypref = "myprefrences";
 
 
-    RVAdapter adapter;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -83,8 +80,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
 
-        RVAdapter rvAdapter;
-
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             System.out.println("tab Selected: " + tab.getText() + "================================");
@@ -95,11 +90,9 @@ public class HomeActivity extends AppCompatActivity {
                     eventView.setAdapter(eventAdapter);
                     break;
                 case 1:
-                   // groupAdapter = new RVAdapter(groupList,new Group());
                     eventView.setAdapter(groupAdapter);
                     break;
                 case 2:
-                    //userAdapter = new RVAdapter(userList,new User());
                     eventView.setAdapter(userAdapter);
                     break;
             }

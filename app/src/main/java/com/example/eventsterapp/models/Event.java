@@ -15,7 +15,6 @@ public class Event {
     private String eventName;
     private String eventInfo;
     private int groupID;
-    private ArrayList<Comment> comments;
     private String tags;
     private String startDate;
     private String endDate;
@@ -36,23 +35,12 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         going = new ArrayList<>();
-        comments = new ArrayList<>();
         this.location = location;
         this.eventSeats = eventSeats;
         this.visable = vis;
     }
 
-    public void setComments(ArrayList<Comment> comments){this.comments = comments;}
-
     public void setGoing(ArrayList<User> going){this.going = going;}
-
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
-    }
-
-    public void deleteComment(Comment comment) {
-        this.comments.remove(comment);
-    }
 
     public void setEventName(String name) {
         this.eventName = name;
