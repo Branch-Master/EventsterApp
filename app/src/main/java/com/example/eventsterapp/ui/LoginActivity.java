@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.example.eventsterapp.Fragments.CreateUserFragment;
 import com.example.eventsterapp.Fragments.LoginFragment;
+import com.example.eventsterapp.Network.NetworkController;
 import com.example.eventsterapp.R;
 import com.example.eventsterapp.database.DatabaseHelper;
 import com.example.eventsterapp.models.Event;
@@ -36,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
 
         this.sharedpreferences = getSharedPreferences(mypref,Context.MODE_PRIVATE);
         this.editor = sharedpreferences.edit();
+
+        NetworkController networkController = new NetworkController();
+        networkController.getSomething();
+
 
     }
 
